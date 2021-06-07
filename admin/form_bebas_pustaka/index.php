@@ -150,8 +150,6 @@ include "../header.php";
                                 $("<div class='detail-body'></div>").insertAfter("div#ModalNPM");                                                                                                                             
                             }); 
 
-                            // fill_datatable();
-  
                             function fill_datatable(fakultas = '', jurusan = ''){
                                 var dataTable = $('#lookup').DataTable({
                                     "processing" : true,
