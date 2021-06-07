@@ -42,24 +42,55 @@ if($getData=='jurusan'){
     }
 }
 
-if($getData=='all'){
-    $id_fakultas = $_POST["fakultas"];
-    $id_jurusan = $_POST["jurusan"];
-    $sql = "SELECT npm_mahasiswa, nm_mahasiswa FROM tbl_mahasiswa WHERE id_fakultas='$id_fakultas' AND id_jurusan='$id_jurusan' ORDER BY nm_mahasiswa ASC";
-    $result = $mysqli->query($sql);
-    $numrow = $result->num_rows;
-    if($numrow > 0) {
-        echo '<tbody>';
-        while ($data = $result->fetch_array()) {
-            echo '            
-                <tr class="pilih" data-nim="'.$data[npm_mahasiswa].'">
-                    <td>'.$data[npm_mahasiswa].'</td>
-                    <td>'.$data[nm_mahasiswa].'</td>
-                </tr>            
-            ';            
-        }
-        echo '</tbody>';
-    }    
+if($getData=='modal'){
+    $column = array('npm_mahasiswa', 'nm_mahasiswa');
+    $query = "SELECT npm_mahasiswa, nm_mahasiswa FROM tbl_mahasiswa ";
+    if(isset($_POST['filter_fakultas'], $_POST['filter_jurusan']) && $_POST['filter_fakultas'] != '' && $_POST['filter_jurusan'] != ''){
+        $query .= ' WHERE Gender = "'.$_POST['filter_fakultas'].'" AND Country = "'.$_POST['filter_jurusan'].'" ';
+    }
+
+    if(isset($_POST['order'])){
+        $query .= 'ORDER BY '.$column[$_POST['order']['0']['column']].' '.$_POST['order']['0']['dir'].' ';
+    } else {
+        $query .= 'ORDER BY CustomerID DESC ';
+    }
+
+    $query1 = '';
+
+    if($_POST["length"] != -1){
+        $query1 = 'LIMIT ' . $_POST['start'] . ', ' . $_POST['length'];
+    }
+
+    $statement = $connect->prepare($query);
+    $statement->execute();
+    $number_filter_row = $statement->rowCount();
+    $statement = $connect->prepare($query . $query1);
+    $statement->execute();
+    $result = $statement->fetchAll();
+
+    $data = array();
+    foreach($result as $row){
+        $sub_array = array();
+        $sub_array[] = $row['npm_mahasiswa'];
+        $sub_array[] = $row['nm_mahasiswa'];
+        $data[] = $sub_array;
+    }
+
+    function count_all_data($connect){
+        $query = "SELECT npm_mahasiswa, nm_mahasiswa FROM tbl_mahasiswa";
+        $statement = $connect->prepare($query);
+        $statement->execute();
+        return $statement->rowCount();
+    }
+
+    $output = array(
+        "draw"              => intval($_POST["draw"]),
+        "recordsTotal"      => count_all_data($connect),
+        "recordsFiltered"   => $number_filter_row,
+        "data"              => $data
+    );
+
+    echo json_encode($output);    
 }
 
 if($getData=='detail'){

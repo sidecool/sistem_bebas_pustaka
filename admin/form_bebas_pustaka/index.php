@@ -24,21 +24,7 @@ include "../header.php";
                                     </div>                                    
                                 </div>
                                 <div class="card-body">
-                                    <form method="post" action="" autocomplete="off" id="in-form">
-                                    <div class="form-group row">
-                                            <label for="id_fakultas" class="col-sm-4 col-form-label text-right font-weight-bold">FAKULTAS</label>
-                                            <div class="col-sm-8">
-                                                <select class="id_fakultas form-control" name="id_fakultas" placeholder="Nama Fakultas" required onkeydown="return f_cekenter(this, event)" tabIndex="1"></select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="id_jurusan" class="col-sm-4 col-form-label text-right font-weight-bold">JURUSAN / PROGRAM STUDI</label>
-                                            <div class="col-sm-8">
-                                                <select class="id_jurusan form-control" name="id_jurusan" placeholder="Nama Jurusan" required onkeydown="return f_cekenter(this, event)" tabIndex="2">
-                                                    <option value="">- PILIH JURUSAN / PROGRAM STUDI -</option>
-                                                </select>
-                                            </div>
-                                        </div>
+                                    <form method="post" action="" autocomplete="off" id="in-form">                                        
                                         <div class="form-group row">
                                             <label for="npm_mahasiswa" class="col-sm-4 col-form-label text-right font-weight-bold">NPM MAHASISWA</label>
                                             <div class="col-sm-4">
@@ -50,13 +36,37 @@ include "../header.php";
                                         </div>
                                         <!-- ModalNPM -->
                                         <div class="modal fade" id="ModalNPM" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" style="width:800px">
+                                            <div class="modal-dialog modal-lg" style="width:800px">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h4 class="modal-title" id="myModalLabel">Pencarian Mahasiswa</h4>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>                                                        
                                                     </div>
                                                     <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group row">
+                                                                    <label for="id_fakultas" class="col-sm-4 col-form-label text-right font-weight-bold">FAKULTAS</label>
+                                                                    <div class="col-sm-8">
+                                                                        <select class="id_fakultas form-control" name="id_fakultas" placeholder="Nama Fakultas" required onkeydown="return f_cekenter(this, event)" tabIndex="1"></select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label for="id_jurusan" class="col-sm-4 col-form-label text-right font-weight-bold">JURUSAN / PROGRAM STUDI</label>
+                                                                    <div class="col-sm-8">
+                                                                        <select class="id_jurusan form-control" name="id_jurusan" placeholder="Nama Jurusan" required onkeydown="return f_cekenter(this, event)" tabIndex="2">
+                                                                            <option value="">- PILIH JURUSAN / PROGRAM STUDI -</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label for="button" class="col-sm-4"></label>
+                                                                    <div class="col-sm-8">
+                                                                        <button type="button" name="filter" id="filter" class="btn btn-info">Tampilkan Data</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>                                                            
+                                                        </div>
                                                         <table id="lookup" class="table table-bordered table-hover table-striped">
                                                             <thead>
                                                                 <tr>
@@ -135,28 +145,42 @@ include "../header.php";
                                 });
                             });
                             
-                            $("#btnCari").click(function(){
-                                var fakultas = $(".id_fakultas").val();
-                                var jurusan = $(".id_jurusan").val();                                
+                            $("#btnCari").click(function(){                                
                                 $(".detail-body").remove();
-                                $("<div class='detail-body'></div>").insertAfter("div#ModalNPM");
-                                                                                             
-                                if(fakultas != '' && jurusan != ''){                                    
-                                    $.ajax({
-                                        type: 'POST',
-                                        url: "get_data.php?getData=all",
-                                        data: {id_fakultas: fakultas, id_jurusan: jurusan},
-                                        cache: false,
-                                        success: function(msg){
-                                            $("#lookup").dataTable(msg);
+                                $("<div class='detail-body'></div>").insertAfter("div#ModalNPM");                                                                                                                             
+                            }); 
+
+                            // fill_datatable();
+  
+                            function fill_datatable(fakultas = '', jurusan = ''){
+                                var dataTable = $('#lookup').DataTable({
+                                    "processing" : true,
+                                    "serverSide" : true,
+                                    "order" : [],
+                                    "searching" : false,
+                                    "ajax" : {
+                                        url:"get_data.php?getData=modal",
+                                        type:"POST",
+                                        data:{
+                                            filter_fakultas:fakultas, 
+                                            filter_jurusan:jurusan
                                         }
-                                    });        
+                                    }
+                                });
+                            }
+  
+                            $('#filter').click(function(){
+                                var fakultas = $(".id_fakultas").val();
+                                var jurusan = $(".id_jurusan").val();
+                                if(fakultas != '' && jurusan != ''){
+                                    $('#lookup').DataTable().destroy();
+                                    fill_datatable(fakultas, jurusan);
+                                } else {
+                                    alert('Anda belum memilih fakultas dan jurusan, silahkan pilih terlebih dahulu.');
+                                    $('#lookup').DataTable().destroy();
+                                    fill_datatable();
                                 }
-                                else
-                                {
-                                    alert('Pilih terlebih dahulu Fakultas dan Jurusan');                                    
-                                }
-                            });                                                        
+                            });                                                       
                         });
 
                         $(document).on('click', '.pilih', function (e) {
