@@ -46,7 +46,7 @@ if($getData=='modal'){
     $column = array('npm_mahasiswa', 'nm_mahasiswa');
     $query = "SELECT npm_mahasiswa, nm_mahasiswa FROM tbl_mahasiswa ";
     if(isset($_POST['filter_fakultas'], $_POST['filter_jurusan']) && $_POST['filter_fakultas'] != '' && $_POST['filter_jurusan'] != ''){
-        $query .= ' WHERE Gender = "'.$_POST['filter_fakultas'].'" AND Country = "'.$_POST['filter_jurusan'].'" ';
+        $query .= ' WHERE id_fakultas = "'.$_POST['filter_fakultas'].'" AND id_jurusan = "'.$_POST['filter_jurusan'].'" ';
     }
 
     if(isset($_POST['order'])){
