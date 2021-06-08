@@ -1,10 +1,40 @@
                     <?php
-                        if(isset($_GET['p'])) {
+                        if(isset($_GET['pas'])) {
+                            switch ($_GET['pas']) {                                
+                                case 'pw-salah':
+                                    echo '
+                                    <script>
+                                        toastr.options.onHidden = function() { document.location="index.php"; }
+                                        toastr.options.timeOut = 3000;
+                                        toastr.error("Password lama salah, pastikan Anda mengisi dengan benar.", "Pesan Gagal");
+                                    </script>';
+                                    break;
+                                case 'pw-berhasil-edit':
+                                    echo '
+                                    <script>
+                                        toastr.options.onHidden = function() { document.location="../../logout.php"; }
+                                        toastr.options.timeOut = 3000;
+                                        toastr.success("Password telah diganti, Anda berhasil mengganti Password.", "Pesan Berhasil");
+                                    </script>';
+                                    break;
+                                case 'pw-gagal-edit':
+                                    echo '
+                                    <script>
+                                        toastr.options.onHidden = function() { document.location="index.php"; }
+                                        toastr.options.timeOut = 3000;    
+                                        toastr.error("Password tidak dapat diganti, Anda tidak berhasil mengganti Password.", "Pesan Gagal");
+                                    </script>';
+                                    break;
+                            }                            
+                        }elseif(isset($_GET['p'])) {
                             echo '<script>
                                 toastr.options.onHidden = function() { document.location="index.php"; }
                                 toastr.options.timeOut = 3000;
                             </script>';
                             switch ($_GET['p']) {
+                                case 'simpan':
+                                    echo '<script>toastr.success("Data telah disimpan, Anda berhasil menyimpan data.", "Pesan Berhasil");</script>';
+                                    break;
                                 case 'berhasil-simpan':
                                     echo '<script>toastr.success("Data telah ditambahkan, Anda berhasil menambah data.", "Pesan Berhasil");</script>';
                                     break;
@@ -13,6 +43,9 @@
                                     break;
                                 case 'berhasil-hapus':
                                     echo '<script>toastr.success("Data telah dihapus, Anda berhasil menghapus data.", "Pesan Berhasil");</script>';
+                                    break;
+                                case 'gagal':
+                                    echo '<script>toastr.error("Data tidak dapat disimpan, Anda tidak berhasil menyimpan data.", "Pesan Gagal");</script>';
                                     break;
                                 case 'gagal-simpan':
                                     echo '<script>toastr.error("Data tidak dapat ditambahkan, Anda tidak berhasil menambah data.", "Pesan Gagal");</script>';

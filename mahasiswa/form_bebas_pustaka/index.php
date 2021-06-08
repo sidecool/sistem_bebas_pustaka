@@ -27,9 +27,8 @@ include "../header.php";
                                     <form method="post" action="aksi_info.php" autocomplete="off" id="in-form">
                                         <?php
                                             $id_mahasiswa = $_SESSION['no_id'];
-                                            $nm_mahasiswa = $_SESSION['nama'];
                                             
-                                            $sql = "SELECT judul_skripsi, pembimbing_1, pembimbing_2, judul_buku_1, judul_buku_2, judul_buku_3 
+                                            $sql = "SELECT nm_mahasiswa, judul_skripsi, pembimbing_1, pembimbing_2, judul_buku_1, judul_buku_2, judul_buku_3 
                                                     FROM tbl_info_dokumen WHERE npm_mahasiswa='$id_mahasiswa'";
                                             $result = $mysqli->query($sql);
                                             $col = $result->fetch_assoc();
@@ -44,7 +43,7 @@ include "../header.php";
                                         <div class="form-group row">
                                             <label for="nama" class="col-sm-4 col-form-label text-right font-weight-bold">NAMA MAHASISWA</label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" name="nama" id="nama" value="<?php echo $nm_mahasiswa; ?>" placeholder="Nama Mahasiswa" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="2">
+                                                <input type="text" class="form-control" name="nama" id="nama" value="<?php echo $col['nm_mahasiswa']; ?>" placeholder="Nama Mahasiswa" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="2">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -141,9 +140,9 @@ include "../header.php";
                                                     <?php 
                                                         echo $ket_upload;
                                                         if($column['filetype'] == ".pdf"){
-                                                            echo ' (PDF)';                                                            
+                                                            echo ' (PDF)';
                                                         }elseif($column['filetype'] == ".doc, .docx"){
-                                                            echo ' (Word)';                                                        
+                                                            echo ' (Word)';
                                                         }
                                                         $filename = strtolower(str_replace(' ', '_', $ket_upload));
                                                     ?>
@@ -151,13 +150,13 @@ include "../header.php";
                                                 </td>
                                                 <td width = "5%" class="text-center">
                                                     <div>
-                                                        <label for="<?php echo $no_urut; ?>"><i class="fa fa-upload text-info"></i></label>
+                                                        <span title="Upload File"><label for="<?php echo $no_urut; ?>"><i class="fa fa-upload text-info"></i></label></span>
                                                         <input type="file" name="file" id="<?php echo $no_urut; ?>" style="display:none;" accept="<?php echo $column['filetype']; ?>" onchange="f_upload(this.id, '<?php echo $id_upload; ?>', '<?php echo $filename; ?>');">                                                        
                                                     </div>                                                    
                                                 </td>
                                                 <td width = "5%" class="text-center">
                                                     <div>
-                                                        <span id="<?php echo $no_urut; ?>proses">
+                                                        <span id="<?php echo $no_urut; ?>proses"  title="Download File">
                                                         <?php 
                                                             $sql_2 = "SELECT nama_file FROM tbl_upload_dokumen 
                                                                       WHERE npm_mahasiswa='$folder' AND id_daftar_upload='$id_upload'";                                                            
@@ -179,11 +178,12 @@ include "../header.php";
                                                                 }
                                                             }
                                                         ?>
-                                                        </span>                 
-                                                    </div>                                                    
+                                                        </span>
+                                                    </div>
                                                 </td>
                                                 <td width = "5%" class="text-center">
                                                     <div>
+                                                        <span id="<?php echo $no_urut; ?>verif"  title="Verifikasi">
                                                         <?php
                                                             $sql_3 = "SELECT verifikasi FROM tbl_upload_dokumen 
                                                                       WHERE npm_mahasiswa='$folder' AND id_daftar_upload='$id_upload'";
@@ -195,12 +195,13 @@ include "../header.php";
                                                             if($numrow_3 > 0) {
                                                                 $column_3 = $result_3->fetch_assoc();
                                                                 if($column_3['verifikasi'] == 'B'){
-                                                                    echo '<span><label><i class="fa fa-check-circle text-basic"></i></label></span>';
+                                                                    echo '<label><i class="fa fa-check-circle text-basic"></i></label>';
                                                                 } else {
-                                                                    echo '<span><label><i class="fa fa-check-circle text-success"></i></label></span>';
+                                                                    echo '<label><i class="fa fa-check-circle text-success"></i></label>';
                                                                 }                                                            
                                                             } 
-                                                        ?>  
+                                                        ?>
+                                                        </span>  
                                                     </div>
                                                 </td>
                                             </tr>
@@ -246,7 +247,8 @@ include "../header.php";
                                     document.getElementById(id_element+'proses').innerHTML = "<label class='text-success'>Proses upload...</label>";
                                 },
                                 success:function(data){
-                                    location.reload();
+                                    $('#'+id_element+'proses').html(data);
+                                    $('#'+id_element+'verif').html("<label><i class='fa fa-check-circle text-basic'></i></label>");
                                 }
                             });                            
                         }                                            

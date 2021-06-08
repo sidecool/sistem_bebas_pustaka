@@ -24,7 +24,7 @@ if($_FILES['file']['name'] != ''){
             echo '';
         } else {
             echo  
-            '<a href="aksi_download.php?id=<?php echo $folder; ?>&file=<?php echo $file_cari; ?>">
+            '<a href="aksi_download.php?id='.$_POST['username'].'&file='.$SaveAs.'">
                 <label>
                     <i class="fa fa-download text-danger"></i>
                 </label>

@@ -24,11 +24,11 @@ include "../header.php";
                                     </div>                                    
                                 </div>
                                 <div class="card-body">
-                                    <form method="post" action="" autocomplete="off" id="in-form">                                        
+                                    <form method="post" action="aksi_info.php" autocomplete="off" id="in-form">                                        
                                         <div class="form-group row">
                                             <label for="npm_mahasiswa" class="col-sm-4 col-form-label text-right font-weight-bold">NPM MAHASISWA</label>
                                             <div class="col-sm-4">
-                                                <input type="text" class="form-control" name="npm_mahasiswa" id="npm_mahasiswa" placeholder="NPM Mahasiswa" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="3">
+                                                <input type="text" class="form-control" name="npm_mahasiswa" id="npm_mahasiswa" placeholder="NPM Mahasiswa" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="1">
                                             </div>                                            
                                             <div class="col-sm-2">
                                                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalNPM" id="btnCari"><b>Cari </b><i class="fa fa-search"></i></button>
@@ -80,12 +80,11 @@ include "../header.php";
                                             </div>
                                         </div>
                                         <!-- End ModalNPM -->
-                                        <!-- <div class="detail_body"></div> -->
+                                        <div id="detail-body"></div>
                                     </form>
                                 </div>
                             </div>
                         </div>
-                    
                     
                     <div id="TabelData">
                         <div class="card mb-4">
@@ -99,7 +98,7 @@ include "../header.php";
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered table-striped table-sm" id="uploadTable" width="100%" cellspacing="0">
+                                    <table id="uploadTable" class="table table-bordered table-striped table-sm" width="100%" cellspacing="0">
                                         <thead class="text-center">
                                             <tr>
                                                 <th>No.</th>
@@ -111,8 +110,7 @@ include "../header.php";
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            
-                                        </tbody>
+                                        </tbody>                                        
                                     </table>
                                 </div>
                             </div>
@@ -132,8 +130,6 @@ include "../header.php";
                             });
                             $(".id_fakultas").change(function(){
                                 var fakultas = $(".id_fakultas").val();
-                                $(".detail-body").remove();
-                                document.getElementById('npm_mahasiswa').value = '';                               
                                 $.ajax({
                                     type: 'POST',
                                     url: "get_data.php?getData=jurusan",
@@ -145,56 +141,83 @@ include "../header.php";
                                 });
                             });
                             
+                            var dataTable = $("#lookup").dataTable();
+
                             $("#btnCari").click(function(){                                
-                                $(".detail-body").remove();
-                                $("<div class='detail-body'></div>").insertAfter("div#ModalNPM");                                                                                                                             
-                            }); 
+                                $(".id_fakultas").val("").change();                                
+                                $("#lookup").DataTable().clear();
+                                $("#lookup").DataTable().destroy();
+                                fill_datatable();                                                                                               
+                            });                             
 
                             function fill_datatable(fakultas = '', jurusan = ''){
-                                var dataTable = $('#lookup').DataTable({
-                                    "processing" : true,
-                                    "serverSide" : true,
-                                    "order" : [],
-                                    "searching" : false,
-                                    "ajax" : {
-                                        url:"get_data.php?getData=modal",
-                                        type:"POST",
-                                        data:{
-                                            filter_fakultas:fakultas, 
-                                            filter_jurusan:jurusan
+                                if(fakultas!='' && jurusan!=''){
+                                    dataTable.DataTable({
+                                        "processing" : true,
+                                        "language": {
+                                            "infoFiltered": '',
+                                            "zeroRecords": "Tidak ada data yang ditampilkan"
+                                        },
+                                        "order" : [],
+                                        "ajax" : {
+                                            url:"get_data.php?getData=modal",
+                                            type:"POST",
+                                            data:{
+                                                filter_fakultas:fakultas, 
+                                                filter_jurusan:jurusan
+                                            }
                                         }
+                                    });
+                                } else {
+                                    dataTable.DataTable({
+                                        "language": {
+                                            "infoFiltered": '',
+                                            "zeroRecords": "Tidak ada data yang ditampilkan"
+                                        }
+                                    });
+                                }                                
+                            };
+
+                            $("#lookup tbody").on("click", "tr", function(e){
+                                var baris = dataTable.DataTable().row(this).data();
+                                var npm = baris[0];
+                                document.getElementById('npm_mahasiswa').value = npm;
+                                $.ajax({
+                                    type: "POST",
+                                    url: "get_data.php?getData=detail",
+                                    data: {id_mahasiswa: npm},
+                                    cache: false,
+                                    success: function(msg){
+                                        $("#detail-body").html(msg);
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "get_dokumen.php",
+                                            data: {id_mahasiswa: npm},
+                                            cache: false,
+                                            success: function(msg){
+                                                $("#uploadTable tbody").html(msg);
+                                            }
+                                        })
                                     }
                                 });
-                            }
-  
-                            $('#filter').click(function(){
+                                $('#ModalNPM').modal('hide');
+                            });
+
+                            $("#filter").click(function(){                                
                                 var fakultas = $(".id_fakultas").val();
                                 var jurusan = $(".id_jurusan").val();
                                 if(fakultas != '' && jurusan != ''){
-                                    $('#lookup').DataTable().destroy();
+                                    $("#lookup").DataTable().clear().draw();
+                                    $("#lookup").DataTable().destroy();
                                     fill_datatable(fakultas, jurusan);
                                 } else {
                                     alert('Anda belum memilih fakultas dan jurusan, silahkan pilih terlebih dahulu.');
-                                    $('#lookup').DataTable().destroy();
+                                    $("#lookup").DataTable().clear().draw();
+                                    $("#lookup").DataTable().destroy();
                                     fill_datatable();
                                 }
-                            });                                                       
-                        });
-
-                        $(document).on('click', '.pilih', function (e) {
-                            document.getElementById("npm_mahasiswa").value = $(this).attr('data-nim');
-                            var npm = $("#npm_mahasiswa").val();
-                            $.ajax({
-                                type: 'POST',
-                                url: "get_data.php?getData=detail",
-                                data: {id_mahasiswa: npm},
-                                cache: false,
-                                success: function(msg){
-                                    $(".detail-body").html(msg);
-                                }
-                            });
-                            $('#ModalNPM').modal('hide');
-                        });
+                            });                            
+                        });                        
                     </script>    
 
 <?php 
