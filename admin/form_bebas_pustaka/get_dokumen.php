@@ -31,7 +31,7 @@ if($numrow > 0) {
             <td width = "5%" class="text-center">
                 <div>
                     <span title="Upload File"><label for="'.$no_urut.'"><i class="fa fa-upload text-info"></i></label></span>
-                    <input type="file" name="file" id="'.$no_urut.'" style="display:none;" data-id="'.$id_upload.'" data-file="'.$filename.'" accept="'.$column["filetype"].'" onchange="f_upload(this.id);">
+                    <input type="file" name="file" id="'.$no_urut.'" style="display:none;" accept="'.$column["filetype"].'" onchange="f_upload(this.id, \''.$id_upload.'\', \''.$filename.'\');">
                 </div>                                                    
             </td>
             <td width = "5%" class="text-center">
@@ -101,7 +101,7 @@ if($numrow > 0) {
 }
 
 $pesan = "<label class='text-success'>Proses upload...</label>";
-$btnVerifikasi = "<label><i class='fa fa-check-circle text-basic'></i></label>";
+$btnVerifikasi = "<span class='btn-terima' id='btn-terima'.$id_upload.'' title='Diterima' data-id=''.$id_upload.'' data-file=''.$filename.''><label><i class='fa fa-check-circle text-success'></i></label></span> <span class='btn-tolak' id='btn-tolak'.$id_upload.'' title='Ditolak' data-id=''.$id_upload.'' data-file=''.$filename.''><label><i class='fa fa-times-circle text-danger'></i></label></span>";
 
 echo '
 <script>
@@ -146,9 +146,9 @@ echo '
         })
     });
 
-function f_upload(id_element){
-    var id = $(this).attr("data-id");
-    var nama = $(this).attr("data-file");
+function f_upload(id_element, kode, nama){
+    var id = kode;
+    var nama = nama;
     var uploader = '.$folder.';
     var files = document.getElementById(id_element);
     for (var x = 0; x < files.length; x++){                                
@@ -173,7 +173,7 @@ function f_upload(id_element){
         },
         success: function(msg){                                        
             toastr.success("Data telah disimpan, Anda berhasil menyimpan data.", "Pesan Berhasil", 3000);
-            document.getElementById(id_element+"proses").innerHTML = msg;
+            document.getElementById(id_element+"proses").innerHTML = msg;            
             document.getElementById(id_element+"verif").innerHTML = "'.$btnVerifikasi.'";
         }, 
         error: function (error) {
