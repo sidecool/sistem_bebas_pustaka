@@ -60,7 +60,7 @@ if($numrow > 0) {
                 </div>
             </td>
             <td width = "5%" class="text-center">
-                <div id="verif">
+                <div id="'.$no_urut.'verif">
         ';
                 $sql_3 = "SELECT verifikasi FROM tbl_upload_dokumen 
                           WHERE npm_mahasiswa='$folder' AND id_daftar_upload='$id_upload'";
@@ -99,6 +99,9 @@ if($numrow > 0) {
         $no_urut++;
     }
 }
+
+$pesan = "<label class='text-success'>Proses upload...</label>";
+$btnVerifikasi = "<label><i class='fa fa-check-circle text-basic'></i></label>";
 
 echo '
 <script>
@@ -166,11 +169,12 @@ function f_upload(id_element){
         cache: false,
         processData: false,
         beforeSend:function(){
-            
+            document.getElementById(id_element+"proses").innerHTML = "'.$pesan.'";
         },
         success: function(msg){                                        
             toastr.success("Data telah disimpan, Anda berhasil menyimpan data.", "Pesan Berhasil", 3000);
-            $(id_element+"proses").html(msg);
+            document.getElementById(id_element+"proses").innerHTML = msg;
+            document.getElementById(id_element+"verif").innerHTML = "'.$btnVerifikasi.'";
         }, 
         error: function (error) {
             toastr.error("Data tidak dapat disimpan, Anda tidak berhasil menyimpan data.", "Pesan Gagal", 3000);
