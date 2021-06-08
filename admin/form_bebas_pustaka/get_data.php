@@ -2,9 +2,9 @@
 
 include '../../config/database.php';
 
-$getData = $_GET[getData];
+$pilihan = $_GET["c"];
 
-if($getData=='fakultas'){ 
+if($pilihan=='fakultas'){ 
     $id_fakultas = $_POST[id_fakultas];   
     echo '<option value="">- PILIH FAKULTAS -</option>';
     
@@ -23,7 +23,7 @@ if($getData=='fakultas'){
     }
 }
 
-if($getData=='jurusan'){
+if($pilihan=='jurusan'){
     $id_fakultas = $_POST[id_fakultas];
     $id_jurusan = $_POST[id_jurusan];
     echo '<option value="">- PILIH JURUSAN / PROGRAM STUDI -</option>';
@@ -42,7 +42,7 @@ if($getData=='jurusan'){
     }
 }
 
-if($getData=='detail'){
+if($pilihan=='detail'){
     $npm = $_POST["id_mahasiswa"];    
     $sql = "SELECT nm_mahasiswa, judul_skripsi, pembimbing_1, pembimbing_2, judul_buku_1, judul_buku_2, judul_buku_3 FROM tbl_info_dokumen WHERE npm_mahasiswa='$npm'";    
     $result = $mysqli->query($sql);
@@ -121,16 +121,18 @@ if($getData=='detail'){
     }
 }
 
-if($getData=='modal'){
+if($pilihan=='modal'){
     $column = array('npm_mahasiswa', 'nm_mahasiswa');
     if(isset($_POST['filter_fakultas'], $_POST['filter_jurusan']) && $_POST['filter_fakultas'] != '' && $_POST['filter_jurusan'] != ''){
-        $query = 'SELECT npm_mahasiswa, nm_mahasiswa FROM tbl_mahasiswa WHERE id_fakultas = "'.$_POST['filter_fakultas'].'" AND id_jurusan = "'.$_POST['filter_jurusan'].'" ';
+        $fakultas = $_POST['filter_fakultas'];
+        $jurusan = $_POST['filter_jurusan'];
+        $query = "SELECT npm_mahasiswa, nm_mahasiswa FROM tbl_mahasiswa WHERE id_fakultas='$fakultas' AND id_jurusan='$jurusan' ";    
     }
 
     if(isset($_POST['order'])){
         $query .= 'ORDER BY '.$column[$_POST['order']['0']['column']].' '.$_POST['order']['0']['dir'].' ';
     } else {
-        $query .= 'ORDER BY npm_mahasiswa DESC ';
+        $query .= 'ORDER BY npm_mahasiswa ASC ';
     }
 
     $statement = $connect->prepare($query);
@@ -156,7 +158,6 @@ if($getData=='modal'){
     }
 
     $output = array(
-        "draw"              => intval($_POST["draw"]),
         "recordsTotal"      => count_all_data($connect),
         "recordsFiltered"   => $number_filter_row,
         "data"              => $data        

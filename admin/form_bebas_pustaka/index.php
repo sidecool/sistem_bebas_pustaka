@@ -122,7 +122,7 @@ include "../header.php";
                             $(".id_fakultas").focus();
                             $.ajax({
                                 type: 'POST',
-          	                    url: "get_data.php?getData=fakultas",
+          	                    url: "get_data.php?c=fakultas",
                                 cache: false, 
                                 success: function(msg){
                                     $(".id_fakultas").html(msg);                                     
@@ -132,7 +132,7 @@ include "../header.php";
                                 var fakultas = $(".id_fakultas").val();
                                 $.ajax({
                                     type: 'POST',
-                                    url: "get_data.php?getData=jurusan",
+                                    url: "get_data.php?c=jurusan",
                                     data: {id_fakultas: fakultas},
                                     cache: false,
                                     success: function(msg){                                        
@@ -153,15 +153,15 @@ include "../header.php";
                             function fill_datatable(fakultas = '', jurusan = ''){
                                 if(fakultas!='' && jurusan!=''){
                                     dataTable.DataTable({
-                                        "processing" : true,
+                                        "processing" : true,                                        
                                         "language": {
                                             "infoFiltered": '',
                                             "zeroRecords": "Tidak ada data yang ditampilkan"
                                         },
                                         "order" : [],
                                         "ajax" : {
-                                            url:"get_data.php?getData=modal",
-                                            type:"POST",
+                                            url:"get_data.php?c=modal",
+                                            type:"POST",                                           
                                             data:{
                                                 filter_fakultas:fakultas, 
                                                 filter_jurusan:jurusan
@@ -184,7 +184,7 @@ include "../header.php";
                                 document.getElementById('npm_mahasiswa').value = npm;
                                 $.ajax({
                                     type: "POST",
-                                    url: "get_data.php?getData=detail",
+                                    url: "get_data.php?c=detail",
                                     data: {id_mahasiswa: npm},
                                     cache: false,
                                     success: function(msg){
