@@ -118,7 +118,7 @@ echo '
                 cache: false,
                 success: function(msg){
                     $("#verif").innerHTML = "";
-                    $("#verif").html(msg);
+                    $("#verif").innerHTML = msg;
                 }
             });
         });
