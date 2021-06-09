@@ -196,6 +196,7 @@ include "../header.php";
                                             cache: false,
                                             success: function(msg){
                                                 $("#uploadTable tbody").html(msg);
+                                                $.getScript("../../assets/js/verifikasi.js");
                                             }
                                         })
                                     }

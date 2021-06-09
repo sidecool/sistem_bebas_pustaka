@@ -73,11 +73,11 @@ if($numrow > 0) {
                     $column_3 = $result_3->fetch_assoc();
                     if($column_3['verifikasi'] == 'B'){
                         echo '
-                            <span class="btn-terima" id="btn-terima'.$id_upload.'" title="Diterima" data-id="'.$id_upload.'" data-file="'.$filename.'">
-                                <label><i id="terima" class="fa fa-check-circle text-success" style="cursor: pointer"></i></label>
+                            <span class="btn-terima" id="btn-terima'.$id_upload.'" title="Diterima" data-id="'.$id_upload.'" data-file="'.$filename.'" data-user="'.$folder.'">
+                                <label><i id="i-terima'.$id_upload.'" class="fa fa-check-circle text-success" style="cursor: pointer"></i></label>
                             </span>
-                            <span class="btn-tolak" id="btn-tolak'.$id_upload.'" title="Ditolak" data-id="'.$id_upload.'" data-file="'.$filename.'">
-                                <label><i id="tolak" class="fa fa-times-circle text-danger" style="cursor: pointer"></i></label>
+                            <span class="btn-tolak" id="btn-tolak'.$id_upload.'" title="Ditolak" data-id="'.$id_upload.'" data-file="'.$filename.'" data-user="'.$folder.'">
+                                <label><i id="i-tolak'.$id_upload.'" class="fa fa-times-circle text-danger" style="cursor: pointer"></i></label>
                             </span>
                         ';
                     } elseif($column_3['verifikasi'] == 'S'){ 
@@ -111,7 +111,7 @@ if($numrow > 0) {
 
 echo '
 <script>
-    function f_upload(id_element, kode, nama){
+    function f_upload(id_element, kode, nama){        
         var id = kode;
         var nama = nama;
         var uploader = '.$folder.';
@@ -127,9 +127,9 @@ echo '
         form_data.append("username", uploader);
         
         var pesan = "<label class=\'text-success\'>Proses upload...</label>";
-        var btnVerifikasi = "<span onclick=\'f_terima(\'"+id+"\', \'"+nama+"\');\' class=\'btn-terima\' id=\'btn-terima"+id_element+"\' title=\'Diterima\' data-id=\'"+id+"\' data-file=\'"+nama+"\'><label><i class=\'fa fa-check-circle text-success\' style=\'cursor: pointer\'></i></label></span> <span class=\'btn-tolak\' id=\'btn-tolak"+id_element+"\' title=\'Ditolak\' data-id=\'"+id+"\' data-file=\'"+nama+"\'><label><i class=\'fa fa-times-circle text-danger\' style=\'cursor: pointer\'></i></label></span>";
+        var btnVerifikasi = "<span class=\'btn-terima\' id=\'btn-terima"+id_element+"\' title=\'Diterima\' data-id=\'"+id+"\' data-file=\'"+nama+"\' data-user=\'"+uploader+"\'><label><i id=\'i-terima"+id+"\' class=\'fa fa-check-circle text-success\' style=\'cursor: pointer\'></i></label></span> <span class=\'btn-tolak\' id=\'btn-tolak"+id_element+"\' title=\'Ditolak\' data-id=\'"+id+"\' data-file=\'"+nama+"\' data-user=\'"+uploader+"\'><label><i id=\'i-tolak"+id+"\' class=\'fa fa-times-circle text-danger\' style=\'cursor: pointer\'></i></label></span>";
         
-        $.ajax({
+        $.ajax({            
             url: "aksi_upload.php",
             method: "POST",
             data: form_data,
@@ -145,56 +145,13 @@ echo '
                 document.getElementById(id_element+"proses").innerHTML = msg; 
                 alert(btnVerifikasi);
                 document.getElementById(id_element+"verif").innerHTML = btnVerifikasi;
+                $.getScript("../../assets/js/verifikasi.js");
             }, 
             error: function (error) {
                 toastr.error("Data tidak dapat disimpan, Anda tidak berhasil menyimpan data.", "Pesan Gagal", 3000);
             }
         });                            
-    };
-
-    function f_terima(kode, nama){
-        alert();
-    };
-    
-    $(".btn-terima").click(function(){
-        var id = $(this).attr("data-id");
-        var filename = $(this).attr("data-file");
-        var uploader = '.$folder.';
-        alert(id + filename + uploader);
-        
-        // $.ajax({
-        //     url: "aksi_verif.php?v=terima",
-        //     method: "POST",
-        //     data: {
-        //         id: id,
-        //         uploader: uploader
-        //     },
-        //     cache: false,
-        //     success: function(msg){
-                
-        //     }
-        // });
-    });
-
-    $(".btn-tolak").click(function(){
-        var id = $(this).attr("data-id");
-        var filename = $(this).attr("data-file");
-        var uploader = '.$folder.';
-        alert(id + filename + uploader);
-
-        // $.ajax({
-        //     url: "aksi_verif.php?v=tolak",
-        //     method: "POST",
-        //     data: {
-        //         id: id,
-        //         uploader: uploader
-        //     },
-        //     cache: false,
-        //     success: function(msg){
-        //         alert(msg);
-        //     }
-        // });
-    });
+    };        
 </script>
 ';
 ?>
