@@ -196,9 +196,11 @@ include "../header.php";
                                                                 $column_3 = $result_3->fetch_assoc();
                                                                 if($column_3['verifikasi'] == 'B'){
                                                                     echo '<label><i class="fa fa-check-circle text-basic"></i></label>';
-                                                                } else {
+                                                                } elseif($column_3['verifikasi'] == 'S'){
                                                                     echo '<label><i class="fa fa-check-circle text-success"></i></label>';
-                                                                }                                                            
+                                                                } else {
+                                                                    echo '<label><i class="fa fa-times-circle text-danger"></i></label>';
+                                                                }
                                                             } 
                                                         ?>
                                                         </span>  
@@ -247,6 +249,7 @@ include "../header.php";
                                     document.getElementById(id_element+'proses').innerHTML = "<label class='text-success'>Proses upload...</label>";
                                 },
                                 success:function(data){
+                                    toastr.success("Data telah disimpan, Anda berhasil menyimpan data.", "Pesan Berhasil", 3000);
                                     $('#'+id_element+'proses').html(data);
                                     $('#'+id_element+'verif').html("<label><i class='fa fa-check-circle text-basic'></i></label>");
                                 }

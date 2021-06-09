@@ -216,7 +216,7 @@ include "../header.php";
                                     $("#lookup").DataTable().destroy();
                                     fill_datatable();
                                 }
-                            });                            
+                            });                                                     
                         });                        
                     </script>    
 
