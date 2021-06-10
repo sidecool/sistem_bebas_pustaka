@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 07, 2021 at 05:58 AM
+-- Generation Time: Jun 10, 2021 at 07:37 AM
 -- Server version: 5.6.34
--- PHP Version: 7.1.11
+-- PHP Version: 5.6.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -89,17 +89,20 @@ CREATE TABLE `tbl_info_dokumen` (
   `pembimbing_1` varchar(250) NOT NULL,
   `pembimbing_2` varchar(250) NOT NULL,
   `judul_buku_1` varchar(500) NOT NULL,
+  `tahun_buku_1` varchar(4) NOT NULL,
   `judul_buku_2` varchar(500) NOT NULL,
-  `judul_buku_3` varchar(500) NOT NULL
+  `tahun_buku_2` varchar(4) NOT NULL,
+  `judul_buku_3` varchar(500) NOT NULL,
+  `tahun_buku_3` varchar(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_info_dokumen`
 --
 
-INSERT INTO `tbl_info_dokumen` (`npm_mahasiswa`, `nm_mahasiswa`, `judul_skripsi`, `pembimbing_1`, `pembimbing_2`, `judul_buku_1`, `judul_buku_2`, `judul_buku_3`) VALUES
-('20210001', 'Mahasiswa 1', 'coba', 'coa', 'coba', 'coba', 'coba', 'coba'),
-('20210002', 'aMahasiswa 2', 'apa', 'apa', 'apa', 'apa', 'apa', 'apasaja');
+INSERT INTO `tbl_info_dokumen` (`npm_mahasiswa`, `nm_mahasiswa`, `judul_skripsi`, `pembimbing_1`, `pembimbing_2`, `judul_buku_1`, `tahun_buku_1`, `judul_buku_2`, `tahun_buku_2`, `judul_buku_3`, `tahun_buku_3`) VALUES
+('20210001', 'Mahasiswa 1', 'Analisis Sistem Keuangan Berbasis Akrual di Pemerintahan Daerah Indonesia', 'Dr. Slamet, S.E., M.M.', 'Yunan, S.E., M.M', 'Akuntansi Akrual', '2015', 'Pengelolaan Keuangan Pemerintahan Daerah', '2019', 'Akuntansi Berbasis Kas dan Akrual', '2020'),
+('20210002', 'Mahasiswa 2', 'apa', 'apa', 'apa', 'apa', '', 'apa', '', 'apasaja', '');
 
 -- --------------------------------------------------------
 
@@ -197,7 +200,7 @@ CREATE TABLE `tbl_mahasiswa` (
 
 INSERT INTO `tbl_mahasiswa` (`npm_mahasiswa`, `username`, `nm_mahasiswa`, `alamat`, `id_fakultas`, `id_jurusan`, `id_anggota_perpus`, `email`) VALUES
 ('20210001', '20210001', 'Mahasiswa 1', 'Alamat 1', 'FK003', 'JUR02', '20210001', ' '),
-('20210002', '20210002', 'aMahasiswa 2', 'Alamat 2', 'FK002', 'JUR04', '20210002', 'a'),
+('20210002', '20210002', 'Mahasiswa 2', 'Alamat 2', 'FK002', 'JUR04', '20210002', 'a'),
 ('20210003', '20210003', 'Mahasiswa 3', 'Alamat 3', 'FK002', 'JUR04', '20210003', ''),
 ('20210004', '20210004', 'Mahasiswa 4', 'Alamat 4', 'FK002', 'JUR04', '20210004', ''),
 ('20210005', '20210005', 'Mahasiswa 5', 'Alamat 5', 'FK002', 'JUR04', '20210005', ''),
@@ -259,17 +262,31 @@ CREATE TABLE `tbl_upload_dokumen` (
   `npm_mahasiswa` varchar(50) NOT NULL,
   `id_daftar_upload` int(11) NOT NULL,
   `nama_file` text NOT NULL,
-  `verifikasi` varchar(25) NOT NULL
+  `verifikasi` varchar(25) NOT NULL,
+  `tgl_upload` date NOT NULL,
+  `tgl_verifikasi` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_upload_dokumen`
 --
 
-INSERT INTO `tbl_upload_dokumen` (`npm_mahasiswa`, `id_daftar_upload`, `nama_file`, `verifikasi`) VALUES
-('20210001', 1, '1. 20210001_skripsi_lengkap.docx', 'B'),
-('20210002', 1, '1. 20210002_skripsi_lengkap.docx', 'B'),
-('20210002', 5, '5. 20210002_cover.docx', 'B');
+INSERT INTO `tbl_upload_dokumen` (`npm_mahasiswa`, `id_daftar_upload`, `nama_file`, `verifikasi`, `tgl_upload`, `tgl_verifikasi`) VALUES
+('20210001', 1, '1. 20210001_skripsi_lengkap.docx', 'S', '2021-06-10', '2021-06-10'),
+('20210001', 2, '2. 20210001_skripsi_lengkap.pdf', 'S', '0000-00-00', '2021-06-10'),
+('20210001', 3, '3. 20210001_jurnal.docx', 'S', '0000-00-00', '2021-06-10'),
+('20210001', 4, '4. 20210001_jurnal.pdf', 'S', '0000-00-00', '2021-06-10'),
+('20210001', 5, '5. 20210001_cover.docx', 'S', '0000-00-00', '2021-06-10'),
+('20210001', 6, '6. 20210001_daftar_isi.docx', 'S', '2021-06-10', '2021-06-10'),
+('20210001', 7, '7. 20210001_daftar_tabel.docx', 'S', '0000-00-00', '2021-06-10'),
+('20210001', 8, '8. 20210001_daftar_gambar.docx', 'S', '0000-00-00', '2021-06-10'),
+('20210001', 9, '9. 20210001_abstrak_indonesia.docx', 'S', '2021-06-10', '2021-06-10'),
+('20210001', 10, '10. 20210001_abstrak_inggris.docx', 'S', '2021-06-10', '2021-06-10'),
+('20210001', 11, '11. 20210001_hasil_bebas_turnitin_full.pdf', 'S', '2021-06-10', '2021-06-10'),
+('20210001', 12, '12. 20210001_hasil_turnitin_dari_fakultas.pdf', 'S', '2021-06-10', '2021-06-10'),
+('20210001', 13, '13. 20210001_cover,_bab_i_sampai_dengan_bab_v.docx', 'S', '2021-06-10', '2021-06-10'),
+('20210002', 1, '1. 20210002_skripsi_lengkap.docx', 'B', '0000-00-00', '0000-00-00'),
+('20210002', 5, '5. 20210002_cover.docx', 'B', '0000-00-00', '0000-00-00');
 
 --
 -- Indexes for dumped tables

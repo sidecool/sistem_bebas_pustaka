@@ -1,4 +1,5 @@
 <?php
+include "../config/database.php";
 require("fpdf.php");
 
 class PDF extends FPDF {
@@ -71,8 +72,6 @@ class PDF extends FPDF {
     }
 }
 
-include "../config/database.php";
-
 $sql_kepala = "SELECT nm_pegawai, nip_pegawai FROM tbl_pegawai WHERE jabatan='Kepala UPT. Perpustakaan'";
 $result_kepala = $mysqli->query($sql_kepala);
 $numrow_kepala = $result_kepala->num_rows;
@@ -109,11 +108,11 @@ if($numrow_mahasiswa > 0) {
 }
 
 $pdf = new PDF("P", "mm", "A4");
-$title = "Surat Keterangan Bebas Pinjaman";
+$title = $npm."-Surat Keterangan Bebas Pinjaman";
 $pdf->SetTitle($title);
 $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->Body("", $nama, $npm, $idperpus, $alamat, $jurusan, $fakultas);
 $pdf->Ttd("Tanggal Verifikasi",$nama_kepala,$nip_kepala,$nama_petugas,$nip_petugas);
-$pdf->Output();
+$pdf->Output($title.".pdf", "I");
 ?>

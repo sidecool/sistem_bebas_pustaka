@@ -28,7 +28,7 @@ include "../header.php";
                                         <?php
                                             $id_mahasiswa = $_SESSION['no_id'];
                                             
-                                            $sql = "SELECT nm_mahasiswa, judul_skripsi, pembimbing_1, pembimbing_2, judul_buku_1, judul_buku_2, judul_buku_3 
+                                            $sql = "SELECT nm_mahasiswa, judul_skripsi, pembimbing_1, pembimbing_2, judul_buku_1, tahun_buku_1, judul_buku_2, tahun_buku_2, judul_buku_3, tahun_buku_3 
                                                     FROM tbl_info_dokumen WHERE npm_mahasiswa='$id_mahasiswa'";
                                             $result = $mysqli->query($sql);
                                             $col = $result->fetch_assoc();
@@ -66,20 +66,29 @@ include "../header.php";
                                         </div>
                                         <div class="form-group row">
                                             <label for="judulbuku1" class="col-sm-4 col-form-label text-right font-weight-bold">JUDUL BUKU 1</label>
-                                            <div class="col-sm-8">
+                                            <div class="col-sm-6">
                                                 <input type="text" class="form-control" name="judulbuku1" id="judulbuku1" value="<?php echo $col['judul_buku_1']; ?>" placeholder="Judul Buku" required onkeydown="return f_cekenter(this, event)" tabIndex="6">
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <input type="text" class="form-control" name="tahunbuku1" id="tahunbuku1" value="<?php echo $col['tahun_buku_1']; ?>" placeholder="Tahun Buku" required tabIndex="7">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="judulbuku2" class="col-sm-4 col-form-label text-right font-weight-bold">JUDUL BUKU 2</label>
-                                            <div class="col-sm-8">
-                                                <input type="text" class="form-control" name="judulbuku2" id="judulbuku2" value="<?php echo $col['judul_buku_2']; ?>" placeholder="Judul Buku" required onkeydown="return f_cekenter(this, event)" tabIndex="7">
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" name="judulbuku2" id="judulbuku2" value="<?php echo $col['judul_buku_2']; ?>" placeholder="Judul Buku" required onkeydown="return f_cekenter(this, event)" tabIndex="8">
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <input type="text" class="form-control" name="tahunbuku2" id="tahunbuku2" value="<?php echo $col['tahun_buku_2']; ?>" placeholder="Tahun Buku" required tabIndex="9">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="judulbuku3" class="col-sm-4 col-form-label text-right font-weight-bold">JUDUL BUKU 3</label>
-                                            <div class="col-sm-8">
-                                                <input type="text" class="form-control" name="judulbuku3" id="judulbuku3" value="<?php echo $col['judul_buku_3']; ?>" placeholder="Judul Buku" required tabIndex="8">
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" name="judulbuku3" id="judulbuku3" value="<?php echo $col['judul_buku_3']; ?>" placeholder="Judul Buku" required tabIndex="10">
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <input type="text" class="form-control" name="tahunbuku3" id="tahunbuku3" value="<?php echo $col['tahun_buku_3']; ?>" placeholder="Tahun Buku" required tabIndex="11">
                                             </div>
                                         </div>
                                         <div class="form-group row">
