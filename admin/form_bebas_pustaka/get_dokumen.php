@@ -143,7 +143,6 @@ echo '
             success: function(msg){                                                        
                 toastr.success("Data telah disimpan, Anda berhasil menyimpan data.", "Pesan Berhasil", 3000);                
                 document.getElementById(id_element+"proses").innerHTML = msg; 
-                alert(btnVerifikasi);
                 document.getElementById(id_element+"verif").innerHTML = btnVerifikasi;
                 $.getScript("../../assets/js/verifikasi.js");
             }, 

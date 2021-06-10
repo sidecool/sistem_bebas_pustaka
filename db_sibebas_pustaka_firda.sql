@@ -101,8 +101,7 @@ CREATE TABLE `tbl_info_dokumen` (
 --
 
 INSERT INTO `tbl_info_dokumen` (`npm_mahasiswa`, `nm_mahasiswa`, `judul_skripsi`, `pembimbing_1`, `pembimbing_2`, `judul_buku_1`, `tahun_buku_1`, `judul_buku_2`, `tahun_buku_2`, `judul_buku_3`, `tahun_buku_3`) VALUES
-('20210001', 'Mahasiswa 1', 'Analisis Sistem Keuangan Berbasis Akrual di Pemerintahan Daerah Indonesia', 'Dr. Slamet, S.E., M.M.', 'Yunan, S.E., M.M', 'Akuntansi Akrual', '2015', 'Pengelolaan Keuangan Pemerintahan Daerah', '2019', 'Akuntansi Berbasis Kas dan Akrual', '2020'),
-('20210002', 'Mahasiswa 2', 'apa', 'apa', 'apa', 'apa', '', 'apa', '', 'apasaja', '');
+('20210001', 'Monalisa', 'Analisis Sistem Keuangan Berbasis Akrual di Pemerintahan Daerah Indonesia', 'Dr. Slamet, S.E., M.M.', 'Yunan, S.E., M.M', 'Akuntansi Akrual', '2015', 'Pengelolaan Keuangan Pemerintahan Daerah', '2019', 'Akuntansi Berbasis Kas dan Akrual', '2020');
 
 -- --------------------------------------------------------
 
@@ -121,34 +120,34 @@ CREATE TABLE `tbl_jurusan` (
 --
 
 INSERT INTO `tbl_jurusan` (`id_fakultas`, `id_jurusan`, `nm_jurusan`) VALUES
-('FK001', 'JUR01', 'PRODI ARGOTEKNOLOGI'),
-('FK001', 'JUR02', 'PRODI KETEKNIKAN PERTANIAN'),
-('FK001', 'JUR03', 'PRODI PETERNAKAN'),
-('FK001', 'JUR04', 'PRODI MANAJEMEN SUMBERDAYA PERAIRAN'),
-('FK001', 'JUR05', 'PRODI AGRIBISNIS'),
-('FK002', 'JUR01', 'PRODI TEKNIK SIPIL'),
-('FK002', 'JUR02', 'PRODI TEKNIK ARISTEKTUR'),
-('FK002', 'JUR03', 'PRODI TEKNIK MESIN'),
-('FK002', 'JUR04', 'PRODI TEKNIK INFORMATIKA'),
-('FK002', 'JUR05', 'PRODI TEKNIK ELEKTRO'),
-('FK002', 'JUR06', 'PRODI SISTEM INFORMASI'),
-('FK003', 'JUR01', 'PRODI MANAJEMEN'),
-('FK003', 'JUR02', 'PRODI AKUNTANSI'),
-('FK003', 'JUR03', 'PRODI EKONOMI PEMBANGUNAN'),
-('FK004', 'JUR01', 'PRODI PENDIDIKAN JASMANIS, KESEHATAN DAN REKREASI'),
-('FK004', 'JUR02', 'PRODI PENDIDIKAN MATEMATIKA'),
-('FK004', 'JUR03', 'PRODI PBSI'),
-('FK004', 'JUR04', 'PRODI PENDIDIKAN BIOLOGI'),
-('FK004', 'JUR05', 'PRODI PENDIDIKAN KIMIA'),
-('FK004', 'JUR06', 'PRODI PENDIDIKAN GURU SEKOLAH DASAR'),
-('FK004', 'JUR07', 'PRODI PENDIDIKAN FISIKA'),
-('FK004', 'JUR08', 'PRODI PG-PAUD'),
-('FK004', 'JUR09', 'PRODI SASING'),
-('FK004', 'JUR10', 'PRODI PEK'),
-('FK004', 'JUR11', 'PRODI PKOM'),
-('FK005', 'JUR01', 'PRODI ADMINISTRASI NEGARA - S1'),
-('FK005', 'JUR02', 'PRODI ADMINISTRASI PUBLIK - S2'),
-('FK006', 'JUR01', 'PRODI ILMU HUKUM');
+('FK001', 'JUR01', 'ARGOTEKNOLOGI'),
+('FK001', 'JUR02', 'KETEKNIKAN PERTANIAN'),
+('FK001', 'JUR03', 'PETERNAKAN'),
+('FK001', 'JUR04', 'MANAJEMEN SUMBERDAYA PERAIRAN'),
+('FK001', 'JUR05', 'AGRIBISNIS'),
+('FK002', 'JUR01', 'TEKNIK SIPIL'),
+('FK002', 'JUR02', 'TEKNIK ARISTEKTUR'),
+('FK002', 'JUR03', 'TEKNIK MESIN'),
+('FK002', 'JUR04', 'TEKNIK INFORMATIKA'),
+('FK002', 'JUR05', 'TEKNIK ELEKTRO'),
+('FK002', 'JUR06', 'SISTEM INFORMASI'),
+('FK003', 'JUR01', 'MANAJEMEN'),
+('FK003', 'JUR02', 'AKUNTANSI'),
+('FK003', 'JUR03', 'EKONOMI PEMBANGUNAN'),
+('FK004', 'JUR01', 'PENDIDIKAN JASMANIS, KESEHATAN DAN REKREASI'),
+('FK004', 'JUR02', 'PENDIDIKAN MATEMATIKA'),
+('FK004', 'JUR03', 'PBSI'),
+('FK004', 'JUR04', 'PENDIDIKAN BIOLOGI'),
+('FK004', 'JUR05', 'PENDIDIKAN KIMIA'),
+('FK004', 'JUR06', 'PENDIDIKAN GURU SEKOLAH DASAR'),
+('FK004', 'JUR07', 'PENDIDIKAN FISIKA'),
+('FK004', 'JUR08', 'PG-PAUD'),
+('FK004', 'JUR09', 'SASING'),
+('FK004', 'JUR10', 'PEK'),
+('FK004', 'JUR11', 'PKOM'),
+('FK005', 'JUR01', 'ADMINISTRASI NEGARA - S1'),
+('FK005', 'JUR02', 'ADMINISTRASI PUBLIK - S2'),
+('FK006', 'JUR01', 'ILMU HUKUM');
 
 -- --------------------------------------------------------
 
@@ -199,12 +198,12 @@ CREATE TABLE `tbl_mahasiswa` (
 --
 
 INSERT INTO `tbl_mahasiswa` (`npm_mahasiswa`, `username`, `nm_mahasiswa`, `alamat`, `id_fakultas`, `id_jurusan`, `id_anggota_perpus`, `email`) VALUES
-('20210001', '20210001', 'Mahasiswa 1', 'Alamat 1', 'FK003', 'JUR02', '20210001', ' '),
-('20210002', '20210002', 'Mahasiswa 2', 'Alamat 2', 'FK002', 'JUR04', '20210002', 'a'),
-('20210003', '20210003', 'Mahasiswa 3', 'Alamat 3', 'FK002', 'JUR04', '20210003', ''),
-('20210004', '20210004', 'Mahasiswa 4', 'Alamat 4', 'FK002', 'JUR04', '20210004', ''),
-('20210005', '20210005', 'Mahasiswa 5', 'Alamat 5', 'FK002', 'JUR04', '20210005', ''),
-('20210006', '20210006', 'Mahasiswa 6', 'Alamat 6', 'FK002', 'JUR04', '20210006', '');
+('20210001', '20210001', 'Monalisa', 'Jl. Kebenaran No. 7', 'FK003', 'JUR02', '20210001', ' '),
+('20210002', '20210002', 'Slamet', 'Jl. Angkatan No. 44', 'FK002', 'JUR04', '20210002', ''),
+('20210003', '20210003', 'Dewi', 'Jl. Pelangi No. 55', 'FK002', 'JUR04', '20210003', ''),
+('20210004', '20210004', 'Nisa', 'Jl. Salak', 'FK002', 'JUR04', '20210004', ''),
+('20210005', '20210005', 'Monica', 'Jl. Mangga', 'FK002', 'JUR04', '20210005', ''),
+('20210006', '20210006', 'Agung', 'Jl. H. Slamet', 'FK002', 'JUR04', '20210006', '');
 
 --
 -- Triggers `tbl_mahasiswa`
@@ -215,6 +214,10 @@ $$
 DELIMITER ;
 DELIMITER $$
 CREATE TRIGGER `DEL_USERLOGIN_MHS` AFTER DELETE ON `tbl_mahasiswa` FOR EACH ROW DELETE FROM tbl_login WHERE username=OLD.username
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `EDIT_USERINFO_MHS` AFTER UPDATE ON `tbl_mahasiswa` FOR EACH ROW UPDATE tbl_info_dokumen SET nm_mahasiswa=new.nm_mahasiswa WHERE npm_mahasiswa=OLD.npm_mahasiswa
 $$
 DELIMITER ;
 
@@ -266,27 +269,6 @@ CREATE TABLE `tbl_upload_dokumen` (
   `tgl_upload` date NOT NULL,
   `tgl_verifikasi` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tbl_upload_dokumen`
---
-
-INSERT INTO `tbl_upload_dokumen` (`npm_mahasiswa`, `id_daftar_upload`, `nama_file`, `verifikasi`, `tgl_upload`, `tgl_verifikasi`) VALUES
-('20210001', 1, '1. 20210001_skripsi_lengkap.docx', 'S', '2021-06-10', '2021-06-10'),
-('20210001', 2, '2. 20210001_skripsi_lengkap.pdf', 'S', '0000-00-00', '2021-06-10'),
-('20210001', 3, '3. 20210001_jurnal.docx', 'S', '0000-00-00', '2021-06-10'),
-('20210001', 4, '4. 20210001_jurnal.pdf', 'S', '0000-00-00', '2021-06-10'),
-('20210001', 5, '5. 20210001_cover.docx', 'S', '0000-00-00', '2021-06-10'),
-('20210001', 6, '6. 20210001_daftar_isi.docx', 'S', '2021-06-10', '2021-06-10'),
-('20210001', 7, '7. 20210001_daftar_tabel.docx', 'S', '0000-00-00', '2021-06-10'),
-('20210001', 8, '8. 20210001_daftar_gambar.docx', 'S', '0000-00-00', '2021-06-10'),
-('20210001', 9, '9. 20210001_abstrak_indonesia.docx', 'S', '2021-06-10', '2021-06-10'),
-('20210001', 10, '10. 20210001_abstrak_inggris.docx', 'S', '2021-06-10', '2021-06-10'),
-('20210001', 11, '11. 20210001_hasil_bebas_turnitin_full.pdf', 'S', '2021-06-10', '2021-06-10'),
-('20210001', 12, '12. 20210001_hasil_turnitin_dari_fakultas.pdf', 'S', '2021-06-10', '2021-06-10'),
-('20210001', 13, '13. 20210001_cover,_bab_i_sampai_dengan_bab_v.docx', 'S', '2021-06-10', '2021-06-10'),
-('20210002', 1, '1. 20210002_skripsi_lengkap.docx', 'B', '0000-00-00', '0000-00-00'),
-('20210002', 5, '5. 20210002_cover.docx', 'B', '0000-00-00', '0000-00-00');
 
 --
 -- Indexes for dumped tables
