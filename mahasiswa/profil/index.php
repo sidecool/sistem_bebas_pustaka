@@ -37,53 +37,53 @@ include "../header.php";
                                             while ($col = $result->fetch_assoc()) {  
                                         ?>
 
-                                        <div class="form-group row">
-                                            <label for="npm_mahasiswa" class="col-sm-4 col-form-label text-right font-weight-bold">NPM Mahasiswa</label>
+                                        <div class="row">
+                                            <label for="npm_mahasiswa" class="col-sm-4 col-form-label-sm text-right font-weight-bold">NPM Mahasiswa</label>
                                             <div class="col-sm-4">
-                                                <input type="text" class="form-control" name="npm_mahasiswa" id="npm_mahasiswa" value="<?php echo $col['npm_mahasiswa']; ?>" placeholder="NPM Mahasiswa" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="1">
+                                                <input type="text" class="form-control form-control-sm" name="npm_mahasiswa" id="npm_mahasiswa" value="<?php echo $col['npm_mahasiswa']; ?>" placeholder="NPM Mahasiswa" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="1">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="nama" class="col-sm-4 col-form-label text-right font-weight-bold">NAMA MAHASISWA</label>
+                                        <div class="row">
+                                            <label for="nama" class="col-sm-4 col-form-label-sm text-right font-weight-bold">NAMA MAHASISWA</label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" name="nama" id="nama" value="<?php echo $col['nm_mahasiswa']; ?>" placeholder="Nama Mahasiswa" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="2">
+                                                <input type="text" class="form-control form-control-sm" name="nama" id="nama" value="<?php echo $col['nm_mahasiswa']; ?>" placeholder="Nama Mahasiswa" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="2">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="id_fakultas" class="col-sm-4 col-form-label text-right font-weight-bold">FAKULTAS</label>
+                                        <div class="row">
+                                            <label for="id_fakultas" class="col-sm-4 col-form-label-sm text-right font-weight-bold">FAKULTAS</label>
                                             <div class="col-sm-8">
-                                                <select class="id_fakultas form-control" name="id_fakultas" id="id_fakultas" fakultas="<?php echo $col['id_fakultas']; ?>" placeholder="Nama Fakultas" disabled required onkeydown="return f_cekenter(this, event)" tabIndex="3">
+                                                <select class="id_fakultas form-control form-control-sm" name="id_fakultas" id="id_fakultas" fakultas="<?php echo $col['id_fakultas']; ?>" placeholder="Nama Fakultas" disabled required onkeydown="return f_cekenter(this, event)" tabIndex="3">
                                                 <option value="">- PILIH FAKULTAS -</option>
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="id_jurusan" class="col-sm-4 col-form-label text-right font-weight-bold">JURUSAN / PROGRAM STUDI</label>
+                                        <div class="row">
+                                            <label for="id_jurusan" class="col-sm-4 col-form-label-sm text-right font-weight-bold">JURUSAN / PROGRAM STUDI</label>
                                             <div class="col-sm-8">
-                                                <select class="id_jurusan form-control" name="id_jurusan" id="id_jurusan" jurusan="<?php echo $col['id_jurusan']; ?>" placeholder="Nama Jurusan" disabled required onkeydown="return f_cekenter(this, event)" tabIndex="4">
+                                                <select class="id_jurusan form-control form-control-sm" name="id_jurusan" id="id_jurusan" jurusan="<?php echo $col['id_jurusan']; ?>" placeholder="Nama Jurusan" disabled required onkeydown="return f_cekenter(this, event)" tabIndex="4">
                                                     <option value="">- PILIH JURUSAN / PROGRAM STUDI -</option>
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="alamat" class="col-sm-4 col-form-label text-right font-weight-bold">ALAMAT MAHASISWA</label>
+                                        <div class="row">
+                                            <label for="alamat" class="col-sm-4 col-form-label-sm text-right font-weight-bold">ALAMAT MAHASISWA</label>
                                             <div class="col-sm-8">
-                                                <textarea row="3" class="form-control" name="alamat" id="alamat" placeholder="Alamat Mahasiswa" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="5"><?php echo $col['alamat']; ?></textarea>
+                                                <textarea row="3" class="form-control form-control-sm" name="alamat" id="alamat" placeholder="Alamat Mahasiswa" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="5"><?php echo $col['alamat']; ?></textarea>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="id_perpus" class="col-sm-4 col-form-label text-right font-weight-bold">ID ANGGOTA PERPUSTAKAAN</label>
+                                        <div class="row">
+                                            <label for="id_perpus" class="col-sm-4 col-form-label-sm text-right font-weight-bold">ID ANGGOTA PERPUSTAKAAN</label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" name="id_perpus" id="id_perpus" value="<?php echo $col['id_anggota_perpus']; ?>" placeholder="ID Anggota Perpustakaan" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="6">
+                                                <input type="text" class="form-control form-control-sm" name="id_perpus" id="id_perpus" value="<?php echo $col['id_anggota_perpus']; ?>" placeholder="ID Anggota Perpustakaan" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="6">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="email" class="col-sm-4 col-form-label text-right font-weight-bold">EMAIL MAHASISWA</label>
+                                        <div class="row">
+                                            <label for="email" class="col-sm-4 col-form-label-sm text-right font-weight-bold">EMAIL MAHASISWA</label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" name="email" id="email" value="<?php echo $col['email']; ?>" placeholder="Email Mahasiswa" readonly required tabIndex="7">
+                                                <input type="text" class="form-control form-control-sm" name="email" id="email" value="<?php echo $col['email']; ?>" placeholder="Email Mahasiswa" readonly required tabIndex="7">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="row">
                                             <div class="col-sm-4"></div>
                                             <div class="col-sm-8">
                                                 <button class="btn btn-sm btn-primary" type="submit" id="simpan" form="in-form" hidden><i class="fa fa-save"></i><span> Simpan</span></button>

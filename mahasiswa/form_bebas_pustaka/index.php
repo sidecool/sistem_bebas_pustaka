@@ -34,64 +34,64 @@ include "../header.php";
                                             $col = $result->fetch_assoc();
                                         ?>
 
-                                        <div class="form-group row">
-                                            <label for="npm_mahasiswa" class="col-sm-4 col-form-label text-right font-weight-bold">NPM Mahasiswa</label>
+                                        <div class="row">
+                                            <label for="npm_mahasiswa" class="col-sm-4 col-form-label-sm text-right font-weight-bold">NPM Mahasiswa</label>
                                             <div class="col-sm-4">
-                                                <input type="text" class="form-control" name="npm_mahasiswa" id="npm_mahasiswa" value="<?php echo $id_mahasiswa; ?>" placeholder="NPM Mahasiswa" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="1">
+                                                <input type="text" class="form-control form-control-sm" name="npm_mahasiswa" id="npm_mahasiswa" value="<?php echo $id_mahasiswa; ?>" placeholder="NPM Mahasiswa" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="1">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="nama" class="col-sm-4 col-form-label text-right font-weight-bold">NAMA MAHASISWA</label>
+                                        <div class="row">
+                                            <label for="nama" class="col-sm-4 col-form-label-sm text-right font-weight-bold">NAMA MAHASISWA</label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" name="nama" id="nama" value="<?php echo $col['nm_mahasiswa']; ?>" placeholder="Nama Mahasiswa" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="2">
+                                                <input type="text" class="form-control form-control-sm" name="nama" id="nama" value="<?php echo $col['nm_mahasiswa']; ?>" placeholder="Nama Mahasiswa" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="2">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="judul_skripsi" class="col-sm-4 col-form-label text-right font-weight-bold">JUDUL SKRIPSI</label>
+                                        <div class="row">
+                                            <label for="judul_skripsi" class="col-sm-4 col-form-label-sm text-right font-weight-bold">JUDUL SKRIPSI</label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" name="judul_skripsi" id="judul_skripsi" value="<?php echo $col['judul_skripsi']; ?>" placeholder="Judul Skripsi" required onkeydown="return f_cekenter(this, event)" tabIndex="3">
+                                                <input type="text" class="form-control form-control-sm" name="judul_skripsi" id="judul_skripsi" value="<?php echo $col['judul_skripsi']; ?>" placeholder="Judul Skripsi" required onkeydown="return f_cekenter(this, event)" tabIndex="3">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="pembimbing1" class="col-sm-4 col-form-label text-right font-weight-bold">DOSEN PEMBIMBING 1</label>
+                                        <div class="row">
+                                            <label for="pembimbing1" class="col-sm-4 col-form-label-sm text-right font-weight-bold">DOSEN PEMBIMBING 1</label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" name="pembimbing1" id="pembimbing1" value="<?php echo $col['pembimbing_1']; ?>" placeholder="Nama Dosen Pembimbing" required onkeydown="return f_cekenter(this, event)" tabIndex="4">
+                                                <input type="text" class="form-control form-control-sm" name="pembimbing1" id="pembimbing1" value="<?php echo $col['pembimbing_1']; ?>" placeholder="Nama Dosen Pembimbing" required onkeydown="return f_cekenter(this, event)" tabIndex="4">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="pembimbing2" class="col-sm-4 col-form-label text-right font-weight-bold">DOSEN PEMBIMBING 2</label>
+                                        <div class="row">
+                                            <label for="pembimbing2" class="col-sm-4 col-form-label-sm text-right font-weight-bold">DOSEN PEMBIMBING 2</label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" name="pembimbing2" id="pembimbing2" value="<?php echo $col['pembimbing_2']; ?>" placeholder="Nama Dosen Pembimbing" required onkeydown="return f_cekenter(this, event)" tabIndex="5">
+                                                <input type="text" class="form-control form-control-sm" name="pembimbing2" id="pembimbing2" value="<?php echo $col['pembimbing_2']; ?>" placeholder="Nama Dosen Pembimbing" required onkeydown="return f_cekenter(this, event)" tabIndex="5">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="judulbuku1" class="col-sm-4 col-form-label text-right font-weight-bold">JUDUL BUKU 1</label>
+                                        <div class="row">
+                                            <label for="judulbuku1" class="col-sm-4 col-form-label-sm text-right font-weight-bold">JUDUL BUKU 1</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control" name="judulbuku1" id="judulbuku1" value="<?php echo $col['judul_buku_1']; ?>" placeholder="Judul Buku" required onkeydown="return f_cekenter(this, event)" tabIndex="6">
+                                                <input type="text" class="form-control form-control-sm" name="judulbuku1" id="judulbuku1" value="<?php echo $col['judul_buku_1']; ?>" placeholder="Judul Buku" required onkeydown="return f_cekenter(this, event)" tabIndex="6">
                                             </div>
                                             <div class="col-sm-2">
-                                                <input type="text" class="form-control" name="tahunbuku1" id="tahunbuku1" value="<?php echo $col['tahun_buku_1']; ?>" placeholder="Tahun Buku" required onkeydown="return f_cekenter(this, event)" tabIndex="7">
+                                                <input type="text" class="form-control form-control-sm" name="tahunbuku1" id="tahunbuku1" value="<?php echo $col['tahun_buku_1']; ?>" placeholder="Tahun Buku" required onkeydown="return f_cekenter(this, event)" tabIndex="7">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="judulbuku2" class="col-sm-4 col-form-label text-right font-weight-bold">JUDUL BUKU 2</label>
+                                        <div class="row">
+                                            <label for="judulbuku2" class="col-sm-4 col-form-label-sm text-right font-weight-bold">JUDUL BUKU 2</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control" name="judulbuku2" id="judulbuku2" value="<?php echo $col['judul_buku_2']; ?>" placeholder="Judul Buku" required onkeydown="return f_cekenter(this, event)" tabIndex="8">
+                                                <input type="text" class="form-control form-control-sm" name="judulbuku2" id="judulbuku2" value="<?php echo $col['judul_buku_2']; ?>" placeholder="Judul Buku" required onkeydown="return f_cekenter(this, event)" tabIndex="8">
                                             </div>
                                             <div class="col-sm-2">
-                                                <input type="text" class="form-control" name="tahunbuku2" id="tahunbuku2" value="<?php echo $col['tahun_buku_2']; ?>" placeholder="Tahun Buku" required onkeydown="return f_cekenter(this, event)" tabIndex="9">
+                                                <input type="text" class="form-control form-control-sm" name="tahunbuku2" id="tahunbuku2" value="<?php echo $col['tahun_buku_2']; ?>" placeholder="Tahun Buku" required onkeydown="return f_cekenter(this, event)" tabIndex="9">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="judulbuku3" class="col-sm-4 col-form-label text-right font-weight-bold">JUDUL BUKU 3</label>
+                                        <div class="row">
+                                            <label for="judulbuku3" class="col-sm-4 col-form-label-sm text-right font-weight-bold">JUDUL BUKU 3</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control" name="judulbuku3" id="judulbuku3" value="<?php echo $col['judul_buku_3']; ?>" placeholder="Judul Buku" required onkeydown="return f_cekenter(this, event)" tabIndex="10">
+                                                <input type="text" class="form-control form-control-sm" name="judulbuku3" id="judulbuku3" value="<?php echo $col['judul_buku_3']; ?>" placeholder="Judul Buku" required onkeydown="return f_cekenter(this, event)" tabIndex="10">
                                             </div>
                                             <div class="col-sm-2">
-                                                <input type="text" class="form-control" name="tahunbuku3" id="tahunbuku3" value="<?php echo $col['tahun_buku_3']; ?>" placeholder="Tahun Buku" required tabIndex="11">
+                                                <input type="text" class="form-control form-control-sm" name="tahunbuku3" id="tahunbuku3" value="<?php echo $col['tahun_buku_3']; ?>" placeholder="Tahun Buku" required tabIndex="11">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="row">
                                             <div class="col-sm-4"></div>
                                             <div class="col-sm-8">
                                                 <button class="btn btn-sm btn-primary" type="submit" id="simpan" form="in-form"><i class="fa fa-save"></i><span> Simpan</span></button>                                                
