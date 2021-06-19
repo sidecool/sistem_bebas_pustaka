@@ -108,9 +108,10 @@
                 oLanguage: {
                     url: 'http://cdn.datatables.net/plug-ins/1.10.20/i18n/Indonesian.json',
                     url: 'http://cdn.datatables.net/plug-ins/1.10.20/i18n/Indonesian-Alternative.json',
-                    sEmptyTable: 'Tidak ada data di database'
+                    sEmptyTable: 'Tidak ada data di database',
+                    sZeroRecords: 'Tidak ada data yang ditampilkan'
                 },
-                
+
                 fixedHeader: true,
                 ordering: false,
                 dom: 'flitBp',

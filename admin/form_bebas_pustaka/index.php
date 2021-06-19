@@ -156,7 +156,8 @@ include "../header.php";
                                         "processing" : true,                                        
                                         "language": {
                                             "infoFiltered": '',
-                                            "zeroRecords": "Tidak ada data yang ditampilkan"
+                                            "EmptyTable": 'Tidak ada data di database',
+                                            "zeroRecords": 'Tidak ada data yang ditampilkan'
                                         },
                                         "order" : [],
                                         "ajax" : {
@@ -172,6 +173,7 @@ include "../header.php";
                                     dataTable.DataTable({
                                         "language": {
                                             "infoFiltered": '',
+                                            "EmptyTable": 'Tidak ada data di database',
                                             "zeroRecords": "Tidak ada data yang ditampilkan"
                                         }
                                     });
