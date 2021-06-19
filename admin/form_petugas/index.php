@@ -30,25 +30,25 @@ include "../header.php";
                                 </div>
                                 <div class="card-body">
                                     <form method="post" action="aksi_petugas.php?aksi=insert" autocomplete="off" id="in-form">
-                                        <div class="form-group row">
-                                            <label for="nip" class="col-sm-2 col-form-label text-right font-weight-bold">NIP / NIK</label>
+                                        <div class="row">
+                                            <label for="nip" class="col-sm-2 col-form-label-sm text-right font-weight-bold">NIP / NIK</label>
                                             <div class="col-sm-4">
-                                                <input type="text" class="form-control" name="nip" id="nip" placeholder="NIP / NIK" required onkeydown="return f_cekenter(this, event)" tabIndex="1">
+                                                <input type="text" class="form-control form-control-sm" name="nip" id="nip" placeholder="NIP / NIK" required onkeydown="return f_cekenter(this, event)" tabIndex="1">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="nama" class="col-sm-2 col-form-label text-right font-weight-bold">NAMA</label>
+                                        <div class="row">
+                                            <label for="nama" class="col-sm-2 col-form-label-sm text-right font-weight-bold">NAMA</label>
                                             <div class="col-sm-4">
-                                                <input type="text" class="form-control" name="nama" placeholder="Nama" required onkeydown="return f_cekenter(this, event)" tabIndex="2">
+                                                <input type="text" class="form-control form-control-sm" name="nama" placeholder="Nama" required onkeydown="return f_cekenter(this, event)" tabIndex="2">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="jabatan" class="col-sm-2 col-form-label text-right font-weight-bold">JABATAN</label>
+                                        <div class="row">
+                                            <label for="jabatan" class="col-sm-2 col-form-label-sm text-right font-weight-bold">JABATAN</label>
                                             <div class="col-sm-4">
-                                                <input type="text" class="form-control" name="jabatan" placeholder="Jabatan" required tabIndex="3">
+                                                <input type="text" class="form-control form-control-sm" name="jabatan" placeholder="Jabatan" required tabIndex="3">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="row">
                                             <div class="col-sm-2"></div>
                                             <div class="col-sm-4">
                                                 <button class="btn btn-sm btn-primary" type="submit" form="in-form"><i class="fa fa-save"></i><span> Simpan</span></button>
@@ -124,22 +124,22 @@ include "../header.php";
                                                                                 $result_2 = $mysqli->query($sql_2);
                                                                                 while ($col = $result_2->fetch_array()) {  
                                                                             ?>
-                                                                            <div class="form-group row">
-                                                                                <label for="nip" class="col-sm-4 col-form-label text-right font-weight-bold">NIP / NIK</label>
+                                                                            <div class="row">
+                                                                                <label for="nip" class="col-sm-4 col-form-label-sm text-right font-weight-bold">NIP / NIK</label>
                                                                                 <div class="col-sm-8">
-                                                                                    <input type="text" class="form-control" name="nip" value="<?php echo $col['nip_pegawai']; ?>" placeholder="NIP / NIK" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="1">
+                                                                                    <input type="text" class="form-control form-control-sm" name="nip" value="<?php echo $col['nip_pegawai']; ?>" placeholder="NIP / NIK" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="1">
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="form-group row">
-                                                                                <label for="nama" class="col-sm-4 col-form-label text-right font-weight-bold">NAMA</label>
+                                                                            <div class="row">
+                                                                                <label for="nama" class="col-sm-4 col-form-label-sm text-right font-weight-bold">NAMA</label>
                                                                                 <div class="col-sm-8">
-                                                                                    <input type="text" class="nama form-control" name="nama" value="<?php echo $col['nm_pegawai']; ?>" placeholder="Nama" required onkeydown="return f_cekenter(this, event)" tabIndex="2">
+                                                                                    <input type="text" class="nama form-control form-control-sm" name="nama" value="<?php echo $col['nm_pegawai']; ?>" placeholder="Nama" required onkeydown="return f_cekenter(this, event)" tabIndex="2">
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="form-group row">
-                                                                                <label for="jabatan" class="col-sm-4 col-form-label text-right font-weight-bold">JABATAN</label>
+                                                                            <div class="row">
+                                                                                <label for="jabatan" class="col-sm-4 col-form-label-sm text-right font-weight-bold">JABATAN</label>
                                                                                 <div class="col-sm-8">
-                                                                                    <input type="text" class="form-control" name="jabatan" value="<?php echo $col['jabatan']; ?>" placeholder="Jabatan" required tabIndex="3">
+                                                                                    <input type="text" class="form-control form-control-sm" name="jabatan" value="<?php echo $col['jabatan']; ?>" placeholder="Jabatan" required tabIndex="3">
                                                                                 </div>
                                                                             </div>
                                                                             <?php 

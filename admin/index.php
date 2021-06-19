@@ -6,55 +6,57 @@ session_start();
 include '../config/route.php';
 include '../config/database.php';
 
-if(isset($_POST['Login'])){      
-    $uname = $_POST['username'];
-    $paswd = $_POST['password'];
+// if(isset($_POST['Login'])){      
+//     $uname = $_POST['username'];
+//     $paswd = $_POST['password'];
         
-    $sql = "SELECT username, password, hak_akses
-            FROM tbl_login 
-            WHERE username='$uname' AND password='$paswd' ";
+//     $sql = "SELECT username, password, hak_akses
+//             FROM tbl_login 
+//             WHERE username='$uname' AND password='$paswd' ";
     
-    $result = $mysqli->query($sql);
+//     $result = $mysqli->query($sql);
     
-    $numrow = $result->num_rows;
+//     $numrow = $result->num_rows;
     
-    if($numrow == 1) {
-        $column = $result->fetch_assoc();
+//     if($numrow == 1) {
+//         $column = $result->fetch_assoc();
     
-        $_SESSION['username'] = $uname;
-        $_SESSION['status'] = "masuk";
+//         $_SESSION['username'] = $uname;
+//         $_SESSION['status'] = "masuk";        
         
-        if($column['hak_akses'] == "ADMIN") {
-            $_SESSION['id'] = "999";
-            $_SESSION['nama'] = "Administrator";                        
-        }        
+//         if($column['hak_akses'] == "ADMIN") {
+//             $_SESSION['id'] = "999";
+//             $_SESSION['nama'] = "Administrator";                        
+//         }        
         
-        header('location:dashboard.php');
-    } 
-}
+//         header('location:dashboard.php');
+//     } 
+// }
 if(isset($_SESSION['status'])){
     if($_SESSION['status']=='masuk'){
         header('location:dashboard.php');
     }        
+} else {
+    header('location:'.$baseurl.'/index.php');
 }
 ?>
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Masuk Administrator</title>
+    <title>Masuk Administrator</title> -->
 
-    <link rel="shortcut icon" href="<?php echo $baseurl; ?>/admin/assets/img/icon/favicon.ico" >
+    <!-- <link rel="shortcut icon" href="<?php //echo $baseurl; ?>/admin/assets/img/icon/favicon.ico" > -->
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="<?php echo $baseurl; ?>/admin/assets/css/styles_admin.css" >
+    <!-- <link rel="stylesheet" href="<?php // echo $baseurl; ?>/admin/assets/css/styles_admin.css" > -->
     <!-- Javascript -->
-    <script src="<?php echo $baseurl; ?>/assets/js/jquery.min.js"></script>    
-    <script src="<?php echo $baseurl; ?>/admin/assets/js/FontAwesome/all.min.js"></script>    
-    <script src="<?php echo $baseurl; ?>/admin/assets/js/Bootstrap4/bootstrap.bundle.min.js"></script>
-    <script src="<?php echo $baseurl; ?>/admin/assets/js/scripts_admin.js" ></script>
-    <script>
+    <!-- <script src="<?php // echo $baseurl; ?>/assets/js/jquery.min.js"></script>    
+    <script src="<?php // echo $baseurl; ?>/admin/assets/js/FontAwesome/all.min.js"></script>    
+    <script src="<?php // echo $baseurl; ?>/admin/assets/js/Bootstrap4/bootstrap.bundle.min.js"></script>
+    <script src="<?php // echo $baseurl; ?>/admin/assets/js/scripts_admin.js" ></script> -->
+    <!-- <script>
         function f_showpassword() {
             var x = document.getElementById("inputPassword");
             if (x.type === "password") {
@@ -79,8 +81,8 @@ if(isset($_SESSION['status'])){
             }       
             return true;     
         };
-    </script>
-</head>
+    </script> -->
+<!-- </head>
 <body class="bg-primary">
     <div id="layoutAuthentication">
         <div id="layoutAuthentication_content">
@@ -93,11 +95,11 @@ if(isset($_SESSION['status'])){
                                 <div class="card-body">
                                     <form method="post" action="" autocomplete="off">
                                         <div class="form-group">
-                                            <!-- <label class="small mb-1" for="inputEmailAddress">Username</label> -->
+                                            <label class="small mb-1" for="inputEmailAddress">Username</label>
                                             <input class="form-control py-4" id="inputEmailAddress" type="text" placeholder="Enter username" name="username" autofocus onkeydown="return f_cekenter(this, event)" tabIndex="1">
                                         </div>
                                         <div class="form-group">
-                                            <!-- <label class="small mb-1" for="inputPassword">Password</label> -->
+                                            <label class="small mb-1" for="inputPassword">Password</label>
                                             <input class="form-control py-4" id="inputPassword" type="password" placeholder="Enter password" name="password" tabIndex="2">
                                         </div>
                                         <div class="form-group">
@@ -113,7 +115,7 @@ if(isset($_SESSION['status'])){
                                     </form>
                                 </div>
                                 <div class="card-footer text-center">
-                                    <!-- <div class="small"><a href="register.html">Need an account? Sign up!</a></div> -->
+                                    <div class="small"><a href="register.html">Need an account? Sign up!</a></div>
                                 </div>
                             </div>
                         </div>
@@ -137,4 +139,4 @@ if(isset($_SESSION['status'])){
         </div>
     </div>    
 </body>        
-</html>
+</html> -->

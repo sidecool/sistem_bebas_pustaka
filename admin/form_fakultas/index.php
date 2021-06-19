@@ -29,19 +29,19 @@ include "../header.php";
                                 </div>
                                 <div class="card-body">
                                     <form method="post" action="aksi_fakultas.php?aksi=insert" autocomplete="off" id="in-form">
-                                        <div class="form-group row">
-                                            <label for="id_fakultas" class="col-sm-4 col-form-label text-right font-weight-bold">KODE FAKULTAS</label>
+                                        <div class="row">
+                                            <label for="id_fakultas" class="col-sm-4 col-form-label-sm text-right font-weight-bold">KODE FAKULTAS</label>
                                             <div class="col-sm-4">
-                                                <input type="text" class="form-control" name="id_fakultas" id="id_fakultas" placeholder="Kode Fakultas" required onkeydown="return f_cekenter(this, event)" tabIndex="1">
+                                                <input type="text" class="form-control form-control-sm " name="id_fakultas" id="id_fakultas" placeholder="Kode Fakultas" required onkeydown="return f_cekenter(this, event)" tabIndex="1">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="nama" class="col-sm-4 col-form-label text-right font-weight-bold">NAMA FAKULTAS</label>
+                                        <div class="row">
+                                            <label for="nama" class="col-sm-4 col-form-label-sm text-right font-weight-bold">NAMA FAKULTAS</label>
                                             <div class="col-sm-4">
-                                                <input type="text" class="form-control" name="nama" placeholder="Nama Fakultas" required tabIndex="2">
+                                                <input type="text" class="form-control form-control-sm " name="nama" placeholder="Nama Fakultas" required tabIndex="2">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="row">
                                             <div class="col-sm-4"></div>
                                             <div class="col-sm-4">
                                                 <button class="btn btn-sm btn-primary" type="submit" form="in-form"><i class="fa fa-save"></i><span> Simpan</span></button>
@@ -113,16 +113,16 @@ include "../header.php";
                                                                     $result_2 = $mysqli->query($sql_2);
                                                                     while ($col = $result_2->fetch_array()) {  
                                                                 ?>
-                                                                <div class="form-group row">
-                                                                    <label for="id_fakultas" class="col-sm-4 col-form-label text-right font-weight-bold">KODE FAKULTAS</label>
+                                                                <div class="row">
+                                                                    <label for="id_fakultas" class="col-sm-4 col-form-label-sm text-right font-weight-bold">KODE FAKULTAS</label>
                                                                     <div class="col-sm-8">
-                                                                        <input type="text" class="form-control" name="id_fakultas" value="<?php echo $col['id_fakultas']; ?>" placeholder="ID Fakultas" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="1">
+                                                                        <input type="text" class="form-control form-control-sm " name="id_fakultas" value="<?php echo $col['id_fakultas']; ?>" placeholder="ID Fakultas" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="1">
                                                                     </div>
                                                                 </div>
-                                                                <div class="form-group row">
-                                                                    <label for="nama" class="col-sm-4 col-form-label text-right font-weight-bold">NAMA FAKULTAS</label>
+                                                                <div class="row">
+                                                                    <label for="nama" class="col-sm-4 col-form-label-sm text-right font-weight-bold">NAMA FAKULTAS</label>
                                                                     <div class="col-sm-8">
-                                                                        <input type="text" class="nama form-control" name="nama" value="<?php echo $col['nm_fakultas']; ?>" placeholder="Nama Fakultas" required tabIndex="2">
+                                                                        <input type="text" class="nama form-control form-control-sm " name="nama" value="<?php echo $col['nm_fakultas']; ?>" placeholder="Nama Fakultas" required tabIndex="2">
                                                                     </div>
                                                                 </div>
                                                                 <?php 

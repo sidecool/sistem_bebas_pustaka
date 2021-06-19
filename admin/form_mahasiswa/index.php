@@ -29,51 +29,51 @@ include "../header.php";
                                 </div>
                                 <div class="card-body">
                                     <form method="post" action="aksi_mahasiswa.php?aksi=insert" autocomplete="off" id="in-form">                                                                                
-                                        <div class="form-group row">
-                                            <label for="npm_mahasiswa" class="col-sm-4 col-form-label text-right font-weight-bold">NPM Mahasiswa</label>
+                                        <div class="row">
+                                            <label for="npm_mahasiswa" class="col-sm-4 col-form-label-sm text-right font-weight-bold">NPM Mahasiswa</label>
                                             <div class="col-sm-4">
-                                                <input type="text" class="form-control" name="npm_mahasiswa" id="npm_mahasiswa" placeholder="NPM Mahasiswa" required onkeydown="return f_cekenter(this, event)" tabIndex="1">
+                                                <input type="text" class="form-control form-control-sm" name="npm_mahasiswa" id="npm_mahasiswa" placeholder="NPM Mahasiswa" required onkeydown="return f_cekenter(this, event)" tabIndex="1">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="nama" class="col-sm-4 col-form-label text-right font-weight-bold">NAMA MAHASISWA</label>
+                                        <div class="row">
+                                            <label for="nama" class="col-sm-4 col-form-label-sm text-right font-weight-bold">NAMA MAHASISWA</label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama Mahasiswa" required onkeydown="return f_cekenter(this, event)" tabIndex="2">
+                                                <input type="text" class="form-control form-control-sm" name="nama" id="nama" placeholder="Nama Mahasiswa" required onkeydown="return f_cekenter(this, event)" tabIndex="2">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="id_fakultas" class="col-sm-4 col-form-label text-right font-weight-bold">FAKULTAS</label>
+                                        <div class="row">
+                                            <label for="id_fakultas" class="col-sm-4 col-form-label-sm text-right font-weight-bold">FAKULTAS</label>
                                             <div class="col-sm-8">
-                                                <select class="id_fakultas form-control" name="id_fakultas" placeholder="Nama Fakultas" required onkeydown="return f_cekenter(this, event)" tabIndex="3"></select>
+                                                <select class="id_fakultas form-control form-control-sm" name="id_fakultas" placeholder="Nama Fakultas" required onkeydown="return f_cekenter(this, event)" tabIndex="3"></select>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="id_jurusan" class="col-sm-4 col-form-label text-right font-weight-bold">JURUSAN / PROGRAM STUDI</label>
+                                        <div class="row">
+                                            <label for="id_jurusan" class="col-sm-4 col-form-label-sm text-right font-weight-bold">JURUSAN / PROGRAM STUDI</label>
                                             <div class="col-sm-8">
-                                                <select class="id_jurusan form-control" name="id_jurusan" placeholder="Nama Jurusan" required onkeydown="return f_cekenter(this, event)" tabIndex="4">
+                                                <select class="id_jurusan form-control form-control-sm" name="id_jurusan" placeholder="Nama Jurusan" required onkeydown="return f_cekenter(this, event)" tabIndex="4">
                                                     <option value="">- PILIH JURUSAN / PROGRAM STUDI -</option>
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="alamat" class="col-sm-4 col-form-label text-right font-weight-bold">ALAMAT MAHASISWA</label>
+                                        <div class="row">
+                                            <label for="alamat" class="col-sm-4 col-form-label-sm text-right font-weight-bold">ALAMAT MAHASISWA</label>
                                             <div class="col-sm-8">
-                                                <textarea row="3" class="form-control" name="alamat" placeholder="Alamat Mahasiswa" required onkeydown="return f_cekenter(this, event)" tabIndex="5"></textarea>
+                                                <textarea row="3" class="form-control form-control-sm" name="alamat" placeholder="Alamat Mahasiswa" required onkeydown="return f_cekenter(this, event)" tabIndex="5"></textarea>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="id_perpus" class="col-sm-4 col-form-label text-right font-weight-bold">ID ANGGOTA PERPUSTAKAAN</label>
+                                        <div class="row">
+                                            <label for="id_perpus" class="col-sm-4 col-form-label-sm text-right font-weight-bold">ID ANGGOTA PERPUSTAKAAN</label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" name="id_perpus" id="id_perpus" placeholder="ID Anggota Perpustakaan" required onkeydown="return f_cekenter(this, event)" tabIndex="6">
+                                                <input type="text" class="form-control form-control-sm" name="id_perpus" id="id_perpus" placeholder="ID Anggota Perpustakaan" required onkeydown="return f_cekenter(this, event)" tabIndex="6">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="email" class="col-sm-4 col-form-label text-right font-weight-bold">EMAIL MAHASISWA</label>
+                                        <div class="row">
+                                            <label for="email" class="col-sm-4 col-form-label-sm text-right font-weight-bold">EMAIL MAHASISWA</label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" name="email" id="email" placeholder="Email Mahasiswa" required tabIndex="7">
+                                                <input type="text" class="form-control form-control-sm" name="email" id="email" placeholder="Email Mahasiswa" required tabIndex="7">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="row">
                                             <div class="col-sm-4"></div>
                                             <div class="col-sm-8">
                                                 <button class="btn btn-sm btn-primary" type="submit" form="in-form"><i class="fa fa-save"></i><span> Simpan</span></button>
@@ -158,46 +158,46 @@ include "../header.php";
                                                                                 $result_2 = $mysqli->query($sql_2);
                                                                                 while ($col = $result_2->fetch_assoc()) {  
                                                                             ?>
-                                                                            <div class="form-group row">
-                                                                                <label for="npm_mahasiswa" class="col-sm-4 col-form-label text-right font-weight-bold">NPM Mahasiswa</label>
+                                                                            <div class="row">
+                                                                                <label for="npm_mahasiswa" class="col-sm-4 col-form-label-sm text-right font-weight-bold">NPM Mahasiswa</label>
                                                                                 <div class="col-sm-4">
-                                                                                    <input type="text" class="form-control" name="npm_mahasiswa" value="<?php echo $col['npm_mahasiswa']; ?>" placeholder="NPM Mahasiswa" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="1">
+                                                                                    <input type="text" class="form-control form-control-sm" name="npm_mahasiswa" value="<?php echo $col['npm_mahasiswa']; ?>" placeholder="NPM Mahasiswa" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="1">
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="form-group row">
-                                                                                <label for="nama" class="col-sm-4 col-form-label text-right font-weight-bold">NAMA MAHASISWA</label>
+                                                                            <div class="row">
+                                                                                <label for="nama" class="col-sm-4 col-form-label-sm text-right font-weight-bold">NAMA MAHASISWA</label>
                                                                                 <div class="col-sm-8">
-                                                                                    <input type="text" class="nama form-control" name="nama" value="<?php echo $col['nm_mahasiswa']; ?>" placeholder="Nama Mahasiswa" required onkeydown="return f_cekenter(this, event)" tabIndex="2">
+                                                                                    <input type="text" class="nama form-control form-control-sm" name="nama" value="<?php echo $col['nm_mahasiswa']; ?>" placeholder="Nama Mahasiswa" required onkeydown="return f_cekenter(this, event)" tabIndex="2">
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="form-group row">
-                                                                                <label for="id_fakultas" class="col-sm-4 col-form-label text-right font-weight-bold">FAKULTAS</label>
+                                                                            <div class="row">
+                                                                                <label for="id_fakultas" class="col-sm-4 col-form-label-sm text-right font-weight-bold">FAKULTAS</label>
                                                                                 <div class="col-sm-8">
-                                                                                    <select class="id_fakultas_edit form-control" name="id_fakultas" placeholder="Nama Fakultas" required onkeydown="return f_cekenter(this, event)" tabIndex="3"></select>
+                                                                                    <select class="id_fakultas_edit form-control form-control-sm" name="id_fakultas" placeholder="Nama Fakultas" required onkeydown="return f_cekenter(this, event)" tabIndex="3"></select>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="form-group row">
-                                                                                <label for="id_jurusan" class="col-sm-4 col-form-label text-right font-weight-bold">JURUSAN / PROGRAM STUDI</label>
+                                                                            <div class="row">
+                                                                                <label for="id_jurusan" class="col-sm-4 col-form-label-sm text-right font-weight-bold">JURUSAN / PROGRAM STUDI</label>
                                                                                 <div class="col-sm-8">
-                                                                                    <select class="id_jurusan form-control" name="id_jurusan" placeholder="Nama Jurusan" required onkeydown="return f_cekenter(this, event)" tabIndex="4"></select>
+                                                                                    <select class="id_jurusan form-control form-control-sm" name="id_jurusan" placeholder="Nama Jurusan" required onkeydown="return f_cekenter(this, event)" tabIndex="4"></select>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="form-group row">
-                                                                                <label for="alamat" class="col-sm-4 col-form-label text-right font-weight-bold">ALAMAT MAHASISWA</label>
+                                                                            <div class="row">
+                                                                                <label for="alamat" class="col-sm-4 col-form-label-sm text-right font-weight-bold">ALAMAT MAHASISWA</label>
                                                                                 <div class="col-sm-8">
-                                                                                    <textarea row="3" class="form-control" name="alamat" placeholder="Alamat Mahasiswa" required onkeydown="return f_cekenter(this, event)" tabIndex="5"><?php echo $col['alamat']; ?></textarea>
+                                                                                    <textarea row="3" class="form-control form-control-sm" name="alamat" placeholder="Alamat Mahasiswa" required onkeydown="return f_cekenter(this, event)" tabIndex="5"><?php echo $col['alamat']; ?></textarea>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="form-group row">
-                                                                                <label for="id_perpus" class="col-sm-4 col-form-label text-right font-weight-bold">ID ANGGOTA PERPUSTAKAAN</label>
+                                                                            <div class="row">
+                                                                                <label for="id_perpus" class="col-sm-4 col-form-label-sm text-right font-weight-bold">ID ANGGOTA PERPUSTAKAAN</label>
                                                                                 <div class="col-sm-8">
-                                                                                    <input type="text" class="form-control" name="id_perpus" value="<?php echo $col['id_anggota_perpus']; ?>" placeholder="ID Anggota Perpustakaan" required onkeydown="return f_cekenter(this, event)" tabIndex="6">
+                                                                                    <input type="text" class="form-control form-control-sm" name="id_perpus" value="<?php echo $col['id_anggota_perpus']; ?>" placeholder="ID Anggota Perpustakaan" required onkeydown="return f_cekenter(this, event)" tabIndex="6">
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="form-group row">
-                                                                                <label for="email" class="col-sm-4 col-form-label text-right font-weight-bold">EMAIL MAHASISWA</label>
+                                                                            <div class="row">
+                                                                                <label for="email" class="col-sm-4 col-form-label-sm text-right font-weight-bold">EMAIL MAHASISWA</label>
                                                                                 <div class="col-sm-8">
-                                                                                    <input type="text" class="form-control" name="email" value="<?php echo $col['email']; ?>" placeholder="Email Mahasiswa" required tabIndex="7">
+                                                                                    <input type="text" class="form-control form-control-sm" name="email" value="<?php echo $col['email']; ?>" placeholder="Email Mahasiswa" required tabIndex="7">
                                                                                 </div>
                                                                             </div>
                                                                             <?php 

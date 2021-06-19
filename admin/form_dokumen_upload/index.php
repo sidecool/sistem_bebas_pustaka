@@ -29,29 +29,29 @@ include "../header.php";
                                 </div>
                                 <div class="card-body">
                                     <form method="post" action="aksi_dokumen_upload.php?aksi=insert" autocomplete="off" id="in-form">
-                                        <div class="form-group row">
-                                            <label for="id_dokumen" class="col-sm-4 col-form-label text-right font-weight-bold">KODE DOKUMEN</label>
+                                        <div class="row">
+                                            <label for="id_dokumen" class="col-sm-4 col-form-label-sm text-right font-weight-bold">KODE DOKUMEN</label>
                                             <div class="col-sm-4">
-                                                <input type="text" class="form-control" name="id_dokumen" id="id_dokumen" placeholder="Kode Dokumen" required onkeydown="return f_cekenter(this, event)" tabIndex="1">
+                                                <input type="text" class="form-control form-control-sm " name="id_dokumen" id="id_dokumen" placeholder="Kode Dokumen" required onkeydown="return f_cekenter(this, event)" tabIndex="1">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="nama" class="col-sm-4 col-form-label text-right font-weight-bold">KETERANGAN DOKUMEN</label>
+                                        <div class="row">
+                                            <label for="nama" class="col-sm-4 col-form-label-sm text-right font-weight-bold">KETERANGAN DOKUMEN</label>
                                             <div class="col-sm-4">
-                                                <input type="text" class="form-control" name="nama" placeholder="Nama Dokumen" required tabIndex="2">
+                                                <input type="text" class="form-control form-control-sm " name="nama" placeholder="Nama Dokumen" required tabIndex="2">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="filetype" class="col-sm-4 col-form-label text-right font-weight-bold">TIPE FILE</label>
+                                        <div class="row">
+                                            <label for="filetype" class="col-sm-4 col-form-label-sm text-right font-weight-bold">TIPE FILE</label>
                                             <div class="col-sm-4">
-                                                <select class="form-control" name="filetype" placeholder="PILIH TIPE FILE" required tabIndex="3">
+                                                <select class="form-control form-control-sm " name="filetype" placeholder="PILIH TIPE FILE" required tabIndex="3">
                                                     <option value="">- PILIH TIPE FILE -</option>
                                                     <option value=".pdf">PDF File</option>
                                                     <option value=".doc, .docx">Word File</option>
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="row">
                                             <div class="col-sm-4"></div>
                                             <div class="col-sm-4">
                                                 <button class="btn btn-sm btn-primary" type="submit" form="in-form"><i class="fa fa-save"></i><span> Simpan</span></button>
@@ -125,22 +125,22 @@ include "../header.php";
                                                                     $result_2 = $mysqli->query($sql_2);
                                                                     while ($col = $result_2->fetch_array()) {  
                                                                 ?>
-                                                                <div class="form-group row">
-                                                                    <label for="id_dokumen" class="col-sm-4 col-form-label text-right font-weight-bold">KODE DOKUMEN</label>
+                                                                <div class="row">
+                                                                    <label for="id_dokumen" class="col-sm-4 col-form-label-sm text-right font-weight-bold" hidden>KODE DOKUMEN</label>
                                                                     <div class="col-sm-8">
-                                                                        <input type="text" class="form-control" name="id_dokumen" value="<?php echo $col['id_daftar_upload']; ?>" placeholder="Kode Dokumen" required onkeydown="return f_cekenter(this, event)" tabIndex="1">
+                                                                        <input type="text" class="form-control form-control-sm " name="id_dokumen" value="<?php echo $col['id_daftar_upload']; ?>" placeholder="Kode Dokumen" readonly hidden required onkeydown="return f_cekenter(this, event)" tabIndex="1">
                                                                     </div>
                                                                 </div>
-                                                                <div class="form-group row">
-                                                                    <label for="nama" class="col-sm-4 col-form-label text-right font-weight-bold">KETERANGAN DOKUMEN</label>
+                                                                <div class="row">
+                                                                    <label for="nama" class="col-sm-4 col-form-label-sm text-right font-weight-bold">KETERANGAN DOKUMEN</label>
                                                                     <div class="col-sm-8">
-                                                                        <input type="text" class="nama form-control" name="nama" value="<?php echo $col['ket_daftar_upload']; ?>" placeholder="Nama Dokumen" required tabIndex="2">
+                                                                        <input type="text" class="nama form-control form-control-sm " name="nama" value="<?php echo $col['ket_daftar_upload']; ?>" placeholder="Nama Dokumen" required tabIndex="2">
                                                                     </div>
                                                                 </div>
-                                                                <div class="form-group row">
-                                                                    <label for="filetype" class="col-sm-4 col-form-label text-right font-weight-bold">TIPE FILE</label>
+                                                                <div class="row">
+                                                                    <label for="filetype" class="col-sm-4 col-form-label-sm text-right font-weight-bold">TIPE FILE</label>
                                                                     <div class="col-sm-8">
-                                                                        <select class="form-control" name="filetype" placeholder="PILIH TIPE FILE" required tabIndex="3">
+                                                                        <select class="form-control form-control-sm " name="filetype" placeholder="PILIH TIPE FILE" required tabIndex="3">
                                                                             <option value="">- PILIH TIPE FILE -</option>
                                                                             <option <?php if($col['filetype']==".pdf") echo "selected"; ?> value=".pdf">PDF File</option>
                                                                             <option <?php if($col['filetype']==".doc, .docx") echo "selected"; ?> value=".doc, .docx">Word File</option>

@@ -29,10 +29,10 @@ include "../header.php";
                                 </div>
                                 <div class="card-body">
                                     <form method="post" action="aksi_jurusan.php?aksi=insert" autocomplete="off" id="in-form">
-                                        <div class="form-group row">
-                                            <label for="id_fakultas" class="col-sm-4 col-form-label text-right font-weight-bold">NAMA FAKULTAS</label>
+                                        <div class="row">
+                                            <label for="id_fakultas" class="col-sm-4 col-form-label-sm text-right font-weight-bold">NAMA FAKULTAS</label>
                                             <div class="col-sm-8">
-                                                <select class="form-control" name="id_fakultas" id="id_fakultas" placeholder="Nama Fakultas" required onkeydown="return f_cekenter(this, event)" tabIndex="1">
+                                                <select class="form-control form-control-sm" name="id_fakultas" id="id_fakultas" placeholder="Nama Fakultas" required onkeydown="return f_cekenter(this, event)" tabIndex="1">
                                                     <option value="">- PILIH FAKULTAS -</option>
                                                     <?php
                                                     $sql_fakultas = "SELECT id_fakultas, nm_fakultas FROM tbl_fakultas ORDER BY nm_fakultas ASC";
@@ -49,19 +49,19 @@ include "../header.php";
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="id_jurusan" class="col-sm-4 col-form-label text-right font-weight-bold">KODE JURUSAN</label>
+                                        <div class="row">
+                                            <label for="id_jurusan" class="col-sm-4 col-form-label-sm text-right font-weight-bold">KODE JURUSAN</label>
                                             <div class="col-sm-4">
-                                                <input type="text" class="form-control" name="id_jurusan" id="id_jurusan" placeholder="Kode Jurusan" required onkeydown="return f_cekenter(this, event)" tabIndex="2">
+                                                <input type="text" class="form-control form-control-sm" name="id_jurusan" id="id_jurusan" placeholder="Kode Jurusan" required onkeydown="return f_cekenter(this, event)" tabIndex="2">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="nama" class="col-sm-4 col-form-label text-right font-weight-bold">NAMA JURUSAN</label>
+                                        <div class="row">
+                                            <label for="nama" class="col-sm-4 col-form-label-sm text-right font-weight-bold">NAMA JURUSAN</label>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" name="nama" placeholder="Nama Jurusan" required tabIndex="3">
+                                                <input type="text" class="form-control form-control-sm" name="nama" placeholder="Nama Jurusan" required tabIndex="3">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <div class="row">
                                             <div class="col-sm-4"></div>
                                             <div class="col-sm-8">
                                                 <button class="btn btn-sm btn-primary" type="submit" form="in-form"><i class="fa fa-save"></i><span> Simpan</span></button>
@@ -116,7 +116,7 @@ include "../header.php";
                                                             <td width=30%><?php echo $column['nm_fakultas']; ?></td>
                                                             <td class="text-center" width=20%>
                                                                 <button type="button" id="showEdit" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#Edit<?php echo $column['id_fakultas'].'-'.$column['id_jurusan']; ?>"><i class="fa fa-edit"></i><span> Edit</span></button>
-                                                                <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#Delete<?php echo $column['id_fakultas'].'-'.$column['id_jurusan']; ?>"><i class="fa fa-trash"></i><span> Hapus</span></button>                                                                
+                                                                <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#Delete<?php echo $column['id_fakultas'].'-'.$column['id_jurusan']; ?>"><i class="fa fa-trash"></i><span> Hapus</span></button>
                                                             </td>
                                                         </tr>   
 
@@ -139,25 +139,25 @@ include "../header.php";
                                                                                 $result_2 = $mysqli->query($sql_2);
                                                                                 while ($col = $result_2->fetch_assoc()) {  
                                                                             ?>
-                                                                            <div class="form-group row">
-                                                                                <label for="id_fakultas_edit" class="col-sm-4 col-form-label text-right font-weight-bold">NAMA FAKULTAS</label>
+                                                                            <div class="row">
+                                                                                <label for="id_fakultas_edit" class="col-sm-4 col-form-label-sm text-right font-weight-bold">NAMA FAKULTAS</label>
                                                                                 <div class="col-sm-8">
-                                                                                    <select class="form-control" name="id_fakultas" id="id_fakultas<?php echo $col['id_fakultas'].'-'.$col['id_jurusan']; ?>" placeholder="Nama Fakultas" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="1">
+                                                                                    <select class="form-control form-control-sm" name="id_fakultas" id="id_fakultas<?php echo $col['id_fakultas'].'-'.$col['id_jurusan']; ?>" placeholder="Nama Fakultas" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="1">
                                                                                         <option value="<?php echo $col['id_fakultas']; ?>"><?php echo $col['nm_fakultas']; ?></option>';                                                                                        
                                                                                     </select>
                                                                                 </div>
                                                                             </div>
                                                                             
-                                                                            <div class="form-group row">
-                                                                                <label for="id_jurusan" class="col-sm-4 col-form-label text-right font-weight-bold">KODE JURUSAN</label>
+                                                                            <div class="row">
+                                                                                <label for="id_jurusan" class="col-sm-4 col-form-label-sm text-right font-weight-bold">KODE JURUSAN</label>
                                                                                 <div class="col-sm-8">
-                                                                                    <input type="text" class="form-control" name="id_jurusan" value="<?php echo $col['id_jurusan']; ?>" placeholder="ID Jurusan" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="2">
+                                                                                    <input type="text" class="form-control form-control-sm" name="id_jurusan" value="<?php echo $col['id_jurusan']; ?>" placeholder="ID Jurusan" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="2">
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="form-group row">
-                                                                                <label for="nama" class="col-sm-4 col-form-label text-right font-weight-bold">NAMA JURUSAN</label>
+                                                                            <div class="row">
+                                                                                <label for="nama" class="col-sm-4 col-form-label-sm text-right font-weight-bold">NAMA JURUSAN</label>
                                                                                 <div class="col-sm-8">
-                                                                                    <input type="text" class="nama form-control" name="nama" value="<?php echo $col['nm_jurusan']; ?>" placeholder="Nama Jurusan" required tabIndex="3">
+                                                                                    <input type="text" class="nama form-control form-control-sm" name="nama" value="<?php echo $col['nm_jurusan']; ?>" placeholder="Nama Jurusan" required tabIndex="3">
                                                                                 </div>
                                                                             </div>
                                                                             <?php 

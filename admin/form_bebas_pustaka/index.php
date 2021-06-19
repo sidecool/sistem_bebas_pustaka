@@ -25,13 +25,13 @@ include "../header.php";
                                 </div>
                                 <div class="card-body">
                                     <form method="post" action="aksi_info.php" autocomplete="off" id="in-form">                                        
-                                        <div class="form-group row">
-                                            <label for="npm_mahasiswa" class="col-sm-4 col-form-label text-right font-weight-bold">NPM MAHASISWA</label>
+                                        <div class="row">
+                                            <label for="npm_mahasiswa" class="col-sm-4 col-form-label-sm text-right font-weight-bold">NPM MAHASISWA</label>
                                             <div class="col-sm-4">
-                                                <input type="text" class="form-control" name="npm_mahasiswa" id="npm_mahasiswa" placeholder="NPM Mahasiswa" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="1">
+                                                <input type="text" class="form-control form-control-sm" name="npm_mahasiswa" id="npm_mahasiswa" placeholder="NPM Mahasiswa" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="1">
                                             </div>                                            
                                             <div class="col-sm-2">
-                                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#ModalNPM" id="btnCari"><b>Cari </b><i class="fa fa-search"></i></button>
+                                                <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#ModalNPM" id="btnCari"><b>Cari </b><i class="fa fa-search"></i></button>
                                             </div>
                                         </div>
                                         <!-- ModalNPM -->
@@ -45,24 +45,24 @@ include "../header.php";
                                                     <div class="modal-body">
                                                         <div class="row">
                                                             <div class="col-md-12">
-                                                                <div class="form-group row">
-                                                                    <label for="id_fakultas" class="col-sm-4 col-form-label text-right font-weight-bold">FAKULTAS</label>
+                                                                <div class="row">
+                                                                    <label for="id_fakultas" class="col-sm-4 col-form-label-sm text-right font-weight-bold">FAKULTAS</label>
                                                                     <div class="col-sm-8">
-                                                                        <select class="id_fakultas form-control" name="id_fakultas" placeholder="Nama Fakultas" required onkeydown="return f_cekenter(this, event)" tabIndex="1"></select>
+                                                                        <select class="id_fakultas form-control form-control-sm" name="id_fakultas" placeholder="Nama Fakultas" required onkeydown="return f_cekenter(this, event)" tabIndex="1"></select>
                                                                     </div>
                                                                 </div>
-                                                                <div class="form-group row">
-                                                                    <label for="id_jurusan" class="col-sm-4 col-form-label text-right font-weight-bold">JURUSAN / PROGRAM STUDI</label>
+                                                                <div class="row">
+                                                                    <label for="id_jurusan" class="col-sm-4 col-form-label-sm text-right font-weight-bold">JURUSAN / PROGRAM STUDI</label>
                                                                     <div class="col-sm-8">
-                                                                        <select class="id_jurusan form-control" name="id_jurusan" placeholder="Nama Jurusan" required onkeydown="return f_cekenter(this, event)" tabIndex="2">
+                                                                        <select class="id_jurusan form-control form-control-sm" name="id_jurusan" placeholder="Nama Jurusan" required onkeydown="return f_cekenter(this, event)" tabIndex="2">
                                                                             <option value="">- PILIH JURUSAN / PROGRAM STUDI -</option>
                                                                         </select>
                                                                     </div>
                                                                 </div>
-                                                                <div class="form-group row">
+                                                                <div class="row">
                                                                     <label for="button" class="col-sm-4"></label>
                                                                     <div class="col-sm-8">
-                                                                        <button type="button" name="filter" id="filter" class="btn btn-info">Tampilkan Data</button>
+                                                                        <button type="button" name="filter" id="filter" class="btn btn-sm btn-info">Tampilkan Data</button>
                                                                     </div>
                                                                 </div>
                                                             </div>                                                            

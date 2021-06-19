@@ -86,24 +86,32 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-desktop"></i> Dashboard</div>
                         </a>
                         
-                        <div class="sb-sidenav-menu-heading">Menu Admin</div>
-                        <!-- Double Menu -->
-                        <a href="" class="nav-link collapsed" data-toggle="collapse" data-target="#collapseMasters " aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Master Data 
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapseMasters" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a href="<?php echo $baseurl; ?>/admin/form_dokumen_upload/" class="nav-link <?php if($page == 'Master Data Syarat Dokumen Upload') echo active; ?>"> Master Data Syarat Dokumen Upload</a>
-                                <a href="<?php echo $baseurl; ?>/admin/form_fakultas/" class="nav-link <?php if($page == 'Master Data Fakultas') echo active; ?>"> Master Data Fakultas</a>
-                                <a href="<?php echo $baseurl; ?>/admin/form_jurusan/" class="nav-link <?php if($page == 'Master Data Jurusan') echo active; ?>"> Master Data Jurusan</a>
-                                <a href="<?php echo $baseurl; ?>/admin/form_petugas/" class="nav-link <?php if($page == 'Master Data Petugas') echo active; ?>"> Master Data Petugas</a>
-                                <a href="<?php echo $baseurl; ?>/admin/form_mahasiswa/" class="nav-link <?php if($page == 'Master Data Mahasiswa') echo active; ?>"> Master Data Mahasiswa</a>
-                            </nav>
-                        </div>
+                        <?php 
+                            if(isset($_SESSION['hak_akses'])){
+                                if($_SESSION['hak_akses'] == "ADMIN"){
+                                    ?>
+                                        <div class="sb-sidenav-menu-heading">Menu Admin</div>
+                                        <!-- Double Menu -->
+                                        <a href="" class="nav-link collapsed" data-toggle="collapse" data-target="#collapseMasters " aria-expanded="false" aria-controls="collapseLayouts">
+                                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Master Data 
+                                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                        </a>
+                                        <div class="collapse" id="collapseMasters" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                            <nav class="sb-sidenav-menu-nested nav">
+                                                <a href="<?php echo $baseurl; ?>/admin/form_dokumen_upload/" class="nav-link <?php if($page == 'Master Data Syarat Dokumen Upload') echo active; ?>"> Master Data Syarat Dokumen Upload</a>
+                                                <a href="<?php echo $baseurl; ?>/admin/form_fakultas/" class="nav-link <?php if($page == 'Master Data Fakultas') echo active; ?>"> Master Data Fakultas</a>
+                                                <a href="<?php echo $baseurl; ?>/admin/form_jurusan/" class="nav-link <?php if($page == 'Master Data Jurusan') echo active; ?>"> Master Data Jurusan</a>
+                                                <a href="<?php echo $baseurl; ?>/admin/form_petugas/" class="nav-link <?php if($page == 'Master Data Petugas') echo active; ?>"> Master Data Petugas</a>
+                                                <a href="<?php echo $baseurl; ?>/admin/form_mahasiswa/" class="nav-link <?php if($page == 'Master Data Mahasiswa') echo active; ?>"> Master Data Mahasiswa</a>
+                                            </nav>
+                                        </div>
+                                    <?php ;
+                                }
+                            }
+                        ?>                        
                         
                         <a href="" class="nav-link collapsed" data-toggle="collapse" data-target="#collapseVerif " aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Upload and Verifikasi 
+                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Upload dan Verifikasi 
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <div class="collapse" id="collapseVerif" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
