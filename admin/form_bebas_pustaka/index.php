@@ -93,25 +93,40 @@ include "../header.php";
                                     <div class="col">
                                         <i class="fas fa-table mr-1"></i>
                                         Upload Dokumen
-                                    </div>
+                                    </div>                                    
                                 </div>
                             </div>
                             <div class="card-body">
-                                <div class="table-responsive">
-                                    <table id="uploadTable" class="table table-bordered table-striped table-sm" width="100%" cellspacing="0">
-                                        <thead class="text-center">
-                                            <tr>
-                                                <th>No.</th>
-                                                <th style="display:none;">ID</th>
-                                                <th>Keterangan</th>
-                                                <th>Upload</th>
-                                                <th>Download</th>
-                                                <th>Verifikasi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        </tbody>                                        
-                                    </table>
+                                <div class="row" style="padding: 10px 0px 10px 0px;">
+                                    <div class="col-sm-8"></div>
+                                    <div class="col-sm-4">
+                                        <div class="btn-verif" id="btn-all" style="display: none;">
+                                            <span class="btn-terima-all" id="btn-terima-all" title="Terima Semua" data-user="'.$folder.'">
+                                                <button class="btn btn-success"><i id="i-terima-all" class="fa fa-check-circle" style="cursor: pointer"></i> Terima Semua</button>
+                                            </span>
+                                            <span class="btn-tolak-all" id="btn-tolak-all" title="Tolak Semua" data-user="'.$folder.'">
+                                                <button class="btn btn-danger"><i id="i-tolak-all" class="fa fa-times-circle" style="cursor: pointer"></i> Tolak Semua</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>                                
+                                <div class="row">                     
+                                    <div class="table-responsive">
+                                        <table id="uploadTable" class="table table-bordered table-striped table-sm" width="100%" cellspacing="0">
+                                            <thead class="text-center">
+                                                <tr>
+                                                    <th>No.</th>
+                                                    <th style="display:none;">ID</th>
+                                                    <th>Keterangan</th>
+                                                    <th>Upload</th>
+                                                    <th>Download</th>
+                                                    <th>Verifikasi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>                                        
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -198,6 +213,12 @@ include "../header.php";
                                             cache: false,
                                             success: function(msg){
                                                 $("#uploadTable tbody").html(msg);
+                                                var x = document.getElementById("btn-all");
+                                                if (x.style.display === "none") {
+                                                    x.style.display = "block";
+                                                } else {
+                                                    x.style.display = "none";
+                                                }
                                                 $.getScript("../../assets/js/verifikasi.js");
                                             }
                                         })

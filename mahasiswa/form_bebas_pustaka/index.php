@@ -111,7 +111,7 @@ include "../header.php";
                                     <div class="col">
                                         <i class="fas fa-table mr-1"></i>
                                         Upload Dokumen
-                                    </div>
+                                    </div>                                    
                                 </div>
                             </div>
                             <div class="card-body">

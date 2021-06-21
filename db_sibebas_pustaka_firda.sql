@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 16, 2021 at 12:30 AM
+-- Generation Time: Jun 21, 2021 at 12:31 AM
 -- Server version: 5.6.34
 -- PHP Version: 7.1.11
 
@@ -258,6 +258,19 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_surat_keluar`
+--
+
+CREATE TABLE `tbl_surat_keluar` (
+  `npm_mahasiswa` varchar(50) NOT NULL,
+  `no_surat_keluar` varchar(5) NOT NULL,
+  `tgl_surat_keluar` date NOT NULL,
+  `nm_file` varchar(5000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_upload_dokumen`
 --
 
@@ -269,6 +282,25 @@ CREATE TABLE `tbl_upload_dokumen` (
   `tgl_upload` date NOT NULL,
   `tgl_verifikasi` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_upload_dokumen`
+--
+
+INSERT INTO `tbl_upload_dokumen` (`npm_mahasiswa`, `id_daftar_upload`, `nama_file`, `verifikasi`, `tgl_upload`, `tgl_verifikasi`) VALUES
+('20210001', 1, '1. 20210001_skripsi_lengkap.docx', 'B', '2021-06-20', '0000-00-00'),
+('20210001', 2, '2. 20210001_skripsi_lengkap.pdf', 'B', '2021-06-20', '0000-00-00'),
+('20210001', 3, '3. 20210001_jurnal.doc', 'B', '2021-06-20', '0000-00-00'),
+('20210001', 4, '4. 20210001_jurnal.pdf', 'B', '2021-06-20', '0000-00-00'),
+('20210001', 5, '5. 20210001_cover.doc', 'B', '2021-06-20', '0000-00-00'),
+('20210001', 6, '6. 20210001_daftar_isi.doc', 'B', '2021-06-20', '0000-00-00'),
+('20210001', 7, '7. 20210001_daftar_tabel.doc', 'B', '2021-06-20', '0000-00-00'),
+('20210001', 8, '8. 20210001_daftar_gambar.doc', 'B', '2021-06-20', '0000-00-00'),
+('20210001', 9, '9. 20210001_abstrak_indonesia.doc', 'B', '2021-06-20', '0000-00-00'),
+('20210001', 10, '10. 20210001_abstrak_inggris.doc', 'B', '2021-06-20', '0000-00-00'),
+('20210001', 11, '11. 20210001_hasil_bebas_turnitin_full.pdf', 'B', '2021-06-20', '0000-00-00'),
+('20210001', 12, '12. 20210001_hasil_turnitin_dari_fakultas.pdf', 'B', '2021-06-20', '0000-00-00'),
+('20210001', 13, '13. 20210001_cover,_bab_i_sampai_dengan_bab_v.doc', 'B', '2021-06-20', '0000-00-00');
 
 --
 -- Indexes for dumped tables
@@ -324,6 +356,12 @@ ALTER TABLE `tbl_pegawai`
   ADD PRIMARY KEY (`id_pegawai`),
   ADD KEY `IDX_PEGAWAI` (`id_pegawai`),
   ADD KEY `FK_USERNAME_PEGAWAI` (`username`);
+
+--
+-- Indexes for table `tbl_surat_keluar`
+--
+ALTER TABLE `tbl_surat_keluar`
+  ADD PRIMARY KEY (`npm_mahasiswa`);
 
 --
 -- Indexes for table `tbl_upload_dokumen`
