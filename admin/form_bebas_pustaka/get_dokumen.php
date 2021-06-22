@@ -70,34 +70,35 @@ if($numrow > 0) {
                 $numrow_3 = $result_3->num_rows;
 
                 if($numrow_3 > 0) {
-                    $column_3 = $result_3->fetch_assoc();
-                    if($column_3['verifikasi'] == 'B'){
-                        echo '
-                            <span class="btn-terima" id="btn-terima'.$id_upload.'" title="Diterima" data-id="'.$id_upload.'" data-file="'.$filename.'" data-user="'.$folder.'">
-                                <label><i id="i-terima'.$id_upload.'" class="fa fa-check-circle text-success" style="cursor: pointer"></i></label>
-                            </span>
-                            <span class="btn-tolak" id="btn-tolak'.$id_upload.'" title="Ditolak" data-id="'.$id_upload.'" data-file="'.$filename.'" data-user="'.$folder.'">
-                                <label><i id="i-tolak'.$id_upload.'" class="fa fa-times-circle text-danger" style="cursor: pointer"></i></label>
-                            </span>
-                        ';
-                    } elseif($column_3['verifikasi'] == 'S'){ 
-                        echo '
-                            <span title="Diterima">
-                                <label><i class="fa fa-check-circle text-success"></i></label>
-                            </span>
-                            <span title="Ditolak">
-                                <label><i class="fa fa-times-circle text-basic"></i></label>
-                            </span>
-                        ';
-                    } else {
-                        echo '
-                            <span title="Diterima">
-                                <label><i class="fa fa-check-circle text-basic"></i></label>
-                            </span>
-                            <span title="Ditolak">
-                                <label><i class="fa fa-times-circle text-danger"></i></label>
-                            </span>
-                        ';
+                    while($column_3 = $result_3->fetch_assoc()){
+                        if($column_3['verifikasi'] == 'B'){
+                            echo '
+                                <span class="btn-terima" id="btn-terima'.$no_urut.'" title="Diterima" data-id="'.$id_upload.'" data-file="'.$filename.'" data-user="'.$folder.'">
+                                    <label><i id="i-terima'.$no_urut.'" class="fa fa-check-circle text-success" style="cursor: pointer"></i></label>
+                                </span>
+                                <span class="btn-tolak" id="btn-tolak'.$no_urut.'" title="Ditolak" data-id="'.$id_upload.'" data-file="'.$filename.'" data-user="'.$folder.'">
+                                    <label><i id="i-tolak'.$no_urut.'" class="fa fa-times-circle text-danger" style="cursor: pointer"></i></label>
+                                </span>
+                            ';
+                        } elseif($column_3['verifikasi'] == 'S'){ 
+                            echo '
+                                <span title="Diterima">
+                                    <label><i class="fa fa-check-circle text-success"></i></label>
+                                </span>
+                                <span title="Ditolak">
+                                    <label><i class="fa fa-times-circle text-basic"></i></label>
+                                </span>
+                            ';
+                        } else {
+                            echo '
+                                <span title="Diterima">
+                                    <label><i class="fa fa-check-circle text-basic"></i></label>
+                                </span>
+                                <span title="Ditolak">
+                                    <label><i class="fa fa-times-circle text-danger"></i></label>
+                                </span>
+                            ';
+                        }
                     }                                                           
                 } 
 
@@ -141,7 +142,7 @@ echo '
                 document.getElementById(id_element+"proses").innerHTML = pesan;
             },
             success: function(msg){                                                        
-                toastr.success("Data telah disimpan, Anda berhasil menyimpan data.", "Pesan Berhasil", 3000);                
+                toastr.success("Data telah disimpan, Anda berhasil menyimpan data.", "Pesan Berhasil", 3000);
                 document.getElementById(id_element+"proses").innerHTML = msg; 
                 document.getElementById(id_element+"verif").innerHTML = btnVerifikasi;
                 $.getScript("../../assets/js/verifikasi.js");

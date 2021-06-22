@@ -1,6 +1,6 @@
 <?php
 session_start();
-error_reporting(0);
+// error_reporting(0);
 $page = "Pengajuan Bebas Pustaka";
 
 include '../../config/route.php';
@@ -101,10 +101,10 @@ include "../header.php";
                                     <div class="col-sm-8"></div>
                                     <div class="col-sm-4">
                                         <div class="btn-verif" id="btn-all" style="display: none;">
-                                            <span class="btn-terima-all" id="btn-terima-all" title="Terima Semua" data-user="'.$folder.'">
+                                            <span class="btn-terima-all" id="btn-terima-all" title="Terima Semua" >
                                                 <button class="btn btn-success"><i id="i-terima-all" class="fa fa-check-circle" style="cursor: pointer"></i> Terima Semua</button>
                                             </span>
-                                            <span class="btn-tolak-all" id="btn-tolak-all" title="Tolak Semua" data-user="'.$folder.'">
+                                            <span class="btn-tolak-all" id="btn-tolak-all" title="Tolak Semua" >
                                                 <button class="btn btn-danger"><i id="i-tolak-all" class="fa fa-times-circle" style="cursor: pointer"></i> Tolak Semua</button>
                                             </span>
                                         </div>
