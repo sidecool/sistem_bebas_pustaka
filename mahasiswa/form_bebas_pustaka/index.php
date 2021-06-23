@@ -225,43 +225,45 @@ include "../header.php";
                                         </tbody>
                                     </table>
                                 </div>
-                                <?php
-                                    $sql_3 = "SELECT verifikasi FROM tbl_upload_dokumen 
-                                              WHERE npm_mahasiswa='$folder'";
-                                    $result_3 = $mysqli->query($sql_3);
+                                <div id="btn-print">
+                                    <?php
+                                        $sql_3 = "SELECT verifikasi FROM tbl_upload_dokumen 
+                                                WHERE npm_mahasiswa='$folder'";
+                                        $result_3 = $mysqli->query($sql_3);
 
-                                    $numrow_3 = $result_3->num_rows;
-                                    $x=1;
-                                    while($column_3 = $result_3->fetch_assoc()){
-                                        if($column_3['verifikasi'] != 'S'){
-                                            $verified = false;
-                                            break;
-                                        } else {
-                                            $verified = true;
-                                        } 
-                                        $x++;                                                                            
-                                    }                                                     
-                                    if($verified == true){
-                                        echo '
-                                        <div id="btn-download" class="row">
-                                            <div class="col-sm-6 text-right">
-                                                <a href="../../pdf/bebas_tanggungan.php?id='.$folder.'">
-                                                    <button class="btn btn-sm btn-success" type="button" id="file1" >
-                                                        Surat Keterangan Bebas Pinjaman/Tanggungan
-                                                    </button>
-                                                </a>
+                                        $numrow_3 = $result_3->num_rows;
+                                        $x=1;
+                                        while($column_3 = $result_3->fetch_assoc()){
+                                            if($column_3['verifikasi'] != 'S'){
+                                                $verified = false;
+                                                break;
+                                            } else {
+                                                $verified = true;
+                                            } 
+                                            $x++;                                                                            
+                                        }                                                     
+                                        if($verified == true){
+                                            echo '
+                                            <div id="btn-download" class="row">
+                                                <div class="col-sm-6 text-right">
+                                                    <a href="../../pdf/bebas_tanggungan.php?id='.$folder.'">
+                                                        <button class="btn btn-sm btn-success" type="button" id="file1" >
+                                                            Surat Keterangan Bebas Pinjaman/Tanggungan
+                                                        </button>
+                                                    </a>
+                                                </div>
+                                                <div class="col-sm-6 text-left">
+                                                    <a href="../../pdf/bebas_pustaka.php?id='.$folder.'">
+                                                        <button class="btn btn-sm btn-success" type="button" id="file2" >
+                                                            Surat Keterangan Bebas Pustaka
+                                                        </button>
+                                                    </a>
+                                                </div>
                                             </div>
-                                            <div class="col-sm-6 text-left">
-                                                <a href="../../pdf/bebas_pustaka.php?id='.$folder.'">
-                                                    <button class="btn btn-sm btn-success" type="button" id="file2" >
-                                                        Surat Keterangan Bebas Pustaka
-                                                    </button>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        ';        
-                                    }     
-                                ?>                           
+                                            ';        
+                                        }     
+                                    ?>
+                                </div>                                                           
                             </div>
                         </div>
                     </div>

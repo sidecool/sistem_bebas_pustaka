@@ -66,49 +66,87 @@ if($numrow > 0) {
                           WHERE npm_mahasiswa='$folder' AND id_daftar_upload='$id_upload'";
 
                 $result_3 = $mysqli->query($sql_3);
-
-                $numrow_3 = $result_3->num_rows;
+                $numrow_3 = $result_3->num_rows;                
 
                 if($numrow_3 > 0) {
-                    while($column_3 = $result_3->fetch_assoc()){
-                        if($column_3['verifikasi'] == 'B'){
-                            echo '
-                                <span class="btn-terima" id="btn-terima'.$no_urut.'" title="Diterima" data-id="'.$id_upload.'" data-file="'.$filename.'" data-user="'.$folder.'">
-                                    <label><i id="i-terima'.$no_urut.'" class="fa fa-check-circle text-success" style="cursor: pointer"></i></label>
-                                </span>
-                                <span class="btn-tolak" id="btn-tolak'.$no_urut.'" title="Ditolak" data-id="'.$id_upload.'" data-file="'.$filename.'" data-user="'.$folder.'">
-                                    <label><i id="i-tolak'.$no_urut.'" class="fa fa-times-circle text-danger" style="cursor: pointer"></i></label>
-                                </span>
-                            ';
-                        } elseif($column_3['verifikasi'] == 'S'){ 
-                            echo '
-                                <span title="Diterima">
-                                    <label><i class="fa fa-check-circle text-success"></i></label>
-                                </span>
-                                <span title="Ditolak">
-                                    <label><i class="fa fa-times-circle text-basic"></i></label>
-                                </span>
-                            ';
-                        } else {
-                            echo '
-                                <span title="Diterima">
-                                    <label><i class="fa fa-check-circle text-basic"></i></label>
-                                </span>
-                                <span title="Ditolak">
-                                    <label><i class="fa fa-times-circle text-danger"></i></label>
-                                </span>
-                            ';
-                        }
-                    }                                                           
+                    $column_3 = $result_3->fetch_assoc();
+                    if($column_3['verifikasi'] == 'B'){
+                        echo '
+                            <span class="btn-terima" id="btn-terima'.$no_urut.'" title="Diterima" data-id="'.$id_upload.'" data-file="'.$filename.'" data-user="'.$folder.'">
+                                <label><i id="i-terima'.$no_urut.'" class="fa fa-check-circle text-success" style="cursor: pointer"></i></label>
+                            </span>
+                            <span class="btn-tolak" id="btn-tolak'.$no_urut.'" title="Ditolak" data-id="'.$id_upload.'" data-file="'.$filename.'" data-user="'.$folder.'">
+                                <label><i id="i-tolak'.$no_urut.'" class="fa fa-times-circle text-danger" style="cursor: pointer"></i></label>
+                            </span>
+                        ';
+                    } elseif($column_3['verifikasi'] == 'S'){ 
+                        echo '
+                            <span title="Diterima">
+                                <label><i class="fa fa-check-circle text-success"></i></label>
+                            </span>
+                            <span title="Ditolak">
+                                <label><i class="fa fa-times-circle text-basic"></i></label>
+                            </span>
+                        ';
+                    } else {
+                        echo '
+                            <span title="Diterima">
+                                <label><i class="fa fa-check-circle text-basic"></i></label>
+                            </span>
+                            <span title="Ditolak">
+                                <label><i class="fa fa-times-circle text-danger"></i></label>
+                            </span>
+                        ';
+                    }                                                                              
                 } 
 
         echo    '</div>
             </td>
         </tr>        
         ';        
-        $no_urut++;
-    }
+        $no_urut++;        
+    }      
 }
+
+$sql_dokumen = "SELECT COUNT(id_daftar_upload) AS NUM_DAFTAR FROM tbl_daftar_upload";
+$result_dokumen = $mysqli->query($sql_dokumen);
+$col_dokumen = $result_dokumen->fetch_assoc();
+
+$sql_upload = "SELECT COUNT(id_daftar_upload) AS NUM_UPLOAD FROM tbl_upload_dokumen WHERE npm_mahasiswa='$folder'";
+$result_upload = $mysqli->query($sql_upload);
+$col_upload = $result_upload->fetch_assoc();
+
+if($col_dokumen['NUM_DAFTAR']==$col_upload['NUM_UPLOAD']){
+    $sql_ver = "SELECT verifikasi FROM tbl_upload_dokumen WHERE npm_mahasiswa='$folder'";
+    $result_ver = $mysqli->query($sql_ver);
+    while($column_ver = $result_ver->fetch_assoc()){            
+        $isi_btnPrint = "<div id='btn-download' class='row'><div class='col-sm-6 text-right'><a href='../../pdf/bebas_tanggungan.php?id=".$folder."'><button class='btn btn-sm btn-success' type='button' id='file1' >Surat Keterangan Bebas Pinjaman/Tanggungan</button></a></div><div class='col-sm-6 text-left'><a href='../../pdf/bebas_pustaka.php?id=".$folder."'><button class='btn btn-sm btn-success' type='button' id='file2' >Surat Keterangan Bebas Pustaka</button></a></div></div>";
+        if ($column_ver['verifikasi'] == "S") {
+            $verified = true;            
+        } else {
+            $verified = false;            
+            break;
+        }
+    }
+    if($verified==true){
+        echo '<script>
+            var x = document.getElementById("btn-all");
+            x.style.display = "none";
+            var btnPrint = document.getElementById("btn-print");
+            btnPrint.innerHTML = "'.$isi_btnPrint.'";
+        </script>';
+    } else {
+        echo '<script>
+            var x = document.getElementById("btn-all");
+            x.style.display = "block";                    
+        </script>';
+    }
+} else {
+    echo '<script>
+        var x = document.getElementById("btn-all");
+        x.style.display = "none";            
+    </script>';
+} 
 
 echo '
 <script>

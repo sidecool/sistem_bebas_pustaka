@@ -43,7 +43,7 @@ if($pilihan=='jurusan'){
 }
 
 if($pilihan=='detail'){
-    $npm = $_POST["id_mahasiswa"];    
+    $npm = $_POST["id_mahasiswa"];        
     $sql = "SELECT nm_mahasiswa, judul_skripsi, pembimbing_1, pembimbing_2, judul_buku_1, tahun_buku_1, judul_buku_2, tahun_buku_2, judul_buku_3, tahun_buku_3 FROM tbl_info_dokumen WHERE npm_mahasiswa='$npm'";    
     $result = $mysqli->query($sql);
     $numrow = $result->num_rows;

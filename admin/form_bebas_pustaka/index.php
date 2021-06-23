@@ -126,7 +126,10 @@ include "../header.php";
                                             <tbody>
                                             </tbody>                                        
                                         </table>
-                                    </div>
+                                        <div id="btn-print">
+
+                                        </div>
+                                    </div>                                    
                                 </div>
                             </div>
                         </div>
@@ -197,7 +200,7 @@ include "../header.php";
 
                             $("#lookup tbody").on("click", "tr", function(e){
                                 var baris = dataTable.DataTable().row(this).data();
-                                var npm = baris[0];
+                                var npm = baris[0];                                
                                 document.getElementById('npm_mahasiswa').value = npm;
                                 $.ajax({
                                     type: "POST",
@@ -213,12 +216,6 @@ include "../header.php";
                                             cache: false,
                                             success: function(msg){
                                                 $("#uploadTable tbody").html(msg);
-                                                var x = document.getElementById("btn-all");
-                                                if (x.style.display === "none") {
-                                                    x.style.display = "block";
-                                                } else {
-                                                    x.style.display = "none";
-                                                }
                                                 $.getScript("../../assets/js/verifikasi.js");
                                             }
                                         })
