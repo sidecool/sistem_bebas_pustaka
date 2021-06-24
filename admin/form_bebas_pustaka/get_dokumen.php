@@ -120,7 +120,7 @@ if($col_dokumen['NUM_DAFTAR']==$col_upload['NUM_UPLOAD']){
     $sql_ver = "SELECT verifikasi FROM tbl_upload_dokumen WHERE npm_mahasiswa='$folder'";
     $result_ver = $mysqli->query($sql_ver);
     while($column_ver = $result_ver->fetch_assoc()){            
-        $isi_btnPrint = "<div id='btn-download' class='row'><div class='col-sm-6 text-right'><a href='../../pdf/bebas_tanggungan.php?id=".$folder."'><button class='btn btn-sm btn-success' type='button' id='file1' >Surat Keterangan Bebas Pinjaman/Tanggungan</button></a></div><div class='col-sm-6 text-left'><a href='../../pdf/bebas_pustaka.php?id=".$folder."'><button class='btn btn-sm btn-success' type='button' id='file2' >Surat Keterangan Bebas Pustaka</button></a></div></div>";
+        $isi_btnPrint = "<div id='btn-download' class='row' style='width:100%;'><div class='col-sm-6 text-right'><a href='../../pdf/bebas_tanggungan.php?id=".$folder."'><button class='btn btn-sm btn-success' type='button' id='file1' >Surat Keterangan Bebas Pinjaman/Tanggungan</button></a></div><div class='col-sm-6 text-left'><a href='../../pdf/bebas_pustaka.php?id=".$folder."'><button class='btn btn-sm btn-success' type='button' id='file2' >Surat Keterangan Bebas Pustaka</button></a></div></div>";
         if ($column_ver['verifikasi'] == "S") {
             $verified = true;            
         } else {

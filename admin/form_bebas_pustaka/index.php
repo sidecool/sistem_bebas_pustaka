@@ -126,9 +126,7 @@ include "../header.php";
                                             <tbody>
                                             </tbody>                                        
                                         </table>
-                                        <div id="btn-print">
-
-                                        </div>
+                                        <div id="btn-print" style="margin: 10px 0px 10px 0px;"></div>                                        
                                     </div>                                    
                                 </div>
                             </div>

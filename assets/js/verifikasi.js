@@ -31,7 +31,7 @@ $(".btn-terima").click(function(){
                     var x = document.getElementById("btn-all");
                     x.style.display = "none";
                     var btnPrint = document.getElementById("btn-print");
-                    btnPrint.innerHTML = '<div id="btn-download" class="row"><div class="col-sm-6 text-right"><a href="../../pdf/bebas_tanggungan.php?id='+uploader+'"><button class="btn btn-sm btn-success" type="button" id="file1" >Surat Keterangan Bebas Pinjaman/Tanggungan</button></a></div><div class="col-sm-6 text-left"><a href="../../pdf/bebas_pustaka.php?id='+uploader+'"><button class="btn btn-sm btn-success" type="button" id="file2" >Surat Keterangan Bebas Pustaka</button></a></div></div>';
+                    btnPrint.innerHTML = '<div id="btn-download" class="row" style="width:100%;"><div class="col-sm-6 text-right"><a href="../../pdf/bebas_tanggungan.php?id='+uploader+'"><button class="btn btn-sm btn-success" type="button" id="file1" >Surat Keterangan Bebas Pinjaman/Tanggungan</button></a></div><div class="col-sm-6 text-left"><a href="../../pdf/bebas_pustaka.php?id='+uploader+'"><button class="btn btn-sm btn-success" type="button" id="file2" >Surat Keterangan Bebas Pustaka</button></a></div></div>';
                 }
             },            
             cache: false
@@ -59,7 +59,7 @@ $(".btn-terima-all").click(function(){
                     var verif = document.getElementById(i+"verif");
                     verif.innerHTML = '<span title="Diterima"><label><i class="fa fa-check-circle text-success"></i></label></span>  <span title="Ditolak"><label><i class="fa fa-times-circle text-basic"></i></label></span>';
                     var btnPrint = document.getElementById("btn-print");
-                    btnPrint.innerHTML = '<div id="btn-download" class="row"><div class="col-sm-6 text-right"><a href="../../pdf/bebas_tanggungan.php?id='+uploader+'"><button class="btn btn-sm btn-success" type="button" id="file1" >Surat Keterangan Bebas Pinjaman/Tanggungan</button></a></div><div class="col-sm-6 text-left"><a href="../../pdf/bebas_pustaka.php?id='+uploader+'"><button class="btn btn-sm btn-success" type="button" id="file2" >Surat Keterangan Bebas Pustaka</button></a></div></div>';
+                    btnPrint.innerHTML = '<div id="btn-download" class="row" style="width:100%;"><div class="col-sm-6 text-right"><a href="../../pdf/bebas_tanggungan.php?id='+uploader+'"><button class="btn btn-sm btn-success" type="button" id="file1" >Surat Keterangan Bebas Pinjaman/Tanggungan</button></a></div><div class="col-sm-6 text-left"><a href="../../pdf/bebas_pustaka.php?id='+uploader+'"><button class="btn btn-sm btn-success" type="button" id="file2" >Surat Keterangan Bebas Pustaka</button></a></div></div>';
                 };
                 var x = document.getElementById("btn-all");
                 x.style.display = "none";                
