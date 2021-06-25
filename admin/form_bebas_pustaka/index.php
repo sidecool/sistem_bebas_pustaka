@@ -126,7 +126,7 @@ include "../header.php";
                                             <tbody>
                                             </tbody>                                        
                                         </table>
-                                        <div id="btn-print" style="margin: 10px 0px 10px 0px;"></div>                                        
+                                        <div id="btn-print" style="display: none; margin: 10px 0px 10px 0px;"></div>                                        
                                     </div>                                    
                                 </div>
                             </div>
@@ -197,13 +197,15 @@ include "../header.php";
                             };
 
                             $("#lookup tbody").on("click", "tr", function(e){
+                                $('#ModalNPM').modal('hide');
                                 var baris = dataTable.DataTable().row(this).data();
-                                var npm = baris[0];                                
+                                var npm = baris[0];
+                                var nama = baris[1];                                
                                 document.getElementById('npm_mahasiswa').value = npm;
                                 $.ajax({
                                     type: "POST",
                                     url: "get_data.php?c=detail",
-                                    data: {id_mahasiswa: npm},
+                                    data: {id_mahasiswa: npm, nm_mahasiswa: nama},
                                     cache: false,
                                     success: function(msg){
                                         $("#detail-body").html(msg);
@@ -215,11 +217,11 @@ include "../header.php";
                                             success: function(msg){
                                                 $("#uploadTable tbody").html(msg);
                                                 $.getScript("../../assets/js/verifikasi.js");
+                                                document.getElementById("judul_skripsi").focus();
                                             }
                                         })
                                     }
-                                });
-                                $('#ModalNPM').modal('hide');
+                                });                                
                             });
 
                             $("#filter").click(function(){                                

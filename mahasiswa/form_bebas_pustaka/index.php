@@ -242,7 +242,7 @@ include "../header.php";
                                             } 
                                             $x++;                                                                            
                                         }                                                     
-                                        if($verified == true){
+                                        if($verified == true){                                            
                                             echo '
                                             <div id="btn-download" class="row">
                                                 <div class="col-sm-6 text-right">

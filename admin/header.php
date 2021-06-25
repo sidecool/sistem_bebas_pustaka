@@ -120,15 +120,15 @@
                             </nav>
                         </div>
 
-                        <a href="" class="nav-link collapsed" data-toggle="collapse" data-target="#collapseInfo " aria-expanded="false" aria-controls="collapseLayouts">
+                        <!-- <a href="" class="nav-link collapsed" data-toggle="collapse" data-target="#collapseInfo " aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Informasi 
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapseInfo" aria-labelledby="headingThree" data-parent="#sidenavAccordion">
+                        </a> -->
+                        <!-- <div class="collapse" id="collapseInfo" aria-labelledby="headingThree" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a href="#!" class="nav-link"> Pengumuman</a>                                
                             </nav>
-                        </div>
+                        </div> -->
 
                         <a href="" class="nav-link collapsed" data-toggle="collapse" data-target="#collapseLaporan " aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Laporan 

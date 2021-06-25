@@ -1,6 +1,45 @@
 <?php
 include "../config/database.php";
+include "../config/tgl_indo.php";
 require("fpdf.php");
+
+$npm = $_GET['id'];
+$title = $npm."-Surat Keterangan Bebas Pinjaman";
+$tahun = date("Y");
+$sql = "SELECT npm_mahasiswa, no_surat_keluar, tgl_surat_keluar, nm_file FROM tbl_surat_keluar 
+        WHERE npm_mahasiswa='$npm' AND year(tgl_surat_keluar)='$tahun'";
+$result = $mysqli->query($sql);
+$baru = false;
+if($result->num_rows == 0){
+    $baru = true;
+    $sql_count = "SELECT COUNT(no_surat_keluar)+1 AS num FROM tbl_surat_keluar WHERE year(tgl_surat_keluar)='$tahun'";
+    $result_count = $mysqli->query($sql_count);
+    $urut = $result_count->fetch_assoc();
+    $nomor = sprintf('%03d', $urut['num'])."/UN52.10/TU/".$tahun;
+    $tanggal = date("Y-m-d");
+} else {    
+    while($column = $result->fetch_assoc()){        
+        if(($column['npm_mahasiswa'] == $npm) && ($column['nm_file'] == $title)){
+            $baru = false;
+            $nomor = $column['no_surat_keluar'];
+            $tanggal = $column['tgl_surat_keluar'];
+            break;            
+        } elseif(($column['npm_mahasiswa'] == $npm) && ($column['nm_file'] != $title)) {
+            $baru = true;
+            $sql_count = "SELECT COUNT(no_surat_keluar)+1 AS num FROM tbl_surat_keluar WHERE year(tgl_surat_keluar)='$tahun'";
+            $result_count = $mysqli->query($sql_count);
+            $urut = $result_count->fetch_assoc();
+            $nomor = sprintf('%03d', $urut['num'])."/UN52.10/TU/".$tahun;
+            $tanggal = date("Y-m-d");            
+        }
+    }
+}
+
+if($baru == true){
+    $insert = "INSERT INTO tbl_surat_keluar (npm_mahasiswa, no_surat_keluar, tgl_surat_keluar, nm_file) 
+               VALUES ('$npm','$nomor','$tanggal','$title')";  
+    $proses = $mysqli->query($insert);
+}
 
 class PDF extends FPDF {
     function Header(){
@@ -90,8 +129,6 @@ if($numrow_petugas > 0) {
     $nip_petugas = $col_petugas['nip_pegawai']; 
 }
 
-$npm = $_GET['id'];
-
 $sql_mahasiswa = "SELECT A.nm_mahasiswa, A.id_anggota_perpus, A.alamat, B.nm_jurusan, C.nm_fakultas FROM tbl_mahasiswa A
                   LEFT JOIN tbl_jurusan B ON A.id_fakultas=B.id_fakultas AND A.id_jurusan=B.id_jurusan
                   LEFT JOIN tbl_fakultas C ON A.id_fakultas=C.id_fakultas 
@@ -107,12 +144,11 @@ if($numrow_mahasiswa > 0) {
     $fakultas = $col_mahasiswa['nm_fakultas'];
 }
 
-$pdf = new PDF("P", "mm", "A4");
-$title = $npm."-Surat Keterangan Bebas Pinjaman";
+$pdf = new PDF("P", "mm", array(330,215));
 $pdf->SetTitle($title);
 $pdf->AliasNbPages();
 $pdf->AddPage();
-$pdf->Body("", $nama, $npm, $idperpus, $alamat, $jurusan, $fakultas);
-$pdf->Ttd("Tanggal Verifikasi",$nama_kepala,$nip_kepala,$nama_petugas,$nip_petugas);
+$pdf->Body($nomor, $nama, $npm, $idperpus, $alamat, $jurusan, $fakultas);
+$pdf->Ttd(tgl_indo($tanggal), $nama_kepala, $nip_kepala, $nama_petugas, $nip_petugas);
 $pdf->Output($title.".pdf", "I");
 ?>

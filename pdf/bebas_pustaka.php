@@ -1,22 +1,61 @@
 <?php
 include "../config/database.php";
+include "../config/tgl_indo.php";
 require("fpdf.php");
+
+$npm = $_GET['id'];
+$title = $npm."-Surat Keterangan Bebas Pustaka";
+$tahun = date("Y");
+$sql = "SELECT npm_mahasiswa, no_surat_keluar, tgl_surat_keluar, nm_file FROM tbl_surat_keluar 
+        WHERE npm_mahasiswa='$npm' AND year(tgl_surat_keluar)='$tahun'";
+$result = $mysqli->query($sql);
+$baru = false;
+if($result->num_rows == 0){
+    $baru = true;
+    $sql_count = "SELECT COUNT(no_surat_keluar)+1 AS num FROM tbl_surat_keluar WHERE year(tgl_surat_keluar)='$tahun'";
+    $result_count = $mysqli->query($sql_count);
+    $urut = $result_count->fetch_assoc();
+    $nomor = sprintf('%03d', $urut['num'])."/UN52.10/TU/".$tahun;
+    $tanggal = date("Y-m-d");
+} else {    
+    while($column = $result->fetch_assoc()){        
+        if(($column['npm_mahasiswa'] == $npm) && ($column['nm_file'] == $title)){
+            $baru = false;
+            $nomor = $column['no_surat_keluar'];
+            $tanggal = $column['tgl_surat_keluar'];
+            break;            
+        } elseif(($column['npm_mahasiswa'] == $npm) && ($column['nm_file'] != $title)) {
+            $baru = true;
+            $sql_count = "SELECT COUNT(no_surat_keluar)+1 AS num FROM tbl_surat_keluar WHERE year(tgl_surat_keluar)='$tahun'";
+            $result_count = $mysqli->query($sql_count);
+            $urut = $result_count->fetch_assoc();
+            $nomor = sprintf('%03d', $urut['num'])."/UN52.10/TU/".$tahun;
+            $tanggal = date("Y-m-d");            
+        }
+    }
+}
+
+if($baru == true){
+    $insert = "INSERT INTO tbl_surat_keluar (npm_mahasiswa, no_surat_keluar, tgl_surat_keluar, nm_file) 
+               VALUES ('$npm','$nomor','$tanggal','$title')";    
+    $proses = $mysqli->query($insert);
+}
 
 class PDF extends FPDF {
     function Header(){
         $this->image("../assets/img/logo.png", 20, 10, 40, 40);
-        $this->SetFont("Arial","",14);
+        $this->SetFont("Arial","",15);
         $this->Cell(100);
         $this->Cell(30,10,"KEMENTRIAN PENDIDIKAN DAN KEBUDAYAAN",0,0,"C");
         $this->Ln(7);
-        $this->SetFont("Arial","B",14);
+        $this->SetFont("Arial","B",15);
         $this->Cell(100);
         $this->Cell(30,10,"UNIVERSITAS MUSAMUS (UNMUS)",0,0,"C");
         $this->Ln(7);
         $this->Cell(100);
         $this->Cell(30,10,"UNIT PELAKSANA TEKNIS PERPUSTAKAAN",0,0,"C");
         $this->Ln(7);
-        $this->SetFont("Times","",10);
+        $this->SetFont("Times","",12);
         $this->Cell(100);
         $this->Cell(30,10,"Jalan Kamizaun Mopah Lama Merauke 99611",0,0,"C");
         $this->Ln(5);
@@ -147,30 +186,6 @@ class PDF extends FPDF {
     }
 }
 
-function tgl_indo($tanggal){
-	$bulan = array (
-		1 =>   'Januari',
-		'Februari',
-		'Maret',
-		'April',
-		'Mei',
-		'Juni',
-		'Juli',
-		'Agustus',
-		'September',
-		'Oktober',
-		'November',
-		'Desember'
-	);
-	$pecahkan = explode('-', $tanggal);
-	
-	// variabel pecahkan 0 = tanggal
-	// variabel pecahkan 1 = bulan
-	// variabel pecahkan 2 = tahun
- 
-	return $pecahkan[2] . ' ' . $bulan[ (int)$pecahkan[1] ] . ' ' . $pecahkan[0];
-}
-
 $sql_kepala = "SELECT nm_pegawai, nip_pegawai FROM tbl_pegawai WHERE jabatan='Kepala UPT. Perpustakaan'";
 $result_kepala = $mysqli->query($sql_kepala);
 $numrow_kepala = $result_kepala->num_rows;
@@ -179,8 +194,6 @@ if($numrow_kepala > 0) {
     $nama_kepala = $col_kepala['nm_pegawai'];
     $nip_kepala = $col_kepala['nip_pegawai']; 
 }
-
-$npm = $_GET['id'];
 
 $sql_mahasiswa = "SELECT A.nm_mahasiswa, B.nm_jurusan, C.judul_buku_1, C.tahun_buku_1, C.judul_buku_2, C.tahun_buku_2, 
                   C.judul_buku_3, C.tahun_buku_3 FROM tbl_mahasiswa A
@@ -210,13 +223,12 @@ if($numrow_verifikasi > 0) {
 }
 
 $pdf = new PDF("P", "mm", array(330,215));
-$title = $npm."-Surat Keterangan Bebas Pustaka";
 $pdf->SetTitle($title);
 $pdf->AliasNbPages();
 $pdf->AddPage();
-$pdf->Body("", $nama_kepala, $nip_kepala, $nama, $npm, $jurusan);
+$pdf->Body($nomor, $nama_kepala, $nip_kepala, $nama, $npm, $jurusan);
 $pdf->Tabel(tgl_indo($tgl_verifikasi), $judul1, $tahun1, $judul2, $tahun2, $judul3, $tahun3);
-$pdf->Ttd(tgl_indo($tgl_verifikasi), $nama_kepala, $nip_kepala);
+$pdf->Ttd(tgl_indo($tanggal), $nama_kepala, $nip_kepala);
 $pdf->Tembusan();
 $pdf->Output($title.".pdf", "I");
 ?>
