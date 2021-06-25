@@ -9,6 +9,7 @@
     <link rel="shortcut icon" href="<?php echo $baseurl; ?>/admin/assets/img/icon/favicon.ico">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="<?php echo $baseurl; ?>/admin/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo $baseurl; ?>/admin/assets/css/datePicker/bootstrap-datepicker3.min.css">
     <link rel="stylesheet" href="<?php echo $baseurl; ?>/admin/assets/css/styles_admin.css">
     <link rel="stylesheet" href="<?php echo $baseurl; ?>/admin/assets/css/table_admin.css">
     <link rel="stylesheet" href="<?php echo $baseurl; ?>/admin/assets/css/dataTables/dataTables.bootstrap4.min.css">
@@ -17,10 +18,11 @@
     <link rel="stylesheet" href="<?php echo $baseurl; ?>/admin/assets/css/toastr.css">
     <link rel="stylesheet" href="<?php echo $baseurl; ?>/admin/assets/css/toastr.min.css">
 
-    
     <script src="<?php echo $baseurl; ?>/assets/js/jquery.min.js"></script>
     <script src="<?php echo $baseurl; ?>/admin/assets/js/toastr.min.js"></script>
-    <script src="<?php echo $baseurl; ?>/admin/assets/js/dataTables/jquery.dataTables.min.js"></script>      
+    <script src="<?php echo $baseurl; ?>/admin/assets/js/dataTables/jquery.dataTables.min.js"></script>
+    <script src="<?php echo $baseurl; ?>/admin/assets/js/datePicker/bootstrap-datepicker.min.js"></script>
+    <script src="<?php echo $baseurl; ?>/admin/assets/js/datePicker/bootstrap-datepicker.id.min.js"></script>
      
     <style> /* Logo Header */
         .logo-img {
