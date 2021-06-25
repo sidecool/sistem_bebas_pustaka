@@ -136,8 +136,8 @@
                         </a>
                         <div class="collapse" id="collapseLaporan" aria-labelledby="headingFour" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a href="#!" class="nav-link"> Laporan Bulanan</a>
-                                <a href="#!" class="nav-link"> Laporan Tahunan</a>
+                                <a href="<?php echo $baseurl; ?>/admin/form_laporan/lap_bulanan.php" class="nav-link" <?php if($page == 'Laporan Bulanan') echo active; ?>"> Laporan Bulanan</a>
+                                <a href="<?php echo $baseurl; ?>/admin/form_laporan/lap_tahunan.php" class="nav-link" <?php if($page == 'Laporan Tahunan') echo active; ?>"> Laporan Tahunan</a>
                             </nav>
                         </div>
 

@@ -1,7 +1,7 @@
 <?php
 session_start();
 error_reporting(0);
-$page = "Master Data Jurusan";
+$page = "Laporan Bulanan";
 
 include '../../config/route.php';
 include "../../config/database.php";
@@ -13,67 +13,6 @@ if($_SESSION['status']!="masuk") {
 
 include "../header.php";
 ?>
-                    <div id="accordion">
-                        <div id="baru" class="collapse" data-parent="#accordion">
-                            <div class="card mb-4">
-                                <div class="card-header container-fluid">
-                                    <div class="row">
-                                        <div class="col">
-                                            <i class="fas fa-table mr-1"></i>
-                                            Tambah Data Jurusan
-                                        </div>
-                                        <div class="col text-right">
-                                            <button type="reset" data-toggle="collapse" data-target="#baru" class="btn btn-sm"><i class="fa fa-times"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <form method="post" action="aksi_jurusan.php?aksi=insert" autocomplete="off" id="in-form">
-                                        <div class="row">
-                                            <label for="id_fakultas" class="col-sm-4 col-form-label-sm text-right font-weight-bold">NAMA FAKULTAS</label>
-                                            <div class="col-sm-8">
-                                                <select class="form-control form-control-sm" name="id_fakultas" id="id_fakultas" placeholder="Nama Fakultas" required onkeydown="return f_cekenter(this, event)" tabIndex="1">
-                                                    <option value="">- PILIH FAKULTAS -</option>
-                                                    <?php
-                                                    $sql_fakultas = "SELECT id_fakultas, nm_fakultas FROM tbl_fakultas ORDER BY nm_fakultas ASC";
-                                                    $result_fakultas = $mysqli->query($sql_fakultas);
-                        
-                                                    $numrow_fakultas = $result_fakultas->num_rows;
-                                            
-                                                    if($numrow_fakultas > 0) {
-                                                        while($data = $result_fakultas->fetch_assoc()) {
-                                                            echo '<option value="'.$data["id_fakultas"].'">'.$data["nm_fakultas"].'</option>';
-                                                        }
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <label for="id_jurusan" class="col-sm-4 col-form-label-sm text-right font-weight-bold">KODE JURUSAN</label>
-                                            <div class="col-sm-4">
-                                                <input type="text" class="form-control form-control-sm" name="id_jurusan" id="id_jurusan" placeholder="Kode Jurusan" required onkeydown="return f_cekenter(this, event)" tabIndex="2">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <label for="nama" class="col-sm-4 col-form-label-sm text-right font-weight-bold">NAMA JURUSAN</label>
-                                            <div class="col-sm-8">
-                                                <input type="text" class="form-control form-control-sm" name="nama" placeholder="Nama Jurusan" required tabIndex="3">
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-4"></div>
-                                            <div class="col-sm-8">
-                                                <button class="btn btn-sm btn-primary" type="submit" form="in-form"><i class="fa fa-save"></i><span> Simpan</span></button>
-                                                <button class="btn btn-sm btn-warning" type="reset" data-toggle="collapse" data-target="#baru"><i class="fa fa-reply"></i><span> Batal</span></button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <div id="TabelData">
                         <div class="card mb-4">
                             <div class="card-header container-fluid">
@@ -207,31 +146,6 @@ include "../header.php";
                             </div>
                         </div>
                     </div>
-                    
-                    <script type="text/javascript">
-                        $(document).ready(function(){
-                            $("#showBaru").click(function(){
-                                $("#baru").collapse('show');
-                                $("#id_fakultas").focus();
-                            })
-                        });                        
-                        
-                        $('#baru').on('hidden.bs.collapse', function () {
-                            $(this).find('form').trigger('reset');
-                        });
-
-                        $('.modal').on('shown.bs.modal', function(){
-                            // $('#nama', this).focus();
-                            $('.nama', this).select();
-                        });
-
-                        $('.modal').on('hidden.bs.modal', function () {
-                            $(this).find('form').trigger('reset');
-                        })
-                    </script>   
-
-
-                
 <?php 
 include "../footer.php";
 ?>
