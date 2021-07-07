@@ -4,11 +4,11 @@ date_default_timezone_set('Asia/Jakarta');
 $hostname = "localhost";
 $port = 3306;
 $user = "root";
-$passwd = "usbw";
+$passwd = "";
 $dbname = "db_sibebas_pustaka_firda";
 
 $mysqli = @new mysqli($hostname, $user, $passwd, $dbname);
-$connect = new PDO("mysql:host=localhost;dbname=db_sibebas_pustaka_firda", "root", "usbw");
+$connect = new PDO("mysql:host=localhost;dbname=db_sibebas_pustaka_firda", "root", "");
 
 // Cek Koneksi
 if ($mysqli->connect_errno) {

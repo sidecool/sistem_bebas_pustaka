@@ -184,13 +184,13 @@ include $baseurl.'/config/database.php';
                                             </div>
                                         </div>
                                         <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                            <!-- <a class="small" href="">Forgot Password?</a> -->
+                                            <!-- <a class="small" href="">Lupa Password?</a> -->
                                             <input type="submit" name="Login" class="btn btn-primary" style="width: 100%;" value="Login" tabIndex="3">
                                         </div>
                                     </form>
                                 </div>
                                 <div class="card-footer text-center">
-                                    <!-- <div class="small"><a href="register.html">Need an account? Sign up!</a></div> -->
+                                    <div class="small"><a href="<?php echo $baseurl;?>/register">Daftar Akun Baru</a></div>
                                 </div>
                             </div>
                         </div>
