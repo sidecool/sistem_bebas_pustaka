@@ -155,13 +155,13 @@ include $baseurl.'/config/database.php';
                                         <div class="row">
                                             <label for="password" class="col-sm-4 col-form-label-sm text-right font-weight-bold">PASSWORD</label>
                                             <div class="col-sm-4">
-                                                <input type="text" class="form-control form-control-sm" name="password" id="password" placeholder="Password" required onkeydown="return f_cekenter(this, event)" tabIndex="5">
+                                                <input type="password" class="form-control form-control-sm" name="password" id="password" placeholder="Password" required onkeydown="return f_cekenter(this, event)" tabIndex="5">
                                             </div>
                                         </div>
                                         <div class="row">
                                             <label for="re-password" class="col-sm-4 col-form-label-sm text-right font-weight-bold">RE-PASSWORD</label>
                                             <div class="col-sm-4">
-                                                <input type="text" class="form-control form-control-sm" name="re-password" id="re-password" placeholder="Re-password" required onkeydown="return f_cekenter(this, event)" tabIndex="6">
+                                                <input type="password" class="form-control form-control-sm" name="re-password" id="re-password" placeholder="Re-password" required onkeydown="return f_cekenter(this, event)" tabIndex="6">
                                             </div>
                                         </div>                                        
                                     </form>
