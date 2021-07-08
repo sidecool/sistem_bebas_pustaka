@@ -38,7 +38,7 @@ include "../header.php";
                                         ?>
 
                                         <div class="row">
-                                            <label for="npm_mahasiswa" class="col-sm-4 col-form-label-sm text-right font-weight-bold">NPM Mahasiswa</label>
+                                            <label for="npm_mahasiswa" class="col-sm-4 col-form-label-sm text-right font-weight-bold">NPM MAHASISWA</label>
                                             <div class="col-sm-4">
                                                 <input type="text" class="form-control form-control-sm" name="npm_mahasiswa" id="npm_mahasiswa" value="<?php echo $col['npm_mahasiswa']; ?>" placeholder="NPM Mahasiswa" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="1">
                                             </div>
@@ -125,7 +125,7 @@ include "../header.php";
                                     }
                                 });                                
                                 $(".id_fakultas").change(function(){
-                                var fakultas = $(".id_fakultas").val();                            
+                                    var fakultas = $(".id_fakultas").val();                            
                                     $.ajax({
                                         type: 'POST',
                                         url: "aksi_profil.php?getData=jurusan",
