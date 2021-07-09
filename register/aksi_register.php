@@ -45,59 +45,48 @@ if($getData=='jurusan'){
 
 $aksi = $_GET[aksi];
 
-if($aksi == 'cek') {
-    $sql = "SELECT * FROM tbl_login WHERE username='$_POST[data1]'";
-    echo $sql;
-    $result = $mysqli->query($sql);
-    $numrow = $result->num_rows;       
+if($aksi == 'simpan') {
+    $sql = "INSERT INTO tbl_mahasiswa (npm_mahasiswa, username, nm_mahasiswa, id_fakultas, id_jurusan) 
+            VALUES ('$_POST[data1]',
+                    '$_POST[data1]',
+                    '$_POST[data2]',
+                    '$_POST[data3]',
+                    '$_POST[data4]')";
+    $proses = $mysqli->query($sql);
+    if(!$proses){
+        $result = array(
+            'response' => array(
+                'status' => 'error'
+            )
+        );
+    } else {
+        $result = array(
+            'response' => array(
+                'status' => 'success'
+            )
+        );
+    }    
+    echo json_encode($result);
 }
-
-// if($aksi=='insert') {
-//     $sql = "INSERT INTO tbl_mahasiswa (npm_mahasiswa, username, nm_mahasiswa, alamat, id_fakultas, id_jurusan, id_anggota_perpus, email)
-//             VALUES ('$_POST[npm_mahasiswa]',
-//                     '$_POST[npm_mahasiswa]',
-//                     '$_POST[nama]',
-//                     '$_POST[alamat]',
-//                     '$_POST[id_fakultas]',
-//                     '$_POST[id_jurusan]',
-//                     '$_POST[id_perpus]',
-//                     '$_POST[email]')";
-//     $proses = $mysqli->query($sql);
-//     if(!$proses) {
-//         // echo "Error : ".$mysqli->error;
-//         header("location:index.php?p=gagal-simpan");
-//     } else {
-//         header("location:index.php?p=berhasil-simpan");
-//     }
-// }
 
 if($aksi=='update') {
-    $sql = "UPDATE tbl_mahasiswa SET 
-            nm_mahasiswa='$_POST[nama]',            
-            alamat='$_POST[alamat]',
-            id_fakultas='$_POST[id_fakultas]',
-            id_jurusan='$_POST[id_jurusan]',
-            id_anggota_perpus='$_POST[id_perpus]',
-            email='$_POST[email]'
-            WHERE npm_mahasiswa='$_POST[npm_mahasiswa]'";
+    $sql = "UPDATE tbl_login SET password = '$_POST[data2]'
+            WHERE username =  '$_POST[data1]'";
     $proses = $mysqli->query($sql);
     if(!$proses) {
-        // echo "Error : ".$mysqli->error;
-        header("location:index.php?p=gagal-edit");
+        $result = array(
+            'response' => array(
+                'status' => 'error'                
+            )
+        );
     } else {
-        header("location:index.php?p=berhasil-edit");
-    }
+        $result = array(
+            'response' => array(
+                'status' => 'success'
+            )
+        );
+    } 
+    echo json_encode($result);
 }
 
-// if($aksi=='delete') {    
-//     $sql = "DELETE FROM tbl_mahasiswa WHERE npm_mahasiswa='$_POST[id]'";
-//     $proses = $mysqli->query($sql);
-//     if(!$proses) {
-//         // echo "Error : ".$mysqli->error;
-//         header("location:index.php?p=gagal-hapus");
-//     } else {
-//         header("location:index.php?p=berhasil-hapus");
-//     }
-// }
-
-// ?>
+?>

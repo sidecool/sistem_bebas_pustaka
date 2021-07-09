@@ -65,10 +65,10 @@ include "../header.php";
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        <div class="row" style="padding-bottom: 8px">
                                             <label for="alamat" class="col-sm-4 col-form-label-sm text-right font-weight-bold">ALAMAT MAHASISWA</label>
                                             <div class="col-sm-8">
-                                                <textarea row="3" class="form-control form-control-sm" name="alamat" id="alamat" placeholder="Alamat Mahasiswa" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="5"><?php echo $col['alamat']; ?></textarea>
+                                                <textarea rows="2" class="form-control form-control-sm" name="alamat" id="alamat" placeholder="Alamat Mahasiswa" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="5"><?php echo $col['alamat']; ?></textarea>
                                             </div>
                                         </div>
                                         <div class="row">

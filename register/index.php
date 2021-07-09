@@ -155,20 +155,30 @@ include $baseurl.'/config/database.php';
                                         <div class="row">
                                             <label for="password" class="col-sm-4 col-form-label-sm text-right font-weight-bold">PASSWORD</label>
                                             <div class="col-sm-4">
-                                                <input type="password" class="form-control form-control-sm" name="password" id="password" placeholder="Password" required onkeydown="return f_cekenter(this, event)" tabIndex="5">
+                                                <div class="input-group mb-3">
+                                                    <input type="password" id="password" name="password" class="form-control form-control-sm" placeholder="Password" autocomplete="off" required onkeydown="return f_cekenter(this, event)" tabIndex="5">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-sm btn-outline-secondary" type="button" id="show"><i class="fa fa-eye-slash"></i></button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <label for="re-password" class="col-sm-4 col-form-label-sm text-right font-weight-bold">RE-PASSWORD</label>
                                             <div class="col-sm-4">
-                                                <input type="password" class="form-control form-control-sm" name="re-password" id="re-password" placeholder="Re-password" required onkeydown="return f_cekenter(this, event)" tabIndex="6">
+                                                <div class="input-group mb-3">
+                                                    <input type="password" id="re-password" name="re-password" class="form-control form-control-sm" placeholder="Re-password" autocomplete="off" required onkeydown="return f_cekenter(this, event)" tabIndex="6">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-sm btn-outline-secondary" type="button" id="re-show"><i class="fa fa-eye-slash"></i></button>
+                                                    </div>
+                                                </div>                                                
                                             </div>
                                         </div>                                        
                                     </form>
                                 </div>
                                 <div class="card-footer text-center">
-                                    <button class="btn btn-sm btn-primary" type="button" id="simpan" form="reg-form" ><i class="fa fa-user-circle"></i><span> Daftar</span></button>
-                                    <button class="btn btn-sm btn-warning" type="reset" id="batal" onclick="location.replace('<?php echo $baseurl; ?>')"><i class="fa fa-reply"></i><span> Batal</span></button>                                    
+                                    <button class="btn btn-sm btn-primary" type="button" id="simpan" form="reg-form" tabIndex="7"><i class="fa fa-user-circle"></i><span> Daftar</span></button>
+                                    <button class="btn btn-sm btn-warning" type="reset" id="batal" onclick="location.replace('<?php echo $baseurl; ?>')"  tabIndex="8"><i class="fa fa-reply"></i><span> Batal</span></button>
                                 </div>
                             </div>
                         </div>
@@ -231,42 +241,120 @@ include $baseurl.'/config/database.php';
                 });
             });
 
+            $('#show').click(function(){
+                $('#password').focus();
+                var x = document.getElementById("password");
+                var y = document.getElementById("show");
+                if (x.type === "password") {
+                    x.type = "text";
+                    y.innerHTML = "<i class='fa fa-eye'>";
+                } else {
+                    x.type = "password";
+                    y.innerHTML = "<i class='fa fa-eye-slash'>";
+                }
+            });
+
+            $('#re-show').click(function(){
+                $('#re-password').focus();
+                var x = document.getElementById("re-password");
+                var y = document.getElementById("re-show");
+                if (x.type === "password") {
+                    x.type = "text";
+                    y.innerHTML = "<i class='fa fa-eye'>";
+                } else {
+                    x.type = "password";
+                    y.innerHTML = "<i class='fa fa-eye-slash'>";
+                }
+            });
+
             $("#simpan").click(function(){
                 var npm = document.getElementById('npm_mahasiswa').value; 
                 var nama = document.getElementById('nama').value;
                 var fakultas = $('.id_fakultas').val();
                 var jurusan = $('.id_jurusan').val();
                 var password = document.getElementById('password').value;
-                var repassword = document.getElementById('re-password').value;
-                $.ajax({
-                    type: 'POST',
-                    url: 'aksi_register.php?aksi=cek',
-                    data: { data1: npm },
-                    cache: false,
-                    success: function(){
-                        $.ajax({
-                            type: 'POST',
-                            url: 'aksi_register.php?aksi=insert',
-                            data: {
-                                data1: npm,
-                                data2: nama,
-                                data3: fakultas,
-                                data4: jurusan,
-                                data5: password,
-                            },
-                            cache: false,
-                            success: function(){
+                var repassword = document.getElementById('re-password').value; 
+                if(npm == ''){
+                    $('#npm_mahasiswa').focus();
+                    document.getElementById('npm_mahasiswa').reportValidity();
+                    return false;
+                }
 
-                            },
-                            error: function(){
+                if(nama == ''){
+                    $('#nama').focus();
+                    document.getElementById('nama').reportValidity();
+                    return false;
+                }
 
-                            }
-                        });
-                    },
-                    error: function(){
-                        toastr.error("Anda sudah mendaftar. Silahkan melakukan login.", "Pesan Gagal", 3000);
+                if(fakultas == ''){
+                    $('#id_fakultas').focus();
+                    document.getElementById('id_fakultas').reportValidity();
+                    return false;
+                }
+
+                if(jurusan == ''){
+                    $('#id_jurusan').focus();
+                    document.getElementById('id_jurusan').reportValidity();
+                    return false;
+                }
+
+                if(password == ''){
+                    $('#password').focus();
+                    document.getElementById('password').reportValidity();
+                    return false;
+                }
+
+                if(repassword == ''){
+                    $('#re-password').focus();
+                    document.getElementById('re-password').reportValidity();
+                    return false;
+                }                
+                
+                if((npm != '') && (nama != '') && (fakultas != '') && (jurusan != '') && (password != '') && (repassword != '')) {
+                    if (password != repassword) {
+                        $('#re-password').focus();
+                        document.getElementById("re-password").setCustomValidity('Re-password belum sama dengan Password');
+                        document.getElementById('re-password').reportValidity();
+                        return false;
                     }
-                });                
+
+                    $.ajax({
+                        type: 'POST',
+                        url: 'aksi_register.php?aksi=simpan',
+                        data: { 
+                            data1: npm,
+                            data2: nama,
+                            data3: fakultas,
+                            data4: jurusan                            
+                        },
+                        cache: false,
+                        success: function(result){
+                            var json = $.parseJSON(result);
+                            if(json.response.status == 'success') {
+                                $.ajax({
+                                    type: 'POST',
+                                    url: 'aksi_register.php?aksi=update',
+                                    data: {
+                                        data1: npm,                                        
+                                        data2: password
+                                    },
+                                    cache: false,
+                                    success: function(result){
+                                        var json2 = $.parseJSON(result);
+                                        if(json2.response.status == 'success') {                                            
+                                            toastr.success("Selamat Anda telah terdaftar dengan akun "+npm+", Silahkan melakukan login.", "Pesan Berhasil", 3000);
+                                            document.getElementById('batal').click();
+                                        } else {
+                                            toastr.error("Anda tidak dapat mendaftar. </br>Silahkan hubungi Petugas.", "Pesan Gagal", 3000);
+                                        }
+                                    }
+                                });
+                            } else {
+                                toastr.error(npm+" sudah terdaftar. </br>Anda tidak dapat mendaftar lagi dengan akun ini. </br>Silahkan melakukan login.", "Pesan Gagal", 3000);
+                            }                        
+                        }
+                    });
+                }                
             });
         });
     </script>

@@ -12,33 +12,33 @@
                                     <form method="post" action="" autocomplete="off" id="in-form">
                                         <div class="row">
                                             <label for="paswd_old" class="col-sm-4 col-form-label-sm text-right font-weight-bold">Password Lama</label>
-                                            <div class="col-sm-8">
+                                            <div class="col-sm-4">
                                                 <div class="input-group mb-3">                                                    
                                                     <input type="password" id="paswd_old" name="paswd_old" class="form-control form-control-sm" placeholder="Password Lama" required onkeydown="return f_cekenter(this, event)" tabIndex="1">
                                                     <div class="input-group-append">
-                                                        <button class="btn btn-outline-secondary" type="button" id="showOld"><i class="fa fa-eye-slash"></i></button>
+                                                        <button class="btn btn-sm btn-outline-secondary" type="button" id="showOld"><i class="fa fa-eye-slash"></i></button>
                                                     </div>
                                                 </div>
                                             </div>                                            
                                         </div>
                                         <div class="row">
                                             <label for="paswd_new" class="col-sm-4 col-form-label-sm text-right font-weight-bold">Password Baru</label>
-                                            <div class="col-sm-8">
+                                            <div class="col-sm-4">
                                                 <div class="input-group mb-3">
                                                     <input type="password" id="paswd_new" name="paswd_new" class="form-control form-control-sm" placeholder="Password Baru" required onkeydown="return f_cekenter(this, event)" tabIndex="2">
                                                     <div class="input-group-append">
-                                                        <button class="btn btn-outline-secondary" type="button" id="showNew"><i class="fa fa-eye-slash"></i></button>
+                                                        <button class="btn btn-sm btn-outline-secondary" type="button" id="showNew"><i class="fa fa-eye-slash"></i></button>
                                                     </div>
-                                                </div>    
-                                            </div>                                            
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <label for="paswd_conf" class="col-sm-4 col-form-label-sm text-right font-weight-bold">Re-type Password</label>
-                                            <div class="col-sm-8">
+                                            <div class="col-sm-4">
                                                 <div class="input-group mb-3">
-                                                    <input type="password" id="paswd_conf" name="paswd_conf" class="form-control form-control-sm" placeholder="Re-type Password" required tabIndex="3">                                                    
+                                                    <input type="password" id="paswd_conf" name="paswd_conf" class="form-control form-control-sm" placeholder="Re-type Password" required tabIndex="3">
                                                     <div class="input-group-append">
-                                                        <button class="btn btn-outline-secondary" type="button" id="showConf"><i class="fa fa-eye-slash"></i></button>
+                                                        <button class="btn btn-sm btn-outline-secondary" type="button" id="showConf"><i class="fa fa-eye-slash"></i></button>
                                                     </div>
                                                 </div>
                                                 <p id="pesan"></p>
