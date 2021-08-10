@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 25, 2021 at 07:30 PM
+-- Generation Time: Aug 10, 2021 at 12:36 AM
 -- Server version: 5.6.34
 -- PHP Version: 7.1.11
 
@@ -174,7 +174,9 @@ INSERT INTO `tbl_login` (`username`, `password`, `hak_akses`) VALUES
 ('20210004', '12345', 'MAHASISWA'),
 ('20210005', '12345', 'MAHASISWA'),
 ('20210006', '12345', 'MAHASISWA'),
-('admin', '12345', 'ADMIN');
+('admin', '12345', 'ADMIN'),
+('apalah', 'apalah', 'MAHASISWA'),
+('coba', 'coba', 'MAHASISWA');
 
 -- --------------------------------------------------------
 
@@ -203,7 +205,9 @@ INSERT INTO `tbl_mahasiswa` (`npm_mahasiswa`, `username`, `nm_mahasiswa`, `alama
 ('20210003', '20210003', 'Dewi', 'Jl. Pelangi No. 55', 'FK002', 'JUR04', '20210003', ''),
 ('20210004', '20210004', 'Nisa', 'Jl. Salak', 'FK002', 'JUR04', '20210004', ''),
 ('20210005', '20210005', 'Monica', 'Jl. Mangga', 'FK002', 'JUR04', '20210005', ''),
-('20210006', '20210006', 'Agung', 'Jl. H. Slamet', 'FK002', 'JUR04', '20210006', '');
+('20210006', '20210006', 'Agung', 'Jl. H. Slamet', 'FK002', 'JUR04', '20210006', ''),
+('apalah', 'apalah', 'apalah', '', 'FK003', 'JUR02', '', ''),
+('coba', 'coba', 'coba', '', 'FK003', 'JUR02', '', '');
 
 --
 -- Triggers `tbl_mahasiswa`

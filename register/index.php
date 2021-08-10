@@ -1,6 +1,6 @@
 <?php 
 // Abaikan Error Browser
-// error_reporting(0);
+error_reporting(0);
 session_start();
 
 include '../config/route.php';
