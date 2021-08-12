@@ -115,12 +115,16 @@
                         <a href="" class="nav-link collapsed" data-toggle="collapse" data-target="#collapseVerif " aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Upload dan Verifikasi 
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
+                        </a>                
                         <div class="collapse" id="collapseVerif" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a href="<?php echo $baseurl; ?>/admin/form_bebas_pustaka/" class="nav-link <?php if($page == 'Pengajuan Bebas Pustaka') echo active; ?>"> Pengajuan Bebas Pustaka</a>                                
+                                <a href="<?php echo $baseurl; ?>/admin/form_bebas_pustaka/" class="nav-link <?php if($page == 'Pengajuan Bebas Pustaka') echo active; ?>"> Pengajuan Bebas Pustaka</a>
                             </nav>
                         </div>
+
+                        <a href="<?php echo $baseurl; ?>/admin/form_pengumuman/" class="nav-link <?php if($page == 'Pengumuman') echo active; ?>" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Pengumuman                                                          
+                        </a>
 
                         <!-- <a href="" class="nav-link collapsed" data-toggle="collapse" data-target="#collapseInfo " aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div> Informasi 
