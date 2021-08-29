@@ -58,13 +58,28 @@ include "../header.php";
                                         <div class="row">
                                             <label for="alamat" class="col-sm-4 col-form-label-sm text-right font-weight-bold">ALAMAT MAHASISWA</label>
                                             <div class="col-sm-8">
-                                                <textarea row="3" class="form-control form-control-sm" name="alamat" placeholder="Alamat Mahasiswa" required onkeydown="return f_cekenter(this, event)" tabIndex="5"></textarea>
+                                                <textarea row="3" style="margin-bottom: 10px" class="form-control form-control-sm" name="alamat" placeholder="Alamat Mahasiswa" required onkeydown="return f_cekenter(this, event)" tabIndex="5"></textarea>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <label for="id_perpus" class="col-sm-4 col-form-label-sm text-right font-weight-bold">ID ANGGOTA PERPUSTAKAAN</label>
                                             <div class="col-sm-8">
                                                 <input type="text" class="form-control form-control-sm" name="id_perpus" id="id_perpus" placeholder="ID Anggota Perpustakaan" required onkeydown="return f_cekenter(this, event)" tabIndex="6">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <label for="stat_perpus" class="col-sm-4 col-form-label-sm text-right font-weight-bold">STATUS TANGGUNGAN PERPUSTAKAAN</label>
+                                            <div class="col-sm-8">
+                                                <select class="stat_perpus form-control form-control-sm" name="stat_perpus" required onkeydown="return f_cekenter(this, event)" tabIndex="7">
+                                                    <option value="T">Tidak Ada Tanggungan</option>
+                                                    <option value="A">Ada Tanggungan</option>
+                                                </select>
+                                            </div>                                            
+                                        </div>
+                                        <div class="row">
+                                            <label for="denda_perpus" class="col-sm-4 col-form-label-sm text-right font-weight-bold">DENDA PERPUSTAKAAN</label>
+                                            <div class="col-sm-8">
+                                                <input id="rupiah" type="text" class="form-control form-control-sm" name="denda_perpus" value="<?php echo $col['denda_perpus']; ?>" placeholder="0" required onkeydown="return f_cekenter(this, event)" tabIndex="8">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -114,7 +129,7 @@ include "../header.php";
                                         </thead>
                                         <tbody>
                                             <?php
-                                                $sql = "SELECT A.npm_mahasiswa, A.nm_mahasiswa, A.alamat, A.id_fakultas, B.nm_fakultas, A.id_jurusan, C.nm_jurusan FROM tbl_mahasiswa A 
+                                                $sql = "SELECT A.npm_mahasiswa, A.nm_mahasiswa, A.alamat, A.id_fakultas, B.nm_fakultas, A.id_jurusan, C.nm_jurusan, A.status_tanggungan_perpus FROM tbl_mahasiswa A 
                                                         LEFT JOIN tbl_fakultas B ON A.id_fakultas=B.id_fakultas
                                                         LEFT JOIN tbl_jurusan C ON A.id_fakultas=C.id_fakultas AND A.id_jurusan=C.id_jurusan
                                                         ORDER BY nm_mahasiswa ASC";
@@ -133,7 +148,7 @@ include "../header.php";
                                                             <td width=20%><?php echo $column['nm_fakultas']; ?></td>
                                                             <td width=20%><?php echo $column['nm_jurusan']; ?></td>
                                                             <td class="text-center" width=20%>
-                                                                <button type="button" id="showEdit" fakultas="<?php echo $column['id_fakultas']; ?>" jurusan="<?php echo $column['id_jurusan']; ?>" class="btn btn-sm btn-primary showEdit" data-toggle="modal" data-target="#Edit<?php echo $column['npm_mahasiswa']; ?>"><i class="fa fa-edit"></i><span> Edit</span></button>
+                                                                <button type="button" id="showEdit" fakultas="<?php echo $column['id_fakultas']; ?>" jurusan="<?php echo $column['id_jurusan']; ?>" status_perpus="<?php echo $column['status_tanggungan_perpus']; ?>" class="btn btn-sm btn-primary showEdit" data-toggle="modal" data-target="#Edit<?php echo $column['npm_mahasiswa']; ?>"><i class="fa fa-edit"></i><span> Edit</span></button>
                                                                 <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#Delete<?php echo $column['npm_mahasiswa']; ?>"><i class="fa fa-trash"></i><span> Hapus</span></button>                                                                
                                                             </td>
                                                         </tr>   
@@ -151,7 +166,8 @@ include "../header.php";
                                                                             <?php
                                                                                 $id_mahasiswa = $column['npm_mahasiswa'];
                                                                                 
-                                                                                $sql_2 = "SELECT A.npm_mahasiswa, A.nm_mahasiswa, A.alamat, A.id_fakultas, A.id_jurusan, B.nm_fakultas, C.nm_jurusan, A.id_anggota_perpus, A.email FROM tbl_mahasiswa A 
+                                                                                $sql_2 = "SELECT A.npm_mahasiswa, A.nm_mahasiswa, A.alamat, A.id_fakultas, A.id_jurusan, B.nm_fakultas, C.nm_jurusan, 
+                                                                                            A.id_anggota_perpus, A.status_tanggungan_perpus, A.denda_perpus, A.email FROM tbl_mahasiswa A 
                                                                                             LEFT JOIN tbl_fakultas B ON A.id_fakultas=B.id_fakultas
                                                                                             LEFT JOIN tbl_jurusan C ON A.id_fakultas=C.id_fakultas AND A.id_jurusan=C.id_jurusan                                                                                 
                                                                                             WHERE A.npm_mahasiswa='$id_mahasiswa'";
@@ -185,7 +201,7 @@ include "../header.php";
                                                                             <div class="row">
                                                                                 <label for="alamat" class="col-sm-4 col-form-label-sm text-right font-weight-bold">ALAMAT MAHASISWA</label>
                                                                                 <div class="col-sm-8">
-                                                                                    <textarea row="3" class="form-control form-control-sm" name="alamat" placeholder="Alamat Mahasiswa" required onkeydown="return f_cekenter(this, event)" tabIndex="5"><?php echo $col['alamat']; ?></textarea>
+                                                                                    <textarea row="3"  style="margin-bottom: 10px" class="form-control form-control-sm" name="alamat" placeholder="Alamat Mahasiswa" required onkeydown="return f_cekenter(this, event)" tabIndex="5"><?php echo $col['alamat']; ?></textarea>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="row">
@@ -195,9 +211,31 @@ include "../header.php";
                                                                                 </div>
                                                                             </div>
                                                                             <div class="row">
+                                                                                <label for="stat_perpus" class="col-sm-4 col-form-label-sm text-right font-weight-bold">STATUS TANGGUNGAN PERPUSTAKAAN</label>
+                                                                                <div class="col-sm-8">
+                                                                                    <select class="stat_perpus form-control form-control-sm" name="stat_perpus" required onkeydown="return f_cekenter(this, event)" tabIndex="7">
+                                                                                        <?php 
+                                                                                            if(($col['status_tanggungan_perpus'] == 'T') or ($col['status_tanggungan_perpus'] == '')) {
+                                                                                                echo '<option selected="selected" value="T">Tidak Ada Tanggungan</option>';
+                                                                                                echo '<option value="A">Ada Tanggungan</option>';
+                                                                                            } elseif ($col['status_tanggungan_perpus'] == 'A') {
+                                                                                                echo '<option value="T">Tidak Ada Tanggungan</option>';
+                                                                                                echo '<option selected="selected" value="A">Ada Tanggungan</option>';
+                                                                                            }
+                                                                                        ?>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <label for="denda_perpus" class="col-sm-4 col-form-label-sm text-right font-weight-bold">DENDA PERPUSTAKAAN</label>
+                                                                                <div class="col-sm-8">
+                                                                                    <input type="text" class="rupiah_edit form-control form-control-sm" name="denda_perpus" value="<?php echo $col['denda_perpus']; ?>" placeholder="0" required onkeydown="return f_cekenter(this, event)" tabIndex="8">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="row">
                                                                                 <label for="email" class="col-sm-4 col-form-label-sm text-right font-weight-bold">EMAIL MAHASISWA</label>
                                                                                 <div class="col-sm-8">
-                                                                                    <input type="text" class="form-control form-control-sm" name="email" value="<?php echo $col['email']; ?>" placeholder="Email Mahasiswa" required tabIndex="7">
+                                                                                    <input type="text" class="form-control form-control-sm" name="email" value="<?php echo $col['email']; ?>" placeholder="Email Mahasiswa" required tabIndex="9">
                                                                                 </div>
                                                                             </div>
                                                                             <?php 
@@ -266,10 +304,42 @@ include "../header.php";
 
                         $('.modal').on('hidden.bs.modal', function () {
                             $(this).find('form').trigger('reset');
-                        })
+                        });
+
+                        var rupiah = document.getElementById("rupiah");
+                        rupiah.addEventListener("keyup", function(e) {
+                        // tambahkan 'Rp.' pada saat form di ketik
+                        // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+                        rupiah.value = formatRupiah(this.value, "");
+                        });  
+
+                        var rupiah_edit = document.getElementsByClassName("rupiah_edit");
+                        for (var i = 0; i < rupiah_edit.length; i++) {
+                            rupiah_edit[i].addEventListener('keyup', function(e) {
+                                this.value = formatRupiah(this.value, "");
+                            }, false);
+                        };                           
+
+                        /* Fungsi formatRupiah */
+                        function formatRupiah(angka, prefix) {
+                        var number_string = angka.replace(/[^,\d]/g, "").toString(),
+                            split = number_string.split(","),
+                            sisa = split[0].length % 3,
+                            rupiah = split[0].substr(0, sisa),
+                            ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+                        // tambahkan titik jika yang di input sudah menjadi angka ribuan
+                        if (ribuan) {
+                            separator = sisa ? "." : "";
+                            rupiah += separator + ribuan.join(".");
+                        }
+
+                        rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
+                        return prefix == undefined ? rupiah : rupiah ? "" + rupiah : "";
+                        }
                     </script>   
 
-                    <script>
+                    <script>                    
 	                    $(document).ready(function(){                            
                             $.ajax({
                                 type: 'POST',
@@ -291,6 +361,13 @@ include "../header.php";
                                     }
                                 });
                             });
+                            $( ".modal" ).on('shown.bs.modal', function(){
+                                var rupiah_edit = document.getElementsByClassName("rupiah_edit");
+                                for (var i = 0; i < rupiah_edit.length; i++) {
+                                    rupiah_edit[i].value = formatRupiah(rupiah_edit[i].value, "");                                    
+                                };
+                            });
+
                             $(".showEdit").click(function(){
                                 var fakultas = $(this).attr("fakultas");
                                 var jurusan = $(this).attr("jurusan");
@@ -303,7 +380,7 @@ include "../header.php";
                                         $(".id_fakultas_edit").html(msg);
                                     },                                    
                                 });
-
+                            
                                 $.ajax({
                                     type: 'POST',
                                     url: "aksi_mahasiswa.php?getData=jurusan",
@@ -325,7 +402,7 @@ include "../header.php";
                                             $(".id_jurusan").html(msg);
                                         }
                                     });
-                                });                                
+                                });                                                            
                             });                                 
                         });
                     </script>

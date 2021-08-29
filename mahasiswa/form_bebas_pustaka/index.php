@@ -274,7 +274,7 @@ include "../header.php";
                         function f_upload(id_element, get_id, get_nama){
                             var id = get_id;
                             var nama = get_nama.toLowerCase();
-                            var uploader = <?php echo $_SESSION[username]?>;
+                            var uploader = <?php echo '"'.$_SESSION[username].'"'?>;
                             var files = document.getElementById(id_element);
                             for (var x = 0; x < files.length; x++){                                
                                 var namaFile = files.files[0].name;

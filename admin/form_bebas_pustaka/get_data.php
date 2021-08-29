@@ -44,7 +44,9 @@ if($pilihan=='jurusan'){
 
 if($pilihan=='detail'){
     $npm = $_POST["id_mahasiswa"];
-    $nama =  $_POST["nm_mahasiswa"];
+    if(isset($_POST["nm_mahasiswa"])){
+        $nama = $_POST["nm_mahasiswa"];
+    }    
     $sql = "SELECT nm_mahasiswa, judul_skripsi, pembimbing_1, pembimbing_2, judul_buku_1, tahun_buku_1, judul_buku_2, tahun_buku_2, judul_buku_3, tahun_buku_3 FROM tbl_info_dokumen WHERE npm_mahasiswa='$npm'";    
     $result = $mysqli->query($sql);
     $numrow = $result->num_rows;
@@ -53,7 +55,7 @@ if($pilihan=='detail'){
             echo '<div class="row">
                     <label for="nama" class="col-sm-4 col-form-label-sm text-right font-weight-bold">NAMA MAHASISWA</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control form-control-sm" name="nama" id="nama" value="'.$nama.'" placeholder="Nama Mahasiswa" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="2">
+                        <input type="text" class="form-control form-control-sm" name="nama" id="nama" value="'.$data["nm_mahasiswa"].'" placeholder="Nama Mahasiswa" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="2">
                     </div>
                 </div>
                 <div class="row">

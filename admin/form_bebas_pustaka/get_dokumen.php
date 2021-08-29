@@ -153,7 +153,7 @@ echo '
     function f_upload(id_element, kode, nama){        
         var id = kode;
         var nama = nama;
-        var uploader = '.$folder.';
+        var uploader = "'.$folder.'";
         var files = document.getElementById(id_element);
         for (var x = 0; x < files.length; x++){                                
             var namaFile = files.files[0].name;

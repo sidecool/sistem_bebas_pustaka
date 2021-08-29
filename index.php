@@ -4,7 +4,7 @@ error_reporting(0);
 session_start();
 
 include './config/route.php';
-include $baseurl.'/config/database.php';
+include './config/database.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -154,45 +154,66 @@ include $baseurl.'/config/database.php';
         </div>
         <div id="layoutAuthentication_content">
             <main>
-                <div class="container">
-                    <div class="row justify-content-end">
-                        <div class="col-lg-4">
-                            <div class="card shadow-lg border-0 rounded-lg mt-4">
-                                <div class="card-header"><h3 class="text-center font-weight-light "><img src="./assets/img/logo.png" alt="Universitas Musamus" class="avatar"></h3></div>
-                                <div class="card-body">
-                                    <form method="post" action="aksi.php" autocomplete="off">
-                                        <div class="form-group">
-                                            <!-- <label class="small mb-1" for="inputUser">Username</label> -->
-                                            <select class="form-control" name="hak_akses" id="inputAkses" autofocus onkeydown="return f_cekenter(this, event)" tabIndex="1">
-                                                <option value="MAHASISWA">Mahasiswa</option>
-                                                <option value="PEGAWAI">Petugas</option>
-                                                <option value="ADMIN">Administrator</option>
-                                            </select>                                            
-                                        </div>
-                                        <div class="form-group">
-                                            <!-- <label class="small mb-1" for="inputUser">Username</label> -->
-                                            <input class="form-control py-2 username" id="inputUsername" type="text" placeholder="Username" name="username" autofocus onkeydown="return f_cekenter(this, event)" tabIndex="2">
-                                        </div>
-                                        <div class="form-group">
-                                            <!-- <label class="small mb-1" for="inputPassword">Password</label> -->
-                                            <input class="form-control py-2 password" id="inputPassword" type="password" placeholder="Password" name="password" tabIndex="3">
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox">
-                                                <input class="custom-control-input" id="rememberPasswordCheck" type="checkbox" onclick="f_showpassword()">
-                                                <label class="custom-control-label" style="font-size: 10pt;" for="rememberPasswordCheck">Show password</label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                            <!-- <a class="small" href="">Lupa Password?</a> -->
-                                            <input type="submit" name="Login" class="btn btn-primary" style="width: 100%;" value="Login" tabIndex="3">
-                                        </div>
-                                    </form>
+                <div class="container-fluid">
+                    <div class="row">                        
+                        <div class="col-sm d-flex" style="padding-top:20px">
+                            <div class="card flex-fill">
+                                <div class="card-header">
+                                    Pengumuman
                                 </div>
-                                <div class="card-footer text-center">
-                                    <div class="small"><a href="<?php echo $baseurl;?>/register">Daftar Akun Baru</a></div>
+                                <div class="card-body">                                    
+                                    <?php
+                                        $sql = "SELECT id_informasi, isi_informasi, is_aktif 
+                                                FROM tbl_informasi
+                                                WHERE is_aktif='A' ";
+                                        $result = $mysqli->query($sql);
+                                        $data = $result->fetch_assoc();
+                                        
+                                        if($result->num_rows == 1) {
+                                            echo $data['isi_informasi'];
+                                        } else {
+                                            echo '';
+                                        }    
+                                    ?>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="col-sm d-flex justify-content-end">
+                            <div class="col-lg-6">
+                                <div class="card shadow-lg border-0 rounded-lg mt-4">
+                                    <div class="card-header"><h3 class="text-center font-weight-light "><img src="./assets/img/logo.png" alt="Universitas Musamus" class="avatar"></h3></div>
+                                    <div class="card-body">
+                                        <form method="post" action="aksi.php" autocomplete="off">
+                                            <div class="form-group">
+                                                <select class="form-control" name="hak_akses" id="inputAkses" autofocus onkeydown="return f_cekenter(this, event)" tabIndex="1">
+                                                    <option value="MAHASISWA">Mahasiswa</option>
+                                                    <option value="PEGAWAI">Petugas</option>
+                                                    <option value="ADMIN">Administrator</option>
+                                                </select>                                            
+                                            </div>
+                                            <div class="form-group">
+                                                <input class="form-control py-2 username" id="inputUsername" type="text" placeholder="Username" name="username" autofocus onkeydown="return f_cekenter(this, event)" tabIndex="2">
+                                            </div>
+                                            <div class="form-group">
+                                                <input class="form-control py-2 password" id="inputPassword" type="password" placeholder="Password" name="password" tabIndex="3">
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input class="custom-control-input" id="rememberPasswordCheck" type="checkbox" onclick="f_showpassword()">
+                                                    <label class="custom-control-label" style="font-size: 10pt;" for="rememberPasswordCheck">Show password</label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                                                <input type="submit" name="Login" class="btn btn-primary" style="width: 100%;" value="Login" tabIndex="3">
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="card-footer text-center">
+                                        <div class="small"><a href="<?php echo $baseurl;?>/register">Daftar Akun Baru</a></div>
+                                    </div>
+                                </div>
+                            </div>                    
                         </div>
                     </div>
                 </div>                

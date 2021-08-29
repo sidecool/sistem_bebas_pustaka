@@ -87,7 +87,7 @@
     <script src="<?php echo $baseurl; ?>/admin/assets/js/dataTables/buttons.print.min.js"></script>
     <script src="<?php echo $baseurl; ?>/admin/assets/js/datatables-admin.js" ></script>
     <script src="<?php echo $baseurl; ?>/admin/assets/js/scripts_admin.js" ></script>
-    <script src="<?php echo $baseurl; ?>/admin/assets/js/tinymce.min.js" ></script>
+    <script src="<?php echo $baseurl; ?>/admin/assets/js/tinymce/tinymce.min.js" ></script>
     <script>
         $(document).ready(function() {
             window.history.pushState(null, "", window.location.href);        

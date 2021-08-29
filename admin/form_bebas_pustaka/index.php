@@ -12,7 +12,18 @@ if($_SESSION['status']!="masuk") {
 }
 
 include "../header.php";
-?>
+
+if(isset($_GET[npm])){
+    $sql = "SELECT npm_mahasiswa, nm_mahasiswa
+            FROM tbl_mahasiswa
+            WHERE npm_mahasiswa='$_GET[npm]'";
+    $result = $mysqli->query($sql);
+    $data = $result->fetch_assoc();
+    if($result->num_rows == 1) {
+        $nama = $data['nm_mahasiswa'];
+    }
+}
+?>                        
                         <div id="InfoForm">
                             <div class="card mb-4">
                                 <div class="card-header container-fluid">
@@ -28,7 +39,7 @@ include "../header.php";
                                         <div class="row">
                                             <label for="npm_mahasiswa" class="col-sm-4 col-form-label-sm text-right font-weight-bold">NPM MAHASISWA</label>
                                             <div class="col-sm-4">
-                                                <input type="text" class="form-control form-control-sm" name="npm_mahasiswa" id="npm_mahasiswa" placeholder="NPM Mahasiswa" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="1">
+                                                <input type="text" value="<?php echo $_GET[npm]; ?>" class="form-control form-control-sm" name="npm_mahasiswa" id="npm_mahasiswa" placeholder="NPM Mahasiswa" readonly required onkeydown="return f_cekenter(this, event)" tabIndex="1">
                                             </div>                                            
                                             <div class="col-sm-2">
                                                 <button type="button" class="btn btn-sm btn-info" data-toggle="modal" data-target="#ModalNPM" id="btnCari"><b>Cari </b><i class="fa fa-search"></i></button>
@@ -126,8 +137,8 @@ include "../header.php";
                                             <tbody>
                                             </tbody>                                        
                                         </table>
-                                        <div id="btn-print" style="display: none; margin: 10px 0px 10px 0px;"></div>                                        
-                                    </div>                                    
+                                        <div id="btn-print" style="display: none; margin: 10px 0px 10px 0px;"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -135,6 +146,30 @@ include "../header.php";
 
                     <script>
                         $(document).ready(function(){
+                            var npm = document.getElementById('npm_mahasiswa').value
+                            if(npm != ''){
+                                $.ajax({
+                                    type: "POST",
+                                    url: "get_data.php?c=detail",
+                                    data: {id_mahasiswa: npm},
+                                    cache: false,
+                                    success: function(msg){
+                                        $("#detail-body").html(msg);
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "get_dokumen.php",
+                                            data: {id_mahasiswa: npm},
+                                            cache: false,
+                                            success: function(msg){
+                                                $("#uploadTable tbody").html(msg);
+                                                $.getScript("../../assets/js/verifikasi.js");
+                                                document.getElementById("judul_skripsi").focus();
+                                            }
+                                        })
+                                    }
+                                });
+                            }
+
                             $(".id_fakultas").focus();
                             $.ajax({
                                 type: 'POST',
@@ -198,10 +233,10 @@ include "../header.php";
 
                             $("#lookup tbody").on("click", "tr", function(e){
                                 $('#ModalNPM').modal('hide');
-                                var baris = dataTable.DataTable().row(this).data();
-                                var npm = baris[0];
-                                var nama = baris[1];                                
-                                document.getElementById('npm_mahasiswa').value = npm;
+                                var kolom = dataTable.DataTable().row(this).data();
+                                var npm = kolom[0];
+                                var nama = kolom[1];
+                                document.getElementById('npm_mahasiswa').value = npm;                                
                                 $.ajax({
                                     type: "POST",
                                     url: "get_data.php?c=detail",

@@ -12,46 +12,37 @@ if($_SESSION['status']!='masuk') {
     header('location:index.php');
 } 
 
-include "header.php";    
-?>        
+include "header.php";
+?>                                                                                    
                     <div class="container-fluid">
                         <div class="row">
                             <?php 
-                                $sql = "SELECT id_informasi, isi_informasi, is_aktif 
-                                        FROM tbl_informasi
-                                        WHERE is_aktif='A' ";
+                                $sql = "SELECT DISTINCT A.npm_mahasiswa, B.nm_mahasiswa 
+                                        FROM tbl_upload_dokumen A LEFT OUTER JOIN tbl_mahasiswa B ON A.npm_mahasiswa=B.npm_mahasiswa 
+                                        WHERE A.verifikasi = 'B' ORDER BY A.tgl_upload ";
                                 $result = $mysqli->query($sql);
-                                $data = $result->fetch_assoc();
-                                
-                                if($result->num_rows == 1) {
-                                    ?>
-
+                                if($result->num_rows > 0) {                                    
+                            ?>
                                     <div class="col-sm d-flex">
                                         <div class="card flex-fill">
                                             <div class="card-header">
-                                                Informasi
+                                                Daftar Pengajuan Dokumen Bebas Pustaka Mahasiswa
                                             </div>
                                             <div class="card-body">
-                                                <?php echo $data['isi_informasi']; ?>
+                                            <?php
+                                                $i = 1;                                                 
+                                                while($data = $result->fetch_assoc()){
+                                                    echo '<a href="'.$baseurl.'/admin/form_bebas_pustaka/?npm='.$data[npm_mahasiswa].'" 
+                                                        class="nav-link active"> '.$i.') ['.$data[npm_mahasiswa].'] '.$data[nm_mahasiswa].'</a>';
+                                                    $i++;
+                                                } 
+                                            ?>
                                             </div>                                    
                                         </div>
-                                    </div>
-                                    <?php    
-                                }                                                                         
-                            ?>
-
-                            <div class="col-sm d-flex">
-                                <div class="card flex-fill">
-                                    <div class="card-header">
-                                        Video
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="embed-responsive embed-responsive-16by9">
-                                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/impekjT2ba8"></iframe>
-                                        </div>
-                                    </div>                                    
-                                </div>
-                            </div>
+                                    </div>          
+                            <?php
+                                }
+                            ?>                            
                         </div>
                     </div>                 
 <?php 

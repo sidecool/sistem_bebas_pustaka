@@ -45,7 +45,7 @@ if($getData=='jurusan'){
 $aksi = $_GET[aksi];
 
 if($aksi=='insert') {
-    $sql = "INSERT INTO tbl_mahasiswa (npm_mahasiswa, username, nm_mahasiswa, alamat, id_fakultas, id_jurusan, id_anggota_perpus, email)
+    $sql = "INSERT INTO tbl_mahasiswa (npm_mahasiswa, username, nm_mahasiswa, alamat, id_fakultas, id_jurusan, id_anggota_perpus, status_tanggungan_perpus, denda_perpus, email)
             VALUES ('$_POST[npm_mahasiswa]',
                     '$_POST[npm_mahasiswa]',
                     '$_POST[nama]',
@@ -53,6 +53,8 @@ if($aksi=='insert') {
                     '$_POST[id_fakultas]',
                     '$_POST[id_jurusan]',                    
                     '$_POST[id_perpus]',
+                    '$_POST[stat_perpus]',
+                    '$_POST[denda_perpus]',
                     '$_POST[email]')";
     $proses = $mysqli->query($sql);
     if(!$proses) {
@@ -69,6 +71,8 @@ if($aksi=='update') {
             id_jurusan='$_POST[id_jurusan]',
             alamat='$_POST[alamat]',
             id_anggota_perpus='$_POST[id_perpus]',
+            status_tanggungan_perpus='$_POST[stat_perpus]',
+            denda_perpus='$_POST[denda_perpus]',
             email='$_POST[email]'
             WHERE npm_mahasiswa='$_POST[npm_mahasiswa]'";
     $proses = $mysqli->query($sql);
